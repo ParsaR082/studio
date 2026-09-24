@@ -1,0 +1,162 @@
+import React from 'react';
+import { ArrowLeft } from 'lucide-react';
+import { motion, useInView } from 'motion/react';
+import { Project } from '../../data/projects';
+
+interface HeroProps {
+  featuredProject: Project;
+  onSelectProject: (project: Project) => void;
+  onExploreProjects: () => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({
+  featuredProject,
+  onSelectProject,
+  onExploreProjects,
+}) => {
+  const containerRef = React.useRef<HTMLElement>(null);
+  const isInView = useInView(containerRef, {
+    margin: '-80px 0px -80px 0px',
+    amount: 0.25,
+  });
+
+  return (
+    <section
+      ref={containerRef}
+      id="hero"
+      className="relative min-h-screen pt-28 md:pt-36 pb-12 px-6 sm:px-10 lg:px-16 flex flex-col justify-between overflow-hidden"
+    >
+      {/* Top Meta Details */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -25 }}
+        transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-[1540px] w-full mx-auto flex items-center justify-between text-xs tracking-widest text-[#777777] font-light z-10"
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-[#111111] font-normal">استودیو معماری نو</span>
+          <span>·</span>
+          <span>آرشیو آثار معاصر ۱۴۰۵ — ۱۳۹۶</span>
+        </div>
+        <div className="hidden sm:flex items-center gap-4">
+          <span>تهران / لواسان</span>
+          <span>·</span>
+          <span>مونوگراف منتخب شماره ۰۱</span>
+        </div>
+      </motion.div>
+
+      {/* Main Content Area */}
+      <div className="max-w-[1540px] w-full mx-auto my-auto py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center z-10">
+        {/* Left/Center Text Column (Right in RTL) */}
+        <div className="lg:col-span-8 flex flex-col justify-center">
+          {/* Main Title Matching Video: AMBITIOUS / نوآوری جسورانه */}
+          <div className="overflow-hidden mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 80 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -60 }}
+              transition={{ duration: 0.95, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[8.5rem] font-light tracking-tight text-[#111111] leading-[0.95]">
+                <span className="block font-normal tracking-wide text-4xl sm:text-6xl lg:text-7xl font-sans mb-1" dir="ltr">
+                  AMBITIOUS
+                </span>
+                <span className="block font-light text-3xl sm:text-5xl lg:text-6xl text-[#333333]">
+                  نوآفرینی در سکوت و ماده.
+                </span>
+              </h1>
+            </motion.div>
+          </div>
+
+          {/* Description Paragraph with Kicker matching video */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -40 }}
+            transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-2xl mb-10"
+          >
+            <div className="flex items-start gap-4">
+              <span className="w-8 h-[1px] bg-[#111111] mt-3.5 shrink-0 hidden sm:block" />
+              <div className="space-y-2">
+                <p className="text-base sm:text-lg text-[#444444] font-light leading-relaxed">
+                  بازخوانی جسورانه ساختارهای کهن‌الگویی در تطابق با بستر طبیعی، کاربری و رفتار مصالح؛ آفرینش حس نوآوری از دل راهبردی بی‌زمان.
+                </p>
+                <p className="text-xs sm:text-sm text-[#777777] font-light leading-relaxed" dir="ltr">
+                  A great reinterpretation of an archetypal structure, reorganized to site, program, and material conditions, drawing out a sense of invention out of a timeless strategy.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Action CTA Button matching video circular outline arrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-wrap items-center gap-6"
+          >
+            <button
+              onClick={() => onSelectProject(featuredProject)}
+              className="group inline-flex items-center gap-3.5 text-xs sm:text-sm font-light uppercase tracking-wider text-[#111111] hover:text-[#555555] transition-colors cursor-pointer"
+            >
+              <span>مشاهده پروژه</span>
+              <span className="w-9 h-9 rounded-full border border-[#111111] flex items-center justify-center transition-all duration-300 group-hover:bg-[#111111] group-hover:text-[#F5F4F0] group-hover:-translate-x-1">
+                <ArrowLeft size={15} />
+              </span>
+            </button>
+
+            <button
+              onClick={onExploreProjects}
+              className="text-xs text-[#777777] hover:text-[#111111] transition-colors cursor-pointer font-light underline-offset-4 hover:underline"
+            >
+              آرشیو کامل پروژه‌ها (۹ اثر)
+            </button>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Sweeping Curved Architectural Facade from Bottom-Right Corner matching video (00:00 & 00:06) */}
+      <motion.div
+        initial={{ opacity: 0, x: 120, y: 120, scale: 0.92 }}
+        animate={
+          isInView
+            ? { opacity: 1, x: 0, y: 0, scale: 1 }
+            : { opacity: 0, x: 80, y: 80, scale: 0.95 }
+        }
+        transition={{ duration: 1.2, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        onClick={() => onSelectProject(featuredProject)}
+        className="absolute -bottom-8 -left-12 sm:bottom-0 sm:left-0 w-[55vw] sm:w-[48vw] lg:w-[42vw] max-w-[680px] aspect-[16/10] overflow-hidden pointer-events-auto cursor-pointer group z-0"
+      >
+        <img
+          src="/src/assets/images/curved_facade_sweep_1790289600522.jpg"
+          alt="نمای منحنی معماری معاصر"
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
+        />
+
+        {/* Delicate Scrim for overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        {/* Small corner label */}
+        <div className="absolute bottom-6 right-6 text-white text-[11px] font-light opacity-0 group-hover:opacity-100 transition-opacity">
+          بررسی اثر منتخب ←
+        </div>
+      </motion.div>
+
+      {/* Hero Bottom Bar */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+        transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-[1540px] w-full mx-auto pt-6 border-t border-[#111111]/8 flex items-center justify-between text-xs font-light text-[#777777] z-10"
+      >
+        <div className="flex items-center gap-6">
+          <span>رویکرد: فرم پیراسته و احترام به ژئومتری بستر</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>جهت مرور روایت‌ها به پایین اسکرول کنید</span>
+          <span className="animate-bounce">↓</span>
+        </div>
+      </motion.div>
+    </section>
+  );
+};
