@@ -161,6 +161,8 @@ export default function FlipCard({
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (disabled || e.button !== 0 || grip.current) return;
+    const target = e.target as HTMLElement | null;
+    if (target?.closest('button, a, input, textarea, select, [data-no-flip]')) return;
     try {
       e.currentTarget.setPointerCapture(e.pointerId);
     } catch {}
@@ -241,6 +243,8 @@ export default function FlipCard({
   };
 
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement | null;
+    if (target?.closest('button, a, input, textarea, select, [data-no-flip]')) return;
     if (!disabled && e.detail === 0) flip(true);
   };
 

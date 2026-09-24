@@ -118,11 +118,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 </div>
                 <button
                   type="button"
+                  data-no-flip="true"
+                  onPointerDown={(e) => e.stopPropagation()}
+                  onPointerUp={(e) => e.stopPropagation()}
                   onClick={(e) => {
                     e.stopPropagation();
                     setFlipped(false);
                   }}
-                  className="flex items-center gap-1 text-[11px] text-[#AAAAAA] hover:text-white transition-colors"
+                  className="flex items-center gap-1 text-[11px] text-[#AAAAAA] hover:text-white transition-colors cursor-pointer z-30 relative"
                 >
                   <RotateCw size={11} />
                   <span>بازگشت</span>
@@ -161,11 +164,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               {/* Back Action CTA Button */}
               <button
                 type="button"
+                data-no-flip="true"
+                onPointerDown={(e) => e.stopPropagation()}
+                onPointerUp={(e) => e.stopPropagation()}
                 onClick={(e) => {
                   e.stopPropagation();
                   onSelect(project);
                 }}
-                className="w-full py-2.5 px-4 bg-white text-[#111111] hover:bg-[#E0DED5] transition-colors rounded text-xs font-light tracking-wide flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-2.5 px-4 bg-white text-[#111111] hover:bg-[#E0DED5] active:scale-[0.98] transition-all rounded text-xs font-light tracking-wide flex items-center justify-center gap-2 cursor-pointer z-30 relative"
               >
                 <span>مشاهده پرونده کامل اثر</span>
                 <Maximize2 size={13} />
