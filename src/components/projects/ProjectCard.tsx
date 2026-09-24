@@ -1,9 +1,9 @@
-import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowLeft, RotateCw, Maximize2 } from 'lucide-react';
 import { motion, useInView } from 'motion/react';
 import { Project } from '../../data/projects';
 import { TextAnimate } from '../common/TextAnimate';
-import { ImageAnimate } from '../common/ImageAnimate';
+import FlipCard from '../common/FlipCard';
 
 interface ProjectCardProps {
   project: Project;
@@ -16,6 +16,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   index,
   onSelect,
 }) => {
+  const [flipped, setFlipped] = useState(false);
   const cardRef = React.useRef<HTMLElement>(null);
   const isInView = useInView(cardRef, {
     margin: '-60px 0px -60px 0px',
@@ -24,10 +25,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
   const colIndex = index % 3;
   const delay = colIndex * 0.12;
-
-  // Alternate image curtain direction for dynamic rhythm
-  const curtainAnimation =
-    colIndex === 0 ? 'curtainUp' : colIndex === 1 ? 'curtainLeft' : 'curtainRight';
 
   return (
     <motion.article
@@ -43,25 +40,139 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         delay,
         ease: [0.16, 1, 0.3, 1],
       }}
-      onClick={() => onSelect(project)}
-      className="group flex flex-col cursor-pointer"
+      className="group flex flex-col"
     >
-      {/* 1:1 Square Image with Special Curtain Wipe & Zoom Animation */}
-      <div className="relative w-full aspect-square overflow-hidden bg-[#E8E6DE] mb-6">
-        <ImageAnimate
-          src={project.heroImage}
-          alt={project.title}
-          animation={curtainAnimation}
-          delay={delay}
-          duration={0.9}
-          curtainColor="#DEDBD2"
-          className="w-full h-full"
-        >
-          {/* Index Counter overlay */}
-          <div className="absolute top-4 right-4 text-[11px] font-light text-white/95 px-2 py-0.5 bg-black/40 backdrop-blur-sm">
-            {project.id}
-          </div>
-        </ImageAnimate>
+      {/* Interactive 3D FlipCard from React Bits */}
+      <div className="w-full mb-6 relative">
+        <FlipCard
+          width="100%"
+          height={360}
+          radius={12}
+          axis="y"
+          draggable
+          tilt
+          tiltMax={10}
+          glare
+          glareOpacity={0.22}
+          hoverScale={1.02}
+          perspective={1100}
+          background="#161514"
+          color="#F5F4F0"
+          shadow
+          shadowColor="#000000"
+          shadowOpacity={0.35}
+          flipped={flipped}
+          onFlipChange={setFlipped}
+          ariaLabel={`کارت سه‌بعدی ${project.title}`}
+          front={
+            <div className="relative w-full h-full overflow-hidden bg-[#E8E6DE]">
+              <img
+                src={project.heroImage}
+                alt={project.title}
+                referrerPolicy="no-referrer"
+                loading="lazy"
+                className="w-full h-full object-cover select-none"
+              />
+
+              {/* Gradient Bottom Scrim */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
+
+              {/* Top Tags */}
+              <div className="absolute top-4 right-4 flex items-center gap-2">
+                <span className="text-[11px] font-mono tracking-widest text-white/95 px-2.5 py-1 bg-black/45 backdrop-blur-md border border-white/10 rounded-sm">
+                  {project.id}
+                </span>
+                <span className="text-[10px] font-light text-white/80 px-2 py-1 bg-black/35 backdrop-blur-md rounded-sm">
+                  {project.category}
+                </span>
+              </div>
+
+              {/* Bottom Flip Affordance Hint */}
+              <div className="absolute bottom-4 right-4 left-4 flex items-center justify-between text-white/90">
+                <div className="flex flex-col">
+                  <span className="text-xs font-light text-white/70">
+                    {project.location}
+                  </span>
+                  <span className="text-sm font-normal tracking-wide">
+                    {project.title}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-1.5 text-[11px] font-light text-white/85 px-2.5 py-1 rounded bg-white/15 backdrop-blur-md border border-white/20">
+                  <RotateCw size={12} className="animate-spin-slow" />
+                  <span>چرخش کارت</span>
+                </div>
+              </div>
+            </div>
+          }
+          back={
+            <div className="w-full h-full p-6 flex flex-col justify-between bg-[#161514] text-[#F5F4F0] border border-white/10">
+              {/* Back Header */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono text-[#888888]">
+                    شیت فنی پروژه {project.id}
+                  </span>
+                  <span>·</span>
+                  <span className="text-[10px] text-[#A5A4A0]">{project.year}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setFlipped(false);
+                  }}
+                  className="flex items-center gap-1 text-[11px] text-[#AAAAAA] hover:text-white transition-colors"
+                >
+                  <RotateCw size={11} />
+                  <span>بازگشت</span>
+                </button>
+              </div>
+
+              {/* Back Project Specs */}
+              <div className="my-auto space-y-3 text-right">
+                <h4 className="text-xl font-light tracking-tight text-white">
+                  {project.title}
+                </h4>
+                <p className="text-xs text-[#888888] font-light line-clamp-3 leading-relaxed">
+                  {project.tagline}
+                </p>
+
+                <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/8 text-xs font-light">
+                  <div>
+                    <span className="block text-[10px] text-[#666666]">زیربنا</span>
+                    <span className="text-[#E0DED7] font-normal">{project.area}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] text-[#666666]">مکان</span>
+                    <span className="text-[#E0DED7] font-normal">{project.location}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] text-[#666666]">سازه و معمار</span>
+                    <span className="text-[#E0DED7] font-normal">{project.architect}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] text-[#666666]">وضعیت</span>
+                    <span className="text-[#E0DED7] font-normal">{project.status}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Back Action CTA Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelect(project);
+                }}
+                className="w-full py-2.5 px-4 bg-white text-[#111111] hover:bg-[#E0DED5] transition-colors rounded text-xs font-light tracking-wide flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>مشاهده پرونده کامل اثر</span>
+                <Maximize2 size={13} />
+              </button>
+            </div>
+          }
+        />
       </div>
 
       {/* Category Subtitle with TextAnimate */}
@@ -79,16 +190,21 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {/* Title with TextAnimate slideUp by word */}
       <div className="mb-3">
-        <TextAnimate
-          animation="slideUp"
-          by="word"
-          as="h3"
-          delay={delay + 0.15}
-          duration={0.7}
-          className="text-xl sm:text-2xl font-light text-[#111111] group-hover:text-[#555555] transition-colors duration-300 leading-snug"
+        <button
+          onClick={() => onSelect(project)}
+          className="text-right cursor-pointer group-hover:text-[#555555] transition-colors"
         >
-          {project.title}
-        </TextAnimate>
+          <TextAnimate
+            animation="slideUp"
+            by="word"
+            as="h3"
+            delay={delay + 0.15}
+            duration={0.7}
+            className="text-xl sm:text-2xl font-light text-[#111111] leading-snug"
+          >
+            {project.title}
+          </TextAnimate>
+        </button>
       </div>
 
       {/* Short descriptive excerpt with blurIn */}
@@ -105,15 +221,19 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </TextAnimate>
       </div>
 
-      {/* Button with circular arrow matching video "READ ARTICLE ○ ←" */}
+      {/* Button with circular arrow */}
       <div className="mt-auto pt-3 flex items-center justify-between border-t border-[#111111]/8">
         <span className="text-[11px] font-light text-[#888888]">{project.year}</span>
-        <div className="inline-flex items-center gap-2.5 text-xs font-light uppercase tracking-wider text-[#111111] group-hover:text-[#555555] transition-colors">
-          <span>مشاهده اثر</span>
+        <button
+          type="button"
+          onClick={() => onSelect(project)}
+          className="inline-flex items-center gap-2.5 text-xs font-light uppercase tracking-wider text-[#111111] hover:text-[#555555] transition-colors cursor-pointer"
+        >
+          <span>مشاهده جزئیات</span>
           <span className="w-7 h-7 rounded-full border border-[#111111] flex items-center justify-center transition-all duration-300 group-hover:bg-[#111111] group-hover:text-white group-hover:-translate-x-1">
             <ArrowLeft size={12} />
           </span>
-        </div>
+        </button>
       </div>
     </motion.article>
   );
