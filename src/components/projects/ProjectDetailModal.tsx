@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { X, ArrowLeft, ArrowRight, Share2, Check } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Project, PROJECTS } from '../../data/projects';
 import { pauseLenis, resumeLenis } from '../../hooks/useLenis';
 import { TextAnimate } from '../common/TextAnimate';
+import { ImageAnimate } from '../common/ImageAnimate';
 
 interface ProjectDetailModalProps {
   project: Project | null;
@@ -28,7 +30,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    // Reset modal scroll to top when opening or switching project
+    // Reset modal scroll to top when opening
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = 0;
     }
@@ -107,18 +109,22 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
       {/* Main Content Area */}
       <div className="max-w-[1540px] mx-auto px-6 sm:px-10 lg:px-16 pt-12 pb-32">
-        {/* Project Header */}
+        {/* Project Header with Animated Typography */}
         <div className="mb-14">
-          <div className="flex flex-wrap items-center gap-4 text-xs tracking-widest text-[#777777] font-light mb-4">
-            <span>{project.category}</span>
-            <span>·</span>
-            <span>{project.location}</span>
-            <span>·</span>
-            <span>سال تکمیل: {project.year}</span>
+          <div className="mb-4">
+            <TextAnimate
+              animation="slideRight"
+              by="word"
+              as="div"
+              className="flex flex-wrap items-center gap-4 text-xs tracking-widest text-[#777777] font-light"
+            >
+              {`${project.category} · ${project.location} · سال تکمیل: ${project.year}`}
+            </TextAnimate>
           </div>
 
           <div className="mb-6">
             <TextAnimate
+              key={`title-${project.id}`}
               animation="slideUp"
               by="word"
               as="h1"
@@ -130,23 +136,28 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           </div>
 
           <TextAnimate
+            key={`tagline-${project.id}`}
             animation="blurIn"
             by="word"
             as="p"
             delay={0.2}
+            duration={0.7}
             className="text-xl sm:text-2xl font-light text-[#444444] max-w-3xl leading-relaxed"
           >
             {project.tagline}
           </TextAnimate>
         </div>
 
-        {/* Large Hero Image */}
+        {/* Large Hero Image with Curtain Wipe Animation */}
         <div className="w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[16/8] overflow-hidden bg-[#E5E3DB] mb-20">
-          <img
+          <ImageAnimate
+            key={`hero-${project.id}`}
             src={project.heroImage}
             alt={project.title}
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover"
+            animation="curtainUp"
+            curtainColor="#D6D3C8"
+            duration={1.1}
+            className="w-full h-full"
           />
         </div>
 
@@ -158,14 +169,27 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               <span className="text-xs uppercase tracking-widest text-[#888888] font-light block mb-3">
                 بیانیه و تفکر طراحی
               </span>
-              <p className="text-xl sm:text-2xl font-light text-[#111111] leading-snug">
+              <TextAnimate
+                key={`desc-${project.id}`}
+                animation="blurIn"
+                by="word"
+                as="p"
+                className="text-xl sm:text-2xl font-light text-[#111111] leading-snug"
+              >
                 {project.description}
-              </p>
+              </TextAnimate>
             </div>
 
-            <p className="text-base text-[#555555]">
+            <TextAnimate
+              key={`concept-${project.id}`}
+              animation="fadeSlide"
+              by="word"
+              as="p"
+              delay={0.15}
+              className="text-base text-[#555555]"
+            >
               {project.concept}
-            </p>
+            </TextAnimate>
 
             <div className="pt-6 border-t border-[#111111]/8">
               <span className="text-xs uppercase tracking-widest text-[#888888] font-light block mb-3">
@@ -173,17 +197,28 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               </span>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-[#222222]">
                 {project.materials.map((mat, i) => (
-                  <li key={i} className="flex items-center gap-2">
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 * i, duration: 0.5 }}
+                    className="flex items-center gap-2"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#111111]/40" />
                     <span>{mat}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>
           </div>
 
-          {/* Technical Data Sheet */}
-          <div className="lg:col-span-5 p-8 bg-[#EFEFEA] border border-[#111111]/8">
+          {/* Technical Data Sheet with Staggered Entrance */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-5 p-8 bg-[#EFEFEA] border border-[#111111]/8"
+          >
             <h3 className="text-sm font-normal text-[#111111] uppercase tracking-wider mb-6 pb-3 border-b border-[#111111]/10">
               شناسنامه فنی پروژه
             </h3>
@@ -216,10 +251,10 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                 </div>
               ))}
             </dl>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Editorial Photo Gallery */}
+        {/* Editorial Photo Gallery with ImageAnimate */}
         <div className="mb-28">
           <span className="text-xs uppercase tracking-widest text-[#888888] font-light block mb-8">
             روایت تصویری و زوایای تکمیلی
@@ -229,36 +264,39 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             {/* Gallery Image 1: Asymmetrical 2 Column */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-8 aspect-[16/10] overflow-hidden bg-[#E5E3DB]">
-                <img
+                <ImageAnimate
                   src={project.gallery[0] || project.heroImage}
                   alt={`${project.title} - تصویر ۱`}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  animation="curtainLeft"
+                  curtainColor="#DEDCD3"
+                  className="w-full h-full"
                 />
               </div>
               <div className="md:col-span-4 p-4 text-xs font-light text-[#666666] leading-relaxed">
-                <p>
+                <TextAnimate animation="blurIn" by="word" as="p">
                   نورپردازی طبیعی در ساعات مختلف روز موجب دگرگونی پویای بافت سطوح سنگین شده و احساس عمق را در کالبد معماری تشدید می‌کند.
-                </p>
+                </TextAnimate>
               </div>
             </div>
 
-            {/* Gallery Image 2: Dual Balanced */}
+            {/* Gallery Image 2 & 3: Dual Balanced */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="aspect-[4/3] overflow-hidden bg-[#E5E3DB]">
-                <img
+                <ImageAnimate
                   src={project.secondaryImage}
                   alt={`${project.title} - تصویر ۲`}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  animation="curtainUp"
+                  curtainColor="#D6D3C8"
+                  className="w-full h-full"
                 />
               </div>
               <div className="aspect-[4/3] overflow-hidden bg-[#E5E3DB]">
-                <img
+                <ImageAnimate
                   src={project.gallery[1] || project.heroImage}
                   alt={`${project.title} - تصویر ۳`}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  animation="curtainRight"
+                  curtainColor="#D6D3C8"
+                  className="w-full h-full"
                 />
               </div>
             </div>

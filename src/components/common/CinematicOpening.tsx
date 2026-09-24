@@ -58,7 +58,7 @@ export const CinematicOpening: React.FC<CinematicOpeningProps> = ({ onComplete }
     <AnimatePresence>
       <div
         onClick={handleSkip}
-        className="fixed inset-0 z-50 pointer-events-auto cursor-pointer select-none overflow-hidden"
+        className="fixed inset-0 z-[99999] pointer-events-auto cursor-pointer select-none overflow-hidden bg-[#0E0E0E]"
       >
           {/* Top Shutter Half */}
           <motion.div

@@ -6,12 +6,14 @@ interface HeaderProps {
   activeSection: string;
   onNavigate: (sectionId: string) => void;
   onOpenSearch: () => void;
+  visible?: boolean;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   activeSection,
   onNavigate,
   onOpenSearch,
+  visible = true,
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -41,7 +43,9 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-700 ${
+          !visible ? 'opacity-0 pointer-events-none -translate-y-8' : 'opacity-100 translate-y-0'
+        } ${
           scrolled
             ? 'py-4 bg-[#F5F4F0]/90 backdrop-blur-md border-b border-[#111111]/8'
             : 'py-6 md:py-8 bg-transparent'
@@ -126,7 +130,9 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Pinned Left Sidebar with 3 Social Icons matching video (t, v, f) */}
       <aside
         aria-label="شبکه‌های اجتماعی استودیو"
-        className="fixed bottom-10 left-6 sm:left-10 z-40 hidden md:flex flex-col items-center gap-5 text-[#888888]"
+        className={`fixed bottom-10 left-6 sm:left-10 z-40 hidden md:flex flex-col items-center gap-5 text-[#888888] transition-opacity duration-700 ${
+          !visible ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
       >
         <a
           href="https://instagram.com"

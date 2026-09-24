@@ -46,6 +46,7 @@ export default function App() {
 
       {/* Top Architectural Header with Live 3-Zone Layout */}
       <Header
+        visible={openingFinished}
         activeSection={activeSection}
         onNavigate={handleNavigate}
         onOpenSearch={() => setSearchOpen(true)}

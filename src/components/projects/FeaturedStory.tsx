@@ -3,6 +3,7 @@ import { ArrowLeft, Maximize2 } from 'lucide-react';
 import { motion, useInView } from 'motion/react';
 import { Project } from '../../data/projects';
 import { TextAnimate } from '../common/TextAnimate';
+import { ImageAnimate } from '../common/ImageAnimate';
 
 interface FeaturedStoryProps {
   project: Project;
@@ -130,35 +131,27 @@ export const FeaturedStory: React.FC<FeaturedStoryProps> = ({
             </motion.div>
           </div>
 
-          {/* Right Image Column matching video 00:01 (Rectangular Atrium View) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 60 }}
-            animate={
-              isInView
-                ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.96, y: -50 }
-            }
-            transition={{ duration: 1.0, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            onClick={() => onOpenProject(project)}
-            className="lg:col-span-6 relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] overflow-hidden bg-[#E8E6DE] cursor-pointer group order-1 lg:order-2"
-          >
-            <img
+          {/* Right Image Column with ImageAnimate Curtain Reveal */}
+          <div className="lg:col-span-6 relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] order-1 lg:order-2">
+            <ImageAnimate
               src="/src/assets/images/khaneh_noor_arch_1790288924333.jpg"
               alt="معماری رواق و آتریوم نور"
-              referrerPolicy="no-referrer"
-              className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-            />
-
-            <div className="absolute inset-0 bg-[#111111]/10 group-hover:bg-transparent transition-colors duration-500" />
-
-            <div className="absolute bottom-6 left-6 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm text-[#111111] flex items-center justify-center opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shadow-sm">
-              <Maximize2 size={16} />
-            </div>
-
-            <div className="absolute top-6 right-6 px-3 py-1 bg-black/40 backdrop-blur-md text-white text-[11px] font-light tracking-wider">
-              آتریوم نور · آکسفورد
-            </div>
-          </motion.div>
+              animation="curtainLeft"
+              curtainColor="#D6D3C9"
+              delay={0.2}
+              duration={1.05}
+              onClick={() => onOpenProject(project)}
+              className="w-full h-full bg-[#E8E6DE]"
+            >
+              <div className="absolute inset-0 bg-[#111111]/10 hover:bg-transparent transition-colors duration-500" />
+              <div className="absolute bottom-6 left-6 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm text-[#111111] flex items-center justify-center opacity-90 hover:opacity-100 hover:scale-110 transition-all duration-300 shadow-sm pointer-events-auto">
+                <Maximize2 size={16} />
+              </div>
+              <div className="absolute top-6 right-6 px-3 py-1 bg-black/40 backdrop-blur-md text-white text-[11px] font-light tracking-wider">
+                آتریوم نور · آکسفورد
+              </div>
+            </ImageAnimate>
+          </div>
         </div>
       </div>
     </section>
