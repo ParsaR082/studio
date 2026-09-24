@@ -152,15 +152,6 @@ export const Header: React.FC<HeaderProps> = ({
         >
           TG
         </a>
-        <a
-          href="https://linkedin.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="لینکدین"
-          className="text-xs font-light hover:text-[#111111] transition-colors duration-300 hover:-translate-y-0.5"
-        >
-          IN
-        </a>
         <div className="w-[1px] h-8 bg-[#111111]/20 mt-2" />
       </aside>
 

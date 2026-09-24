@@ -96,10 +96,6 @@ export const Hero: React.FC<HeroProps> = ({
                 >
                   بازخوانی جسورانه ساختارهای کهن‌الگویی در تطابق با بستر طبیعی، کاربری و رفتار مصالح؛ آفرینش حس نوآوری از دل راهبردی بی‌زمان.
                 </TextAnimate>
-
-                <p className="text-xs sm:text-sm text-[#777777] font-light leading-relaxed" dir="ltr">
-                  A great reinterpretation of an archetypal structure, reorganized to site, program, and material conditions, drawing out a sense of invention out of a timeless strategy.
-                </p>
               </div>
             </div>
           </div>

@@ -98,7 +98,7 @@ export const FeaturedStory: React.FC<FeaturedStoryProps> = ({
             </div>
 
             {/* Editorial Description matching video narrative */}
-            <div className="space-y-4 mb-8 text-[#555555] font-light text-sm sm:text-base leading-relaxed max-w-xl">
+            <div className="mb-8 text-[#555555] font-light text-sm sm:text-base leading-relaxed max-w-xl">
               <TextAnimate
                 animation="fadeSlide"
                 by="word"
@@ -108,9 +108,6 @@ export const FeaturedStory: React.FC<FeaturedStoryProps> = ({
               >
                 متولد ۹ می ۱۹۴۴ در کازابلانکا؛ معمار و شهرساز نامدار فرانسوی که در دهه ۱۹۶۰ میلادی، با به چالش کشیدن آرمان‌های صلب مدرنیسم، آزادی ادراک فضا و ارزش‌های شاعرانه ماده را احیا کرد.
               </TextAnimate>
-              <p className="text-xs sm:text-sm text-[#777777]" dir="ltr">
-                Born on the 9th of May 1944, Christian de Portzamparc had doubts about continuing with architecture while studying in the 1960s, questioning modernist ideas and discipline&apos;s lack of freedom compared to art.
-              </p>
             </div>
 
             {/* Action CTA matching video "READ ARTICLE ○ ←" */}
