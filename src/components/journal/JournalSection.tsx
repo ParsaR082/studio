@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowLeft, Clock, Calendar, X } from 'lucide-react';
 import { motion, useInView } from 'motion/react';
 import { Article, ARTICLES } from '../../data/articles';
+import { TextAnimate } from '../common/TextAnimate';
 
 export const JournalSection: React.FC = () => {
   const [activeArticle, setActiveArticle] = useState<Article | null>(null);
@@ -19,24 +20,31 @@ export const JournalSection: React.FC = () => {
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
-        >
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <span className="text-[11px] uppercase tracking-widest text-[#777777] font-light block mb-3">
-              گاهنامه و تأملات نظری · مجله معماری نو
-            </span>
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111]">
+            <div className="mb-3">
+              <TextAnimate
+                animation="slideRight"
+                by="word"
+                as="span"
+                className="text-[11px] uppercase tracking-widest text-[#777777] font-light"
+              >
+                گاهنامه و تأملات نظری · مجله معماری نو
+              </TextAnimate>
+            </div>
+            <TextAnimate
+              animation="slideUp"
+              by="word"
+              as="h2"
+              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111]"
+            >
               مجله و دیدگاه‌ها
-            </h2>
+            </TextAnimate>
           </div>
           <p className="text-sm font-light text-[#666666] max-w-md leading-relaxed">
             جستارهایی پیرامون نظریه معماری، رفتار مصالح، ادراک فضا و خوانش معاصر از اقلیم ایران.
           </p>
-        </motion.div>
+        </div>
 
         {/* Featured First Article + 2-Column Split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
@@ -134,6 +142,7 @@ export const JournalSection: React.FC = () => {
         <div
           role="dialog"
           aria-modal="true"
+          data-lenis-prevent="true"
           className="fixed inset-0 z-50 overflow-y-auto bg-[#F5F4F0] p-6 sm:p-12 lg:p-20 animate-in fade-in duration-300"
         >
           <div className="max-w-3xl mx-auto">

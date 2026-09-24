@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowLeft, Maximize2 } from 'lucide-react';
 import { motion, useInView } from 'motion/react';
 import { Project } from '../../data/projects';
+import { TextAnimate } from '../common/TextAnimate';
 
 interface FeaturedStoryProps {
   project: Project;
@@ -54,52 +55,68 @@ export const FeaturedStory: React.FC<FeaturedStoryProps> = ({
             </motion.div>
 
             {/* Category Subtitle matching video "ARCHITECT" */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -25 }}
-              transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-3"
-            >
-              <span className="text-[11px] uppercase tracking-widest text-[#777777] font-light">
+            <div className="mb-3">
+              <TextAnimate
+                animation="slideRight"
+                by="word"
+                as="span"
+                delay={0.15}
+                className="text-[11px] uppercase tracking-widest text-[#777777] font-light"
+              >
                 روایت معمار · ARCHITECT & ESSAY
-              </span>
-            </motion.div>
+              </TextAnimate>
+            </div>
 
             {/* Large Bold Editorial Title matching video "CHRISTIAN DE PORTZAMPARC" */}
-            <motion.div
-              initial={{ opacity: 0, y: 45 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -35 }}
-              transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-6 overflow-hidden"
-            >
+            <div className="mb-6">
               <h2 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111] leading-[1.05]">
                 <span className="block font-normal text-2xl sm:text-3xl font-sans tracking-wide mb-1" dir="ltr">
-                  CHRISTIAN DE PORTZAMPARC
+                  <TextAnimate
+                    animation="slideLeft"
+                    by="character"
+                    as="span"
+                    delay={0.2}
+                    duration={0.65}
+                    stagger={0.025}
+                  >
+                    CHRISTIAN DE PORTZAMPARC
+                  </TextAnimate>
                 </span>
-                <span>کریستین دو پورتزامپارک</span>
+                <span className="block">
+                  <TextAnimate
+                    animation="blurIn"
+                    by="word"
+                    as="span"
+                    delay={0.35}
+                    duration={0.75}
+                  >
+                    کریستین دو پورتزامپارک
+                  </TextAnimate>
+                </span>
               </h2>
-            </motion.div>
+            </div>
 
             {/* Editorial Description matching video narrative */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-4 mb-8 text-[#555555] font-light text-sm sm:text-base leading-relaxed max-w-xl"
-            >
-              <p>
+            <div className="space-y-4 mb-8 text-[#555555] font-light text-sm sm:text-base leading-relaxed max-w-xl">
+              <TextAnimate
+                animation="fadeSlide"
+                by="word"
+                as="p"
+                delay={0.45}
+                stagger={0.025}
+              >
                 متولد ۹ می ۱۹۴۴ در کازابلانکا؛ معمار و شهرساز نامدار فرانسوی که در دهه ۱۹۶۰ میلادی، با به چالش کشیدن آرمان‌های صلب مدرنیسم، آزادی ادراک فضا و ارزش‌های شاعرانه ماده را احیا کرد.
-              </p>
+              </TextAnimate>
               <p className="text-xs sm:text-sm text-[#777777]" dir="ltr">
-                Born on the 9th of May 1944, Christian de Portzamparc had doubts about continuing with architecture while studying in the 1960s, questioning modernist ideas and discipline's lack of freedom compared to art.
+                Born on the 9th of May 1944, Christian de Portzamparc had doubts about continuing with architecture while studying in the 1960s, questioning modernist ideas and discipline&apos;s lack of freedom compared to art.
               </p>
-            </motion.div>
+            </div>
 
             {/* Action CTA matching video "READ ARTICLE ○ ←" */}
             <motion.div
               initial={{ opacity: 0, y: 35 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -25 }}
-              transition={{ duration: 0.75, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.75, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               <button
                 onClick={() => onOpenProject(project)}
@@ -132,7 +149,6 @@ export const FeaturedStory: React.FC<FeaturedStoryProps> = ({
               className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
             />
 
-            {/* Subtle Overlay on Hover */}
             <div className="absolute inset-0 bg-[#111111]/10 group-hover:bg-transparent transition-colors duration-500" />
 
             <div className="absolute bottom-6 left-6 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm text-[#111111] flex items-center justify-center opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shadow-sm">

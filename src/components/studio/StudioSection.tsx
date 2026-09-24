@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useInView } from 'motion/react';
+import { TextAnimate } from '../common/TextAnimate';
 
 export const StudioSection: React.FC = () => {
   const sectionRef = React.useRef<HTMLElement>(null);
@@ -44,28 +45,39 @@ export const StudioSection: React.FC = () => {
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Studio Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-20"
-        >
+        <div className="mb-20">
           <span className="text-[11px] uppercase tracking-widest text-[#777777] font-light block mb-3">
             درباره استودیو · هویت و رویکرد
           </span>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111] mb-8">
-            استودیو
-          </h2>
+          <div className="mb-8">
+            <TextAnimate
+              animation="scaleUp"
+              by="word"
+              as="h2"
+              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111]"
+            >
+              استودیو
+            </TextAnimate>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-baseline">
-            <p className="lg:col-span-7 text-2xl sm:text-3xl font-light text-[#111111] leading-relaxed">
-              استودیو معماری نو، کارگاهی مستقل برای خلق فضاهای معاصر، مبتنی بر زمینه‌گرایی انتقادی، ادراک حسی و درک عمیق از جغرافیا و مصالح بومی است.
-            </p>
+            <div className="lg:col-span-7">
+              <TextAnimate
+                animation="slideUp"
+                by="word"
+                as="p"
+                delay={0.1}
+                stagger={0.03}
+                className="text-2xl sm:text-3xl font-light text-[#111111] leading-relaxed"
+              >
+                استودیو معماری نو، کارگاهی مستقل برای خلق فضاهای معاصر، مبتنی بر زمینه‌گرایی انتقادی، ادراک حسی و درک عمیق از جغرافیا و مصالح بومی است.
+              </TextAnimate>
+            </div>
             <p className="lg:col-span-5 text-sm sm:text-base font-light text-[#555555] leading-relaxed">
               از سال ۱۳۹۶، فعالیت ما بر خلق پروژه‌های مسکونی، ویلایی و فرهنگی متمرکز بوده است. در هر پروژه، تلاش می‌کنیم تا پرسشی معمارانه مطرح کنیم و پاسخی پیراسته از جنس نور و سنگ بیابیم.
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Large Workspace Photo with Scale Motion */}
         <motion.div
@@ -118,9 +130,16 @@ export const StudioSection: React.FC = () => {
                 className="flex flex-col border-t border-[#111111]/10 pt-6"
               >
                 <span className="text-xs font-light text-[#888888] mb-3">{item.number}</span>
-                <h3 className="text-xl sm:text-2xl font-light text-[#111111] mb-4">
-                  {item.title}
-                </h3>
+                <div className="mb-4">
+                  <TextAnimate
+                    animation="blurIn"
+                    by="word"
+                    as="h3"
+                    className="text-xl sm:text-2xl font-light text-[#111111]"
+                  >
+                    {item.title}
+                  </TextAnimate>
+                </div>
                 <p className="text-sm font-light text-[#555555] leading-relaxed">
                   {item.description}
                 </p>

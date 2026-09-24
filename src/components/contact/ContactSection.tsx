@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { motion, useInView } from 'motion/react';
+import { TextAnimate } from '../common/TextAnimate';
 
 export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -44,9 +45,16 @@ export const ContactSection: React.FC = () => {
               <span className="text-[11px] uppercase tracking-widest text-[#777777] font-light block mb-3">
                 آغاز همکاری و سفارش طرح
               </span>
-              <h2 className="text-4xl sm:text-6xl font-light tracking-tight text-[#111111] mb-8">
-                تماس با استودیو
-              </h2>
+              <div className="mb-8">
+                <TextAnimate
+                  animation="blurIn"
+                  by="word"
+                  as="h2"
+                  className="text-4xl sm:text-6xl font-light tracking-tight text-[#111111]"
+                >
+                  تماس با استودیو
+                </TextAnimate>
+              </div>
               <p className="text-base sm:text-lg font-light text-[#555555] leading-relaxed mb-12">
                 برای گفت‌وگو پیرامون ایده‌ها، استعلام امکان‌سنجی پروژه‌ها یا بازدید از بسترهای ساخت، مشتاقانه پذیرای مکاتبه شما هستیم.
               </p>

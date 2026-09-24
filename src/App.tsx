@@ -9,10 +9,12 @@ import { StudioSection } from './components/studio/StudioSection';
 import { JournalSection } from './components/journal/JournalSection';
 import { ContactSection } from './components/contact/ContactSection';
 import { SearchModal } from './components/common/SearchModal';
+import { CinematicOpening } from './components/common/CinematicOpening';
 import { useLenis } from './hooks/useLenis';
 import { PROJECTS, Project } from './data/projects';
 
 export default function App() {
+  const [openingFinished, setOpeningFinished] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -37,6 +39,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#F8F8F7] text-[#111111] relative selection:bg-[#111111] selection:text-[#F8F8F7]">
+      {/* Cinematic Architectural Opening Shutter */}
+      {!openingFinished && (
+        <CinematicOpening onComplete={() => setOpeningFinished(true)} />
+      )}
+
       {/* Top Architectural Header with Live 3-Zone Layout */}
       <Header
         activeSection={activeSection}

@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, ArrowLeft, ArrowRight, Share2, Check } from 'lucide-react';
 import { Project, PROJECTS } from '../../data/projects';
+import { pauseLenis, resumeLenis } from '../../hooks/useLenis';
+import { TextAnimate } from '../common/TextAnimate';
 
 interface ProjectDetailModalProps {
   project: Project | null;
@@ -14,13 +16,22 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
   onSelectProject,
 }) => {
   const [copied, setCopied] = React.useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!project) return;
 
-    // Prevent body scroll when modal is active
+    // Pause Lenis so it does not intercept wheel events inside the modal
+    pauseLenis();
+
+    // Prevent body background scroll
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+
+    // Reset modal scroll to top when opening or switching project
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -29,13 +40,21 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       document.body.style.overflow = originalOverflow;
+      resumeLenis();
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [project, onClose]);
 
+  // When changing projects while modal is open, scroll container to top
+  useEffect(() => {
+    if (project && scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [project?.id]);
+
   if (!project) return null;
 
-  // Find next project
+  // Find next and previous project
   const currentIndex = PROJECTS.findIndex((p) => p.id === project.id);
   const nextProject = PROJECTS[(currentIndex + 1) % PROJECTS.length];
   const prevProject = PROJECTS[(currentIndex - 1 + PROJECTS.length) % PROJECTS.length];
@@ -50,12 +69,15 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
   return (
     <div
+      ref={scrollContainerRef}
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 overflow-y-auto bg-[#F5F4F0] text-[#111111] animate-in fade-in duration-500"
+      data-lenis-prevent="true"
+      className="fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-[#F5F4F0] text-[#111111] animate-in fade-in duration-300"
+      style={{ WebkitOverflowScrolling: 'touch' }}
     >
       {/* Top Floating Control Bar */}
-      <div className="sticky top-0 z-50 w-full bg-[#F5F4F0]/90 backdrop-blur-md border-b border-[#111111]/8 px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between">
+      <div className="sticky top-0 z-50 w-full bg-[#F5F4F0]/95 backdrop-blur-md border-b border-[#111111]/8 px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4 text-xs font-light text-[#666666]">
           <span className="font-normal text-[#111111]">{project.title}</span>
           <span>·</span>
@@ -84,7 +106,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
       </div>
 
       {/* Main Content Area */}
-      <div className="max-w-[1540px] mx-auto px-6 sm:px-10 lg:px-16 pt-12 pb-24">
+      <div className="max-w-[1540px] mx-auto px-6 sm:px-10 lg:px-16 pt-12 pb-32">
         {/* Project Header */}
         <div className="mb-14">
           <div className="flex flex-wrap items-center gap-4 text-xs tracking-widest text-[#777777] font-light mb-4">
@@ -95,13 +117,27 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             <span>سال تکمیل: {project.year}</span>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-light tracking-tight text-[#111111] leading-[0.95] mb-6">
-            {project.title}
-          </h1>
+          <div className="mb-6">
+            <TextAnimate
+              animation="slideUp"
+              by="word"
+              as="h1"
+              duration={0.9}
+              className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-light tracking-tight text-[#111111] leading-[0.95]"
+            >
+              {project.title}
+            </TextAnimate>
+          </div>
 
-          <p className="text-xl sm:text-2xl font-light text-[#444444] max-w-3xl leading-relaxed">
+          <TextAnimate
+            animation="blurIn"
+            by="word"
+            as="p"
+            delay={0.2}
+            className="text-xl sm:text-2xl font-light text-[#444444] max-w-3xl leading-relaxed"
+          >
             {project.tagline}
-          </p>
+          </TextAnimate>
         </div>
 
         {/* Large Hero Image */}
@@ -183,7 +219,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           </div>
         </div>
 
-        {/* Editorial Photo Gallery (Section 28) */}
+        {/* Editorial Photo Gallery */}
         <div className="mb-28">
           <span className="text-xs uppercase tracking-widest text-[#888888] font-light block mb-8">
             روایت تصویری و زوایای تکمیلی

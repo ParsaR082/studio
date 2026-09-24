@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, useInView } from 'motion/react';
 import { ProjectCard } from './ProjectCard';
 import { Project, PROJECTS } from '../../data/projects';
+import { TextAnimate } from '../common/TextAnimate';
 
 interface ProjectGridProps {
   onSelectProject: (project: Project) => void;
@@ -30,19 +31,27 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => 
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Section Header matching video 00:03 */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8"
-        >
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
-            <span className="text-[11px] uppercase tracking-widest text-[#777777] font-light block mb-3">
-              مجموعه آثار و مقالات تحلیلی · ARCHIVE & ARTICLES
-            </span>
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111]">
+            <div className="mb-3">
+              <TextAnimate
+                animation="slideRight"
+                by="word"
+                as="span"
+                className="text-[11px] uppercase tracking-widest text-[#777777] font-light"
+              >
+                مجموعه آثار و مقالات تحلیلی · ARCHIVE & ARTICLES
+              </TextAnimate>
+            </div>
+            <TextAnimate
+              animation="slideUp"
+              by="word"
+              as="h2"
+              duration={0.85}
+              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111]"
+            >
               پروژه‌ها و مقالات
-            </h2>
+            </TextAnimate>
           </div>
 
           {/* Minimal Filter Tabs */}
@@ -67,7 +76,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => 
               </button>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* 3-Column Editorial Grid matching video 00:03 - 00:04 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 lg:gap-x-12 gap-y-16 lg:gap-y-20">

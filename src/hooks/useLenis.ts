@@ -1,6 +1,22 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 
+let globalLenis: Lenis | null = null;
+
+export const getLenis = () => globalLenis;
+
+export const pauseLenis = () => {
+  if (globalLenis) {
+    globalLenis.stop();
+  }
+};
+
+export const resumeLenis = () => {
+  if (globalLenis) {
+    globalLenis.start();
+  }
+};
+
 export const useLenis = () => {
   useEffect(() => {
     // Check if user prefers reduced motion
@@ -14,7 +30,10 @@ export const useLenis = () => {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 0.9,
+      autoResize: true,
     });
+
+    globalLenis = lenis;
 
     let animationFrameId: number;
 
@@ -28,6 +47,7 @@ export const useLenis = () => {
     return () => {
       cancelAnimationFrame(animationFrameId);
       lenis.destroy();
+      globalLenis = null;
     };
   }, []);
 };

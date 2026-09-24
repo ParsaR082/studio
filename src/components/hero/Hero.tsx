@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { motion, useInView } from 'motion/react';
 import { Project } from '../../data/projects';
+import { TextAnimate } from '../common/TextAnimate';
 
 interface HeroProps {
   featuredProject: Project;
@@ -49,49 +50,65 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="max-w-[1540px] w-full mx-auto my-auto py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center z-10">
         {/* Left/Center Text Column (Right in RTL) */}
         <div className="lg:col-span-8 flex flex-col justify-center">
-          {/* Main Title Matching Video: AMBITIOUS / نوآوری جسورانه */}
-          <div className="overflow-hidden mb-6">
-            <motion.div
-              initial={{ opacity: 0, y: 80 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -60 }}
-              transition={{ duration: 0.95, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[8.5rem] font-light tracking-tight text-[#111111] leading-[0.95]">
-                <span className="block font-normal tracking-wide text-4xl sm:text-6xl lg:text-7xl font-sans mb-1" dir="ltr">
+          {/* Main Title Matching Video: AMBITIOUS + TextAnimate character & word animations */}
+          <div className="mb-6">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[8.5rem] font-light tracking-tight text-[#111111] leading-[0.95]">
+              <span className="block font-normal tracking-wide text-4xl sm:text-6xl lg:text-7xl font-sans mb-1" dir="ltr">
+                <TextAnimate
+                  animation="slideLeft"
+                  by="character"
+                  as="span"
+                  delay={0.15}
+                  duration={0.65}
+                  stagger={0.035}
+                >
                   AMBITIOUS
-                </span>
-                <span className="block font-light text-3xl sm:text-5xl lg:text-6xl text-[#333333]">
+                </TextAnimate>
+              </span>
+              <span className="block font-light text-3xl sm:text-5xl lg:text-6xl text-[#333333]">
+                <TextAnimate
+                  animation="slideUp"
+                  by="word"
+                  as="span"
+                  delay={0.35}
+                  duration={0.85}
+                  stagger={0.06}
+                >
                   نوآفرینی در سکوت و ماده.
-                </span>
-              </h1>
-            </motion.div>
+                </TextAnimate>
+              </span>
+            </h1>
           </div>
 
-          {/* Description Paragraph with Kicker matching video */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -40 }}
-            transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl mb-10"
-          >
+          {/* Description Paragraph with BlurIn TextAnimate */}
+          <div className="max-w-2xl mb-10">
             <div className="flex items-start gap-4">
               <span className="w-8 h-[1px] bg-[#111111] mt-3.5 shrink-0 hidden sm:block" />
-              <div className="space-y-2">
-                <p className="text-base sm:text-lg text-[#444444] font-light leading-relaxed">
+              <div className="space-y-3">
+                <TextAnimate
+                  animation="blurIn"
+                  by="word"
+                  as="p"
+                  delay={0.5}
+                  duration={0.75}
+                  stagger={0.03}
+                  className="text-base sm:text-lg text-[#444444] font-light leading-relaxed"
+                >
                   بازخوانی جسورانه ساختارهای کهن‌الگویی در تطابق با بستر طبیعی، کاربری و رفتار مصالح؛ آفرینش حس نوآوری از دل راهبردی بی‌زمان.
-                </p>
+                </TextAnimate>
+
                 <p className="text-xs sm:text-sm text-[#777777] font-light leading-relaxed" dir="ltr">
                   A great reinterpretation of an archetypal structure, reorganized to site, program, and material conditions, drawing out a sense of invention out of a timeless strategy.
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Action CTA Button matching video circular outline arrow */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 35 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -25 }}
+            transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-wrap items-center gap-6"
           >
             <button
@@ -114,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
       </div>
 
-      {/* Sweeping Curved Architectural Facade from Bottom-Right Corner matching video (00:00 & 00:06) */}
+      {/* Sweeping Curved Architectural Facade from Bottom-Right Corner matching video */}
       <motion.div
         initial={{ opacity: 0, x: 120, y: 120, scale: 0.92 }}
         animate={
@@ -133,10 +150,8 @@ export const Hero: React.FC<HeroProps> = ({
           className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
         />
 
-        {/* Delicate Scrim for overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        {/* Small corner label */}
         <div className="absolute bottom-6 right-6 text-white text-[11px] font-light opacity-0 group-hover:opacity-100 transition-opacity">
           بررسی اثر منتخب ←
         </div>
@@ -146,7 +161,7 @@ export const Hero: React.FC<HeroProps> = ({
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
-        transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="max-w-[1540px] w-full mx-auto pt-6 border-t border-[#111111]/8 flex items-center justify-between text-xs font-light text-[#777777] z-10"
       >
         <div className="flex items-center gap-6">
