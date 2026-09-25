@@ -37,17 +37,46 @@ export const useLenis = () => {
 
     globalLenis = lenis;
 
-    let animationFrameId: number;
+    let animationFrameId: number | null = null;
+    let running = true;
 
-    function raf(time: number) {
+    const stopFrameLoop = () => {
+      running = false;
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    };
+
+    const raf = (time: number) => {
+      if (!running) return;
       lenis.raf(time);
       animationFrameId = requestAnimationFrame(raf);
-    }
+    };
 
-    animationFrameId = requestAnimationFrame(raf);
+    const startFrameLoop = () => {
+      if (running && animationFrameId === null) {
+        animationFrameId = requestAnimationFrame(raf);
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopFrameLoop();
+        lenis.stop();
+      } else {
+        running = true;
+        lenis.start();
+        startFrameLoop();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    startFrameLoop();
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      stopFrameLoop();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       lenis.destroy();
       globalLenis = null;
     };
