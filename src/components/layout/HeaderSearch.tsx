@@ -119,7 +119,9 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
                         <img
                           src={project.heroImage}
                           alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          loading="lazy"
+                          decoding="async"
+                          className="architectural-media w-full h-full object-cover group-hover:scale-105 transition-transform"
                         />
                       </div>
                       <div className="truncate">
