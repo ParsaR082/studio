@@ -1,48 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { animate, motion, AnimatePresence, useMotionValue, useTransform } from 'motion/react';
 
 interface CinematicOpeningProps {
   onComplete: () => void;
 }
 
 export const CinematicOpening: React.FC<CinematicOpeningProps> = ({ onComplete }) => {
-  const [progress, setProgress] = useState(0);
+  const progress = useMotionValue(0);
+  const progressWidth = useTransform(progress, (value) => `${value}%`);
+  const progressLabel = useTransform(progress, (value) => `${Math.round(value).toString().padStart(2, '0')}%`);
   const [stage, setStage] = useState<'loading' | 'revealing' | 'done'>('loading');
 
   useEffect(() => {
-    // Progress counter animation from 0 to 100
-    const duration = 1400; // ms
-    const interval = 25; // ms
-    const step = 100 / (duration / interval);
+    const progressAnimation = animate(progress, 100, {
+      duration: 1.4,
+      ease: 'linear',
+    });
 
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        const next = prev + step;
-        if (next >= 100) {
-          clearInterval(timer);
-          return 100;
-        }
-        return next;
-      });
-    }, interval);
-
-    // Trigger curtain reveal stage
     const revealTimer = setTimeout(() => {
       setStage('revealing');
     }, 1600);
 
-    // Complete and remove
     const finishTimer = setTimeout(() => {
       setStage('done');
       onComplete();
     }, 2400);
 
     return () => {
-      clearInterval(timer);
+      progressAnimation.stop();
       clearTimeout(revealTimer);
       clearTimeout(finishTimer);
     };
-  }, [onComplete]);
+  }, [onComplete, progress]);
 
   const handleSkip = () => {
     setStage('revealing');
@@ -129,7 +118,7 @@ export const CinematicOpening: React.FC<CinematicOpeningProps> = ({ onComplete }
               <div className="w-48 sm:w-64 h-[1px] bg-[#222222] mt-10 relative overflow-hidden">
                 <motion.div
                   className="absolute inset-y-0 right-0 bg-[#F5F4F0]"
-                  style={{ width: `${progress}%` }}
+                  style={{ width: progressWidth }}
                 />
               </div>
             </div>
@@ -138,7 +127,7 @@ export const CinematicOpening: React.FC<CinematicOpeningProps> = ({ onComplete }
             <div className="flex items-center justify-between text-xs font-mono text-[#666666]">
               <div className="flex items-center gap-3">
                 <span className="text-[#A5A4A0] tabular-nums font-normal">
-                  {Math.round(progress).toString().padStart(2, '0')}%
+                  {progressLabel}
                 </span>
                 <span>·</span>
                 <span className="font-sans text-[11px] text-[#666666]">بارگذاری شیت‌های معماری</span>
