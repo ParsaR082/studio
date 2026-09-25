@@ -159,13 +159,22 @@ export default function FlipCard({
     if (disabled) rest();
   }, [disabled]);
 
+  const lastTouchTapRef = useRef(0);
+
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (disabled || e.button !== 0 || grip.current) return;
     const target = e.target as HTMLElement | null;
     if (target?.closest('button, a, input, textarea, select, [data-no-flip]')) return;
-    try {
-      e.currentTarget.setPointerCapture(e.pointerId);
-    } catch {}
+
+    const isTouch = e.pointerType === 'touch';
+
+    // Only capture pointer for mouse/pen to avoid intercepting mobile vertical scroll gestures
+    if (!isTouch) {
+      try {
+        e.currentTarget.setPointerCapture(e.pointerId);
+      } catch {}
+    }
+
     spin.current?.stop();
     grip.current = {
       id: e.pointerId,
@@ -173,16 +182,34 @@ export default function FlipCard({
       y: e.clientY,
       base: turn.get(),
       moved: false,
-      slop: e.pointerType === 'touch' ? SLOP.coarse : SLOP.fine,
+      slop: isTouch ? SLOP.coarse : SLOP.fine,
       hist: [],
     };
-    if (!reduce) lift.set(hoverScale);
+
+    if (!reduce && !isTouch) {
+      lift.set(hoverScale);
+    }
   };
 
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const g = grip.current;
+    const isTouch = e.pointerType === 'touch';
+
     if (g && g.id === e.pointerId) {
-      const d = axis === 'x' ? e.clientY - g.y : e.clientX - g.x;
+      const deltaX = e.clientX - g.x;
+      const deltaY = e.clientY - g.y;
+      const totalMovement = Math.hypot(deltaX, deltaY);
+
+      // On touch devices, horizontal/vertical drags beyond slop are recognized as page scroll
+      if (isTouch) {
+        if (totalMovement > 8) {
+          g.moved = true; // User is scrolling the page, abort card drag
+        }
+        return;
+      }
+
+      // Desktop Mouse dragging
+      const d = axis === 'x' ? deltaY : deltaX;
       if (!g.moved) {
         if (Math.abs(d) < g.slop || !draggable || reduce) return;
         g.moved = true;
@@ -201,7 +228,9 @@ export default function FlipCard({
       while (g.hist.length > 2 && now - g.hist[0].t > HISTORY_MS) g.hist.shift();
       return;
     }
-    if (!tilt || reduce || disabled || e.pointerType === 'touch') return;
+
+    // 3D tilt is strictly enabled for precision mouse pointers, disabled on touch to avoid jitter
+    if (!tilt || reduce || disabled || isTouch) return;
     const r = e.currentTarget.getBoundingClientRect();
     const px = clamp((e.clientX - r.left) / r.width, 0, 1);
     const py = clamp((e.clientY - r.top) / r.height, 0, 1);
@@ -215,17 +244,35 @@ export default function FlipCard({
   const release = (e: React.PointerEvent<HTMLDivElement>, cancelled: boolean) => {
     const g = grip.current;
     if (!g || g.id !== e.pointerId) return;
+    const isTouch = e.pointerType === 'touch';
     grip.current = null;
+
     try {
-      if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
+      if (!isTouch && e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
     } catch {}
+
     setDragging(false);
-    if (e.pointerType === 'touch' || !rootRef.current?.matches(':hover')) rest();
+    rest();
+
     if (!g.moved) {
-      if (!cancelled && flipOnClick) flip(false);
-      else settle(target.current, 0, false);
+      if (!cancelled && flipOnClick) {
+        lastTouchTapRef.current = performance.now();
+        flip(false);
+      } else {
+        settle(target.current, 0, false);
+      }
       return;
     }
+
+    // If it was a touch scroll, don't flip
+    if (isTouch) {
+      settle(target.current, 0, false);
+      return;
+    }
+
+    // Desktop fling calculation
     const here = turn.get();
     let velocity = 0;
     const a = g.hist[0];
@@ -245,6 +292,8 @@ export default function FlipCard({
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement | null;
     if (target?.closest('button, a, input, textarea, select, [data-no-flip]')) return;
+    // Prevent double flip if pointer release already handled it within the last 400ms
+    if (performance.now() - lastTouchTapRef.current < 450) return;
     if (!disabled && e.detail === 0) flip(true);
   };
 

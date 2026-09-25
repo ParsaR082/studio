@@ -1,5 +1,91 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   PERSIAN ARCHITECTURAL TYPOGRAPHY SYSTEM (LOCAL WOFF2)
+   Display / Headings: Shabnam-FD (Geometric, Architectural, Native Digits)
+   Body / UI: Vazirmatn (High Legibility, Balanced Counters, Clear Text)
+   ========================================================================== */
+
+/* Shabnam-FD (Display & Architectural Numbers) */
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/fonts/Shabnam-Thin-FD.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/fonts/Shabnam-Light-FD.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/fonts/Shabnam-FD.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/fonts/Shabnam-Medium-FD.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/fonts/Shabnam-Bold-FD.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Vazirmatn (Body & Interface Reading) */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-display: 'Shabnam', 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Vazirmatn', 'Shabnam', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Vazirmatn', 'Shabnam', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
 @layer base {
   :root {
     --background: #F5F4F0;
@@ -12,20 +98,51 @@
     --text-primary: #111111;
     --text-secondary: #666666;
     --border-hairline: rgba(17, 17, 17, 0.08);
+
+    --font-heading: 'Shabnam', 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-text: 'Vazirmatn', 'Shabnam', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   html {
-    font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-text);
     background-color: var(--bg-main);
     color: var(--text-primary);
     scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern" 1, "liga" 1;
+    direction: rtl;
   }
 
   body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+    font-family: var(--font-text);
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: normal !important;
+  }
+
+  /* Prevent awkward line height clipping in Persian script */
+  p, span, li, a, button, input {
+    letter-spacing: normal;
+  }
+}
+
+.font-display {
+  font-family: var(--font-heading) !important;
+}
+
+.font-body {
+  font-family: var(--font-text) !important;
+}
+
+.font-digits {
+  font-family: 'Shabnam', var(--font-heading);
 }
 
 /* Custom scrollbar matching minimal aesthetic */

@@ -70,8 +70,8 @@ export const FeaturedStory: React.FC<FeaturedStoryProps> = ({
 
             {/* Large Bold Editorial Title matching video "CHRISTIAN DE PORTZAMPARC" */}
             <div className="mb-6">
-              <h2 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111] leading-[1.05]">
-                <span className="block font-normal text-2xl sm:text-3xl font-sans tracking-wide mb-1" dir="ltr">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-[#111111] leading-[1.15] font-display">
+                <span className="block font-normal text-xl sm:text-2xl lg:text-3xl font-sans tracking-wide mb-1" dir="ltr">
                   <TextAnimate
                     animation="slideLeft"
                     by="character"
@@ -83,7 +83,7 @@ export const FeaturedStory: React.FC<FeaturedStoryProps> = ({
                     CHRISTIAN DE PORTZAMPARC
                   </TextAnimate>
                 </span>
-                <span className="block">
+                <span className="block mt-1">
                   <TextAnimate
                     animation="blurIn"
                     by="word"
@@ -98,7 +98,7 @@ export const FeaturedStory: React.FC<FeaturedStoryProps> = ({
             </div>
 
             {/* Editorial Description matching video narrative */}
-            <div className="mb-8 text-[#555555] font-light text-sm sm:text-base leading-relaxed max-w-xl">
+            <div className="mb-8 text-[#555555] font-light text-sm sm:text-base leading-relaxed max-w-xl font-body">
               <TextAnimate
                 animation="fadeSlide"
                 by="word"

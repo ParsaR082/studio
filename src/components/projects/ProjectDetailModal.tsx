@@ -185,7 +185,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                 by="word"
                 as="h1"
                 duration={0.9}
-                className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-light tracking-tight text-[#111111] leading-[0.95]"
+                className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-light text-[#111111] leading-[1.15] font-display"
               >
                 {project.title}
               </TextAnimate>
@@ -198,7 +198,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               as="p"
               delay={0.2}
               duration={0.7}
-              className="text-xl sm:text-2xl font-light text-[#444444] max-w-3xl leading-relaxed"
+              className="text-lg sm:text-xl lg:text-2xl font-light text-[#444444] max-w-3xl leading-relaxed font-body"
             >
               {project.tagline}
             </TextAnimate>

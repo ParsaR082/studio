@@ -52,8 +52,8 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="lg:col-span-8 flex flex-col justify-center">
           {/* Main Title Matching Video: AMBITIOUS + TextAnimate character & word animations */}
           <div className="mb-6">
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[8.5rem] font-light tracking-tight text-[#111111] leading-[0.95]">
-              <span className="block font-normal tracking-wide text-4xl sm:text-6xl lg:text-7xl font-sans mb-1" dir="ltr">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[8.25rem] font-light text-[#111111] leading-none font-display">
+              <span className="block font-normal tracking-wide text-3xl sm:text-5xl lg:text-7xl font-sans mb-1" dir="ltr">
                 <TextAnimate
                   animation="slideLeft"
                   by="character"
@@ -65,7 +65,7 @@ export const Hero: React.FC<HeroProps> = ({
                   AMBITIOUS
                 </TextAnimate>
               </span>
-              <span className="block font-light text-3xl sm:text-5xl lg:text-6xl text-[#333333]">
+              <span className="block font-light text-2xl sm:text-4xl lg:text-5xl xl:text-6xl text-[#333333] leading-[1.2] mt-1 sm:mt-2">
                 <TextAnimate
                   animation="slideUp"
                   by="word"
@@ -92,7 +92,7 @@ export const Hero: React.FC<HeroProps> = ({
                   delay={0.5}
                   duration={0.75}
                   stagger={0.03}
-                  className="text-base sm:text-lg text-[#444444] font-light leading-relaxed"
+                  className="text-sm sm:text-base lg:text-lg text-[#444444] font-light leading-relaxed font-body"
                 >
                   بازخوانی جسورانه ساختارهای کهن‌الگویی در تطابق با بستر طبیعی، کاربری و رفتار مصالح؛ آفرینش حس نوآوری از دل راهبردی بی‌زمان.
                 </TextAnimate>
