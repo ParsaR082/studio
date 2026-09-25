@@ -71,7 +71,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 alt={project.title}
                 referrerPolicy="no-referrer"
                 loading="lazy"
-                className="w-full h-full object-cover select-none"
+                decoding="async"
+                className="architectural-media w-full h-full object-cover select-none"
               />
 
               {/* Gradient Bottom Scrim */}
