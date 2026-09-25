@@ -10,7 +10,7 @@ interface SearchModalProps {
   initialQuery?: string;
 }
 
-export const SearchModal: React.FC<SearchModalProps> = ({
+const SearchModal: React.FC<SearchModalProps> = ({
   isOpen,
   onClose,
   onSelectProject,
@@ -132,3 +132,5 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     </div>
   );
 };
+
+export default React.memo(SearchModal);
