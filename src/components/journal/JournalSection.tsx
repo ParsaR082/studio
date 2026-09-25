@@ -65,7 +65,9 @@ const JournalSection: React.FC = () => {
                 src={ARTICLES[0].coverImage}
                 alt={ARTICLES[0].title}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                className="architectural-media w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm text-white text-[11px] font-light px-3 py-1">
                 جستار ویژه
@@ -176,7 +178,9 @@ const JournalSection: React.FC = () => {
                 src={activeArticle.coverImage}
                 alt={activeArticle.title}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+                className="architectural-media w-full h-full object-cover"
               />
             </div>
 
