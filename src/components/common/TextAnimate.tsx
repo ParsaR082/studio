@@ -55,7 +55,7 @@ export const TextAnimate: React.FC<TextAnimateProps> = ({
   }, [children, by]);
 
   // Define animation variants for each animation type
-  const getVariants = (): { container: Variants; item: Variants } => {
+  const variants = React.useMemo((): { container: Variants; item: Variants } => {
     switch (animation) {
       case 'blurIn':
         return {
@@ -281,9 +281,9 @@ export const TextAnimate: React.FC<TextAnimateProps> = ({
           },
         };
     }
-  };
+  }, [animation, delay, duration, stagger]);
 
-  const { container, item } = getVariants();
+  const { container, item } = variants;
 
   return (
     <Component className={`inline-block ${className}`}>
