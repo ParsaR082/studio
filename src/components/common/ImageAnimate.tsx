@@ -69,7 +69,7 @@ export const ImageAnimate: React.FC<ImageAnimateProps> = ({
     <div
       ref={containerRef}
       onClick={onClick}
-      className={`relative overflow-hidden ${onClick ? 'cursor-pointer' : ''} ${className}`}
+      className={`architectural-media relative overflow-hidden ${onClick ? 'cursor-pointer' : ''} ${className}`}
     >
       {/* Underlying Animated Image */}
       <motion.div
@@ -103,6 +103,7 @@ export const ImageAnimate: React.FC<ImageAnimateProps> = ({
           alt={alt}
           referrerPolicy="no-referrer"
           loading="lazy"
+          decoding="async"
           className={`w-full h-full object-cover transition-transform duration-700 ease-out ${
             hoverZoom ? 'hover:scale-105' : ''
           } ${imgClassName}`}
