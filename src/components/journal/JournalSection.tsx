@@ -60,7 +60,7 @@ const JournalSection: React.FC = () => {
             onClick={() => setActiveArticle(ARTICLES[0])}
             className="lg:col-span-7 group cursor-pointer"
           >
-            <div className="aspect-[16/10] overflow-hidden bg-[#E5E3DB] mb-6 relative">
+            <div className="architectural-media aspect-[16/10] overflow-hidden bg-[#E5E3DB] mb-6 relative">
               <img
                 src={ARTICLES[0].coverImage}
                 alt={ARTICLES[0].title}
@@ -171,7 +171,7 @@ const JournalSection: React.FC = () => {
               {activeArticle.title}
             </h1>
 
-            <div className="aspect-[16/9] overflow-hidden bg-[#E5E3DB] mb-12">
+            <div className="architectural-media aspect-[16/9] overflow-hidden bg-[#E5E3DB] mb-12">
               <img
                 src={activeArticle.coverImage}
                 alt={activeArticle.title}
