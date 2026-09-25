@@ -4,7 +4,7 @@ import { motion, useInView } from 'motion/react';
 import { Article, ARTICLES } from '../../data/articles';
 import { TextAnimate } from '../common/TextAnimate';
 
-export const JournalSection: React.FC = () => {
+const JournalSection: React.FC = () => {
   const [activeArticle, setActiveArticle] = useState<Article | null>(null);
   const sectionRef = React.useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, {
@@ -201,3 +201,5 @@ export const JournalSection: React.FC = () => {
     </section>
   );
 };
+
+export default React.memo(JournalSection);
