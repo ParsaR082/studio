@@ -19,20 +19,19 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Close live results when clicking outside
+  // Only observe document pointer activity while the live search is open.
   useEffect(() => {
+    if (!isExpanded) return;
+
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsExpanded(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [isExpanded]);
 
   // Filter projects live
   const matchingProjects = useMemo(() => {
