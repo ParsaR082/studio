@@ -63,10 +63,8 @@ export const useLenis = () => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
         stopFrameLoop();
-        lenis.stop();
       } else {
         running = true;
-        lenis.start();
         startFrameLoop();
       }
     };
