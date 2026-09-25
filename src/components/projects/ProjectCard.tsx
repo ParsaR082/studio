@@ -65,13 +65,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           onFlipChange={setFlipped}
           ariaLabel={`کارت سه‌بعدی ${project.title}`}
           front={
-            <div className="relative w-full h-full overflow-hidden bg-[#E8E6DE]">
+            <div className="architectural-media relative w-full h-full overflow-hidden bg-[#E8E6DE]">
               <img
                 src={project.heroImage}
                 alt={project.title}
                 referrerPolicy="no-referrer"
                 loading="lazy"
-                className="w-full h-full object-cover select-none"
+                decoding="async"
+                className="architectural-media w-full h-full object-cover select-none"
               />
 
               {/* Gradient Bottom Scrim */}

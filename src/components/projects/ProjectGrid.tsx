@@ -8,7 +8,7 @@ interface ProjectGridProps {
   onSelectProject: (project: Project) => void;
 }
 
-export const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
+const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
   const [activeCategory, setActiveCategory] = useState<string>('همه');
   const sectionRef = React.useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, {
@@ -104,3 +104,5 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => 
     </section>
   );
 };
+
+export default React.memo(ProjectGrid);

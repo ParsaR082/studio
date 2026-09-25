@@ -19,20 +19,19 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Close live results when clicking outside
+  // Only observe document pointer activity while the live search is open.
   useEffect(() => {
+    if (!isExpanded) return;
+
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsExpanded(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [isExpanded]);
 
   // Filter projects live
   const matchingProjects = useMemo(() => {
@@ -115,11 +114,13 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
                     className="w-full text-right p-2 rounded-xl hover:bg-white/10 active:bg-white/15 transition-all flex items-center justify-between gap-3 group cursor-pointer"
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-10 h-10 rounded-lg overflow-hidden bg-white/5 shrink-0 border border-white/10">
+                      <div className="architectural-media w-10 h-10 rounded-lg overflow-hidden bg-white/5 shrink-0 border border-white/10">
                         <img
                           src={project.heroImage}
                           alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          loading="lazy"
+                          decoding="async"
+                          className="architectural-media w-full h-full object-cover group-hover:scale-105 transition-transform"
                         />
                       </div>
                       <div className="truncate">

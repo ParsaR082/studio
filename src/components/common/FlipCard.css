@@ -49,10 +49,11 @@
   pointer-events: none;
 }
 
-.flip-card__rotor {
+ .flip-card__rotor {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .flip-card__face {

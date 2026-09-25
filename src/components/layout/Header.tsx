@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { RadialCornerMenu } from './RadialCornerMenu';
 import { HeaderSearch } from './HeaderSearch';
@@ -12,7 +12,7 @@ interface HeaderProps {
   visible?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({
+const Header: React.FC<HeaderProps> = ({
   activeSection,
   onNavigate,
   onOpenSearch,
@@ -21,12 +21,27 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [scrolled, setScrolled] = useState(false);
 
+  const scrollRaf = useRef<number | null>(null);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+    const update = () => {
+      scrollRaf.current = null;
+      const next = window.scrollY > 30;
+      setScrolled((current) => (current === next ? current : next));
     };
+
+    const handleScroll = () => {
+      if (scrollRaf.current !== null) return;
+      scrollRaf.current = window.requestAnimationFrame(update);
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    update();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollRaf.current !== null) window.cancelAnimationFrame(scrollRaf.current);
+      scrollRaf.current = null;
+    };
   }, []);
 
   const navItems = [
@@ -147,3 +162,5 @@ export const Header: React.FC<HeaderProps> = ({
     </>
   );
 };
+
+export default React.memo(Header);

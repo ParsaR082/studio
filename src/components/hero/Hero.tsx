@@ -10,7 +10,7 @@ interface HeroProps {
   onExploreProjects: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({
+const Hero: React.FC<HeroProps> = ({
   featuredProject,
   onSelectProject,
   onExploreProjects,
@@ -137,13 +137,15 @@ export const Hero: React.FC<HeroProps> = ({
         }
         transition={{ duration: 1.2, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
         onClick={() => onSelectProject(featuredProject)}
-        className="absolute -bottom-8 -left-12 sm:bottom-0 sm:left-0 w-[72vw] sm:w-[48vw] lg:w-[42vw] max-w-[680px] aspect-[16/10] overflow-hidden pointer-events-auto cursor-pointer group z-0"
+        className="architectural-media absolute -bottom-8 -left-12 sm:bottom-0 sm:left-0 w-[72vw] sm:w-[48vw] lg:w-[42vw] max-w-[680px] aspect-[16/10] overflow-hidden pointer-events-auto cursor-pointer group z-0"
       >
         <img
           src="/src/assets/images/curved_facade_sweep_1790289600522.jpg"
           alt="نمای منحنی معماری معاصر"
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
+          fetchPriority="high"
+          decoding="async"
+          className="architectural-media w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -171,3 +173,5 @@ export const Hero: React.FC<HeroProps> = ({
     </section>
   );
 };
+
+export default React.memo(Hero);

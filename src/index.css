@@ -189,6 +189,12 @@ svg {
   max-width: 100%;
 }
 
+/* Deliberate visual exception: a restrained radius for architectural photography. */
+.architectural-media {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
 button,
 a,
 [role="button"],

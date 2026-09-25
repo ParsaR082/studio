@@ -3,7 +3,7 @@ import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { motion, useInView } from 'motion/react';
 import { TextAnimate } from '../common/TextAnimate';
 
-export const ContactSection: React.FC = () => {
+const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -233,3 +233,5 @@ export const ContactSection: React.FC = () => {
     </section>
   );
 };
+
+export default React.memo(ContactSection);

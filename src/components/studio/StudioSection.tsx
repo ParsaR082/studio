@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useInView } from 'motion/react';
 import { TextAnimate } from '../common/TextAnimate';
 
-export const StudioSection: React.FC = () => {
+const StudioSection: React.FC = () => {
   const sectionRef = React.useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, {
     margin: '-80px 0px -80px 0px',
@@ -94,7 +94,9 @@ export const StudioSection: React.FC = () => {
             src="/src/assets/images/studio_workspace_arch_1790288945406.jpg"
             alt="فضای کار و آتلیه طراحی استودیو نو"
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            className="architectural-media w-full h-full object-cover"
           />
           <div className="absolute bottom-6 right-6 px-4 py-2 bg-black/50 backdrop-blur-md text-white text-xs font-light tracking-wide">
             آتلیه طراحی و ساخت ماکت‌های مفهومی — تهران
@@ -187,3 +189,5 @@ export const StudioSection: React.FC = () => {
     </section>
   );
 };
+
+export default React.memo(StudioSection);

@@ -4,7 +4,7 @@ import { motion, useInView } from 'motion/react';
 import { Article, ARTICLES } from '../../data/articles';
 import { TextAnimate } from '../common/TextAnimate';
 
-export const JournalSection: React.FC = () => {
+const JournalSection: React.FC = () => {
   const [activeArticle, setActiveArticle] = useState<Article | null>(null);
   const sectionRef = React.useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, {
@@ -60,12 +60,14 @@ export const JournalSection: React.FC = () => {
             onClick={() => setActiveArticle(ARTICLES[0])}
             className="lg:col-span-7 group cursor-pointer"
           >
-            <div className="aspect-[16/10] overflow-hidden bg-[#E5E3DB] mb-6 relative">
+            <div className="architectural-media aspect-[16/10] overflow-hidden bg-[#E5E3DB] mb-6 relative">
               <img
                 src={ARTICLES[0].coverImage}
                 alt={ARTICLES[0].title}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                className="architectural-media w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm text-white text-[11px] font-light px-3 py-1">
                 جستار ویژه
@@ -171,12 +173,14 @@ export const JournalSection: React.FC = () => {
               {activeArticle.title}
             </h1>
 
-            <div className="aspect-[16/9] overflow-hidden bg-[#E5E3DB] mb-12">
+            <div className="architectural-media aspect-[16/9] overflow-hidden bg-[#E5E3DB] mb-12">
               <img
                 src={activeArticle.coverImage}
                 alt={activeArticle.title}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+                className="architectural-media w-full h-full object-cover"
               />
             </div>
 
@@ -201,3 +205,5 @@ export const JournalSection: React.FC = () => {
     </section>
   );
 };
+
+export default React.memo(JournalSection);

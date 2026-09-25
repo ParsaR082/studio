@@ -1,14 +1,14 @@
 import { useState, useCallback } from 'react';
-import { Header } from './components/layout/Header';
-import { Footer } from './components/layout/Footer';
-import { Hero } from './components/hero/Hero';
-import { FeaturedStory } from './components/projects/FeaturedStory';
-import { ProjectGrid } from './components/projects/ProjectGrid';
-import { ProjectDetailModal } from './components/projects/ProjectDetailModal';
-import { StudioSection } from './components/studio/StudioSection';
-import { JournalSection } from './components/journal/JournalSection';
-import { ContactSection } from './components/contact/ContactSection';
-import { SearchModal } from './components/common/SearchModal';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import Hero from './components/hero/Hero';
+import FeaturedStory from './components/projects/FeaturedStory';
+import ProjectGrid from './components/projects/ProjectGrid';
+import ProjectDetailModal from './components/projects/ProjectDetailModal';
+import StudioSection from './components/studio/StudioSection';
+import JournalSection from './components/journal/JournalSection';
+import ContactSection from './components/contact/ContactSection';
+import SearchModal from './components/common/SearchModal';
 import { CinematicOpening } from './components/common/CinematicOpening';
 import { useLenis } from './hooks/useLenis';
 import { PROJECTS, Project } from './data/projects';
@@ -38,10 +38,25 @@ export default function App() {
     }
   }, []);
 
-  const handleOpenSearch = (initialQuery?: string) => {
+  const handleOpenSearch = useCallback((initialQuery?: string) => {
     setSearchInitialQuery(initialQuery || '');
     setSearchOpen(true);
-  };
+  }, []);
+
+  const handleSelectProject = useCallback((project: Project) => {
+    setSelectedProject(project);
+  }, []);
+
+  const handleCloseProject = useCallback(() => {
+    setSelectedProject(null);
+  }, []);
+
+  const handleCloseSearch = useCallback(() => {
+    setSearchOpen(false);
+  }, []);
+
+  const handleNavigateToProjects = useCallback(() => handleNavigate('projects'), [handleNavigate]);
+  const handleNavigateToContact = useCallback(() => handleNavigate('contact'), [handleNavigate]);
 
   return (
     <div className="min-h-screen bg-[#F8F8F7] text-[#111111] relative selection:bg-[#111111] selection:text-[#F8F8F7]">
@@ -56,14 +71,14 @@ export default function App() {
         activeSection={activeSection}
         onNavigate={handleNavigate}
         onOpenSearch={handleOpenSearch}
-        onSelectProject={(project) => setSelectedProject(project)}
+        onSelectProject={handleSelectProject}
       />
 
       <main>
         {/* Stage 1: Hero Section (AMBITIOUS + Sweeping Curved Facade + In/Out Motion) */}
         <Hero
           featuredProject={featuredProject}
-          onSelectProject={(project) => setSelectedProject(project)}
+          onSelectProject={handleSelectProject}
           onExploreProjects={() => handleNavigate('projects')}
         />
 
@@ -90,21 +105,21 @@ export default function App() {
 
       {/* Minimal Architectural Footer */}
       <Footer
-        onNavigateToProjects={() => handleNavigate('projects')}
-        onNavigateToContact={() => handleNavigate('contact')}
+        onNavigateToProjects={handleNavigateToProjects}
+        onNavigateToContact={handleNavigateToContact}
       />
 
       {/* Fullscreen Architectural Case Study Modal */}
       <ProjectDetailModal
         project={selectedProject}
-        onClose={() => setSelectedProject(null)}
+        onClose={handleCloseProject}
         onSelectProject={(project) => setSelectedProject(project)}
       />
 
       {/* Quick Search Modal */}
       <SearchModal
         isOpen={searchOpen}
-        onClose={() => setSearchOpen(false)}
+        onClose={handleCloseSearch}
         onSelectProject={(project) => setSelectedProject(project)}
         initialQuery={searchInitialQuery}
       />

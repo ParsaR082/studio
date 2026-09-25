@@ -6,7 +6,7 @@ interface FooterProps {
   onNavigateToContact: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({
+const Footer: React.FC<FooterProps> = ({
   onNavigateToProjects,
   onNavigateToContact,
 }) => {
@@ -128,3 +128,5 @@ export const Footer: React.FC<FooterProps> = ({
     </footer>
   );
 };
+
+export default React.memo(Footer);
