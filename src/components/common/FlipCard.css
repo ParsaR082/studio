@@ -107,3 +107,20 @@
 .flip-card[data-fade='back'] .flip-card__face--back {
   opacity: 1;
 }
+
+
+/* Responsive defaults for standalone FlipCard instances as well as project cards. */
+@media (max-width: 639px) {
+  .flip-card { --fc-h: clamp(300px, 105vw, 380px); }
+  .flip-card__shadow { filter: blur(14px); }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  .flip-card { --fc-h: clamp(320px, 48vw, 400px); }
+}
+@media (hover: none) and (pointer: coarse) {
+  .flip-card { cursor: pointer; }
+  .flip-card[data-draggable] { cursor: pointer; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip-card__face[data-fade] { transition: none; }
+}
