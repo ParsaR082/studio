@@ -12,7 +12,7 @@ interface ProjectDetailModalProps {
   onSelectProject: (project: Project) => void;
 }
 
-export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
+const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
   project,
   onClose,
   onSelectProject,
@@ -414,3 +414,5 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
     </div>
   );
 };
+
+export default React.memo(ProjectDetailModal);
