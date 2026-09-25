@@ -65,7 +65,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           onFlipChange={setFlipped}
           ariaLabel={`کارت سه‌بعدی ${project.title}`}
           front={
-            <div className="relative w-full h-full overflow-hidden bg-[#E8E6DE]">
+            <div className="architectural-media relative w-full h-full overflow-hidden bg-[#E8E6DE]">
               <img
                 src={project.heroImage}
                 alt={project.title}
