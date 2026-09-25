@@ -25,14 +25,14 @@ export const Hero: React.FC<HeroProps> = ({
     <section
       ref={containerRef}
       id="hero"
-      className="relative min-h-screen pt-28 md:pt-36 pb-12 px-6 sm:px-10 lg:px-16 flex flex-col justify-between overflow-hidden"
+      className="relative min-h-[100svh] pt-24 sm:pt-28 md:pt-36 pb-8 sm:pb-12 px-[var(--page-gutter)] flex flex-col justify-between overflow-hidden"
     >
       {/* Top Meta Details */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -25 }}
         transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-[1540px] w-full mx-auto flex items-center justify-between text-xs tracking-widest text-[#777777] font-light z-10"
+        className="max-w-[1540px] w-full mx-auto flex flex-wrap gap-y-2 items-start sm:items-center justify-between text-[10px] sm:text-xs tracking-normal sm:tracking-widest text-[#777777] font-light z-10"
       >
         <div className="flex items-center gap-3">
           <span className="text-[#111111] font-normal">استودیو معماری نو</span>
@@ -47,12 +47,12 @@ export const Hero: React.FC<HeroProps> = ({
       </motion.div>
 
       {/* Main Content Area */}
-      <div className="max-w-[1540px] w-full mx-auto my-auto py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center z-10">
+      <div className="max-w-[1540px] w-full mx-auto my-auto py-8 sm:py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-center z-10">
         {/* Left/Center Text Column (Right in RTL) */}
         <div className="lg:col-span-8 flex flex-col justify-center">
           {/* Main Title Matching Video: AMBITIOUS + TextAnimate character & word animations */}
           <div className="mb-6">
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[8.25rem] font-light text-[#111111] leading-none font-display">
+            <h1 className="text-[clamp(2.35rem,8vw,8.25rem)] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[8.25rem] font-light text-[#111111] leading-none font-display">
               <span className="block font-normal tracking-wide text-3xl sm:text-5xl lg:text-7xl font-sans mb-1" dir="ltr">
                 <TextAnimate
                   animation="slideLeft"
@@ -137,7 +137,7 @@ export const Hero: React.FC<HeroProps> = ({
         }
         transition={{ duration: 1.2, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
         onClick={() => onSelectProject(featuredProject)}
-        className="absolute -bottom-8 -left-12 sm:bottom-0 sm:left-0 w-[55vw] sm:w-[48vw] lg:w-[42vw] max-w-[680px] aspect-[16/10] overflow-hidden pointer-events-auto cursor-pointer group z-0"
+        className="absolute -bottom-8 -left-12 sm:bottom-0 sm:left-0 w-[72vw] sm:w-[48vw] lg:w-[42vw] max-w-[680px] aspect-[16/10] overflow-hidden pointer-events-auto cursor-pointer group z-0"
       >
         <img
           src="/src/assets/images/curved_facade_sweep_1790289600522.jpg"
@@ -158,7 +158,7 @@ export const Hero: React.FC<HeroProps> = ({
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
         transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-[1540px] w-full mx-auto pt-6 border-t border-[#111111]/8 flex items-center justify-between text-xs font-light text-[#777777] z-10"
+        className="max-w-[1540px] w-full mx-auto pt-4 sm:pt-6 border-t border-[#111111]/8 flex flex-wrap gap-3 items-start sm:items-center justify-between text-[10px] sm:text-xs font-light text-[#777777] z-10"
       >
         <div className="flex items-center gap-6">
           <span>رویکرد: فرم پیراسته و احترام به ژئومتری بستر</span>

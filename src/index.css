@@ -158,3 +158,154 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #999;
 }
+
+
+/* ==========================================================================
+   Responsive / touch / accessibility foundations
+   Kept global so every route and shared section follows the same rules.
+   ========================================================================== */
+
+:root {
+  --page-gutter: clamp(1rem, 4.2vw, 4.5rem);
+  --tap-target: 44px;
+  --motion-duration: 1;
+}
+
+html {
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+  overscroll-behavior-x: none;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+button,
+a,
+[role="button"],
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+[role="button"],
+a {
+  touch-action: manipulation;
+}
+
+:where(button, a, [role="button"], input, select, textarea, summary):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+@media (max-width: 639px) {
+  :root {
+    --page-gutter: 1.125rem;
+  }
+
+  html {
+    scroll-padding-top: 4.5rem;
+  }
+
+  /* Keep interactive cards inside the viewport and avoid tiny text. */
+  .flip-card {
+    height: clamp(300px, 105vw, 380px);
+    border-radius: 10px;
+  }
+
+  .flip-card__shadow {
+    filter: blur(14px);
+  }
+
+  /* Native vertical scrolling remains available over touch cards. */
+  .flip-card,
+  .flip-card[data-axis='x'] {
+    touch-action: pan-y;
+  }
+
+  /* Avoid hover-only visual states sticking after a touch. */
+
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+  :where(button, a, [role="button"]) { min-height: var(--tap-target); }
+
+  /* Keep long Persian labels from forcing horizontal overflow. */
+  h1, h2, h3, p, li { overflow-wrap: anywhere; }
+
+  /* Avoid sticky hover treatments on touch-only devices. */
+  @media (hover: none) and (pointer: coarse) {
+    .hover\\:scale-105:hover, .hover\\:scale-110:hover { transform: none !important; }
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  :root {
+    --page-gutter: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .flip-card {
+    height: clamp(320px, 48vw, 380px);
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  html {
+    scroll-padding-top: 3.75rem;
+  }
+
+  .flip-card {
+    height: min(72svh, 340px);
+  }
+}
+
+@supports (height: 100svh) {
+  .min-h-screen {
+    min-height: 100svh;
+  }
+}
+
+@supports (height: 100dvh) {
+  .h-screen {
+    height: 100dvh;
+  }
+
+  .min-h-screen {
+    min-height: 100dvh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration: 0;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* GSAP/Motion still receive the preference in JS; this prevents CSS-only
+     transitions from lingering without disabling layout or visibility. */
+  .animate-spin-slow { animation: none !important; }
+}

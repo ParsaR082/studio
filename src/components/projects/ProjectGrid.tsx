@@ -27,11 +27,11 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => 
     <section
       ref={sectionRef}
       id="projects"
-      className="py-24 md:py-36 px-6 sm:px-10 lg:px-16 border-t border-[#111111]/8 overflow-hidden"
+      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#111111]/8 overflow-hidden"
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Section Header matching video 00:03 */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-6 sm:gap-8">
           <div>
             <div className="mb-3">
               <TextAnimate
@@ -55,7 +55,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => 
           </div>
 
           {/* Minimal Filter Tabs */}
-          <div className="flex items-center gap-6 sm:gap-8 overflow-x-auto pb-2 scrollbar-none">
+          <div className="flex items-center gap-4 sm:gap-8 overflow-x-auto pb-3 scrollbar-none max-w-full -mx-1 px-1">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -79,7 +79,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => 
         </div>
 
         {/* 3-Column Editorial Grid matching video 00:03 - 00:04 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 lg:gap-x-12 gap-y-16 lg:gap-y-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 md:gap-x-8 xl:gap-x-12 gap-y-10 sm:gap-y-14 lg:gap-y-20">
           {filteredProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -95,9 +95,9 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => 
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-20 pt-8 border-t border-[#111111]/8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#777777] font-light gap-4"
+          className="mt-12 sm:mt-20 pt-6 sm:pt-8 border-t border-[#111111]/8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#777777] font-light gap-4"
         >
-          <span>نمایش {filteredProjects.length} اثر معاصر در گرید ۳ ستونه</span>
+          <span>نمایش {filteredProjects.length} اثر معاصر</span>
           <span>استودیو نو — کلیه حقوق معماری محفوظ است.</span>
         </motion.div>
       </div>
