@@ -115,7 +115,7 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
                     className="w-full text-right p-2 rounded-xl hover:bg-white/10 active:bg-white/15 transition-all flex items-center justify-between gap-3 group cursor-pointer"
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-10 h-10 rounded-lg overflow-hidden bg-white/5 shrink-0 border border-white/10">
+                      <div className="architectural-media w-10 h-10 rounded-lg overflow-hidden bg-white/5 shrink-0 border border-white/10">
                         <img
                           src={project.heroImage}
                           alt={project.title}
