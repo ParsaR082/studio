@@ -235,9 +235,6 @@ a {
   }
 
   /* Avoid hover-only visual states sticking after a touch. */
-  .group:hover .group-hover\\:scale-105 {
-    transform: none;
-  }
 
   input,
   textarea,
@@ -245,8 +242,14 @@ a {
     font-size: 16px;
   }
 
-  :where(button, a, [role="button"]) {
-    min-height: max( var(--tap-target), 2.75rem );
+  :where(button, a, [role="button"]) { min-height: var(--tap-target); }
+
+  /* Keep long Persian labels from forcing horizontal overflow. */
+  h1, h2, h3, p, li { overflow-wrap: anywhere; }
+
+  /* Avoid sticky hover treatments on touch-only devices. */
+  @media (hover: none) and (pointer: coarse) {
+    .hover\\:scale-105:hover, .hover\\:scale-110:hover { transform: none !important; }
   }
 }
 
@@ -295,12 +298,14 @@ a {
     scroll-behavior: auto !important;
   }
 
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  /* GSAP/Motion still receive the preference in JS; this prevents CSS-only
+     transitions from lingering without disabling layout or visibility. */
+  .animate-spin-slow { animation: none !important; }
 }
