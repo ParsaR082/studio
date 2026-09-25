@@ -10,7 +10,7 @@ interface FeaturedStoryProps {
   onOpenProject: (project: Project) => void;
 }
 
-export const FeaturedStory: React.FC<FeaturedStoryProps> = ({
+const FeaturedStory: React.FC<FeaturedStoryProps> = ({
   project,
   onOpenProject,
 }) => {
@@ -154,3 +154,5 @@ export const FeaturedStory: React.FC<FeaturedStoryProps> = ({
     </section>
   );
 };
+
+export default React.memo(FeaturedStory);
