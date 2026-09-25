@@ -137,7 +137,7 @@ const Hero: React.FC<HeroProps> = ({
         }
         transition={{ duration: 1.2, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
         onClick={() => onSelectProject(featuredProject)}
-        className="absolute -bottom-8 -left-12 sm:bottom-0 sm:left-0 w-[72vw] sm:w-[48vw] lg:w-[42vw] max-w-[680px] aspect-[16/10] overflow-hidden pointer-events-auto cursor-pointer group z-0"
+        className="architectural-media absolute -bottom-8 -left-12 sm:bottom-0 sm:left-0 w-[72vw] sm:w-[48vw] lg:w-[42vw] max-w-[680px] aspect-[16/10] overflow-hidden pointer-events-auto cursor-pointer group z-0"
       >
         <img
           src="/src/assets/images/curved_facade_sweep_1790289600522.jpg"
