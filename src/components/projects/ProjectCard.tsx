@@ -43,10 +43,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       className="group flex flex-col"
     >
       {/* Interactive 3D FlipCard from React Bits */}
-      <div className="w-full mb-6 relative">
+      <div className="w-full mb-4 sm:mb-6 relative [perspective:1100px]">
         <FlipCard
           width="100%"
-          height={360}
+          height="clamp(300px, 30vw, 360px)"
           radius={12}
           axis="y"
           draggable
@@ -106,7 +106,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </div>
           }
           back={
-            <div className="w-full h-full p-6 flex flex-col justify-between bg-[#161514] text-[#F5F4F0] border border-white/10">
+            <div className="w-full h-full p-4 sm:p-6 flex flex-col justify-between bg-[#161514] text-[#F5F4F0] border border-white/10">
               {/* Back Header */}
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <div className="flex items-center gap-2">
@@ -133,8 +133,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               </div>
 
               {/* Back Project Specs */}
-              <div className="my-auto space-y-3 text-right">
-                <h4 className="text-xl font-light tracking-tight text-white">
+              <div className="my-auto space-y-2 sm:space-y-3 text-right min-h-0">
+                <h4 className="text-lg sm:text-xl font-light tracking-tight text-white">
                   {project.title}
                 </h4>
                 <p className="text-xs text-[#888888] font-light line-clamp-3 leading-relaxed">
