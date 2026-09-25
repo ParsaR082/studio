@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, X, ArrowLeft } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { Search } from 'lucide-react';
+import { motion } from 'motion/react';
+import { RadialCornerMenu } from './RadialCornerMenu';
 
 interface HeaderProps {
   activeSection: string;
@@ -16,7 +17,6 @@ export const Header: React.FC<HeaderProps> = ({
   visible = true,
 }) => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +37,6 @@ export const Header: React.FC<HeaderProps> = ({
 
   const handleNavClick = (id: string) => {
     onNavigate(id);
-    setMobileMenuOpen(false);
   };
 
   return (
@@ -102,8 +101,8 @@ export const Header: React.FC<HeaderProps> = ({
             ))}
           </nav>
 
-          {/* Action Search Button matching video icon Q */}
-          <div className="flex items-center gap-4">
+          {/* Action Search Button & Radial Corner-to-Center Menu */}
+          <div className="flex items-center gap-3 sm:gap-4">
             <button
               onClick={onOpenSearch}
               aria-label="جستجو"
@@ -115,14 +114,8 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
             </button>
 
-            {/* Mobile Hamburger */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? 'بستن منو' : 'باز کردن منو'}
-              className="lg:hidden p-2 text-[#111111] hover:text-[#666666] transition-colors cursor-pointer"
-            >
-              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
+            {/* Radial Circle Menu in Header Corner */}
+            <RadialCornerMenu onNavigate={handleNavClick} />
           </div>
         </div>
       </header>
@@ -154,51 +147,6 @@ export const Header: React.FC<HeaderProps> = ({
         </a>
         <div className="w-[1px] h-8 bg-[#111111]/20 mt-2" />
       </aside>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-40 bg-[#F5F4F0] flex flex-col justify-between px-8 py-24 lg:hidden"
-          >
-            <div className="flex flex-col gap-6 text-right mt-6">
-              <span className="text-xs uppercase tracking-widest text-[#777777]">
-                فهرست ناوبری
-              </span>
-              {navItems.map((item, index) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className="text-right text-3xl font-light text-[#111111] hover:text-[#666666] transition-colors flex items-center justify-between"
-                >
-                  <span className="flex items-center gap-3">
-                    <span>{item.label}</span>
-                    {item.count && (
-                      <span className="text-sm font-normal text-[#888888]">
-                        ({item.count})
-                      </span>
-                    )}
-                  </span>
-                  <ArrowLeft size={18} className="text-[#888888]" />
-                </button>
-              ))}
-            </div>
-
-            <div className="pt-8 border-t border-[#111111]/10 flex flex-col gap-3 text-right">
-              <p className="text-xs text-[#777777] font-light">
-                استودیو معماری نو — تهران، لواسان، ارومیه
-              </p>
-              <p className="text-xs text-[#111111] font-normal" dir="ltr">
-                contact@nostudio-arch.com
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 };
