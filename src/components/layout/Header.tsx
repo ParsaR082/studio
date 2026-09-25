@@ -49,13 +49,13 @@ export const Header: React.FC<HeaderProps> = ({
           !visible ? 'opacity-0 pointer-events-none -translate-y-8' : 'opacity-100 translate-y-0'
         } ${
           scrolled
-            ? 'py-4 bg-[#F5F4F0]/90 backdrop-blur-md border-b border-[#111111]/8'
-            : 'py-6 md:py-8 bg-transparent'
+            ? 'py-3 sm:py-4 bg-[#F5F4F0]/90 backdrop-blur-md border-b border-[#111111]/8'
+            : 'py-4 sm:py-6 md:py-8 bg-transparent'
         }`}
       >
-        <div className="max-w-[1540px] mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between">
+        <div className="max-w-[1540px] mx-auto px-[var(--page-gutter)] flex items-center justify-between">
           {/* Logo Brand Lockup (Matches Video Geometric Icon) */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={() => handleNavClick('hero')}
               className="flex items-center gap-3.5 group cursor-pointer text-right"
