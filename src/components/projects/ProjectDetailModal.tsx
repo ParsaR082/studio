@@ -205,7 +205,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           </div>
 
           {/* Large Hero Image with Curtain Wipe Animation */}
-          <div className="w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[16/8] overflow-hidden bg-[#E5E3DB] mb-20">
+          <div className="architectural-media w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[16/8] overflow-hidden bg-[#E5E3DB] mb-20">
             <ImageAnimate
               key={`hero-${project.id}`}
               src={project.heroImage}
@@ -329,7 +329,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             <div className="space-y-12">
               {/* Gallery Image 1: Asymmetrical 2 Column */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                <div className="md:col-span-8 aspect-[16/10] overflow-hidden bg-[#E5E3DB]">
+                <div className="architectural-media md:col-span-8 aspect-[16/10] overflow-hidden bg-[#E5E3DB]">
                   <ImageAnimate
                     key={`gal1-${project.id}`}
                     src={project.gallery[0] || project.heroImage}
@@ -353,7 +353,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
               {/* Gallery Image 2 & 3: Dual Balanced */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="aspect-[4/3] overflow-hidden bg-[#E5E3DB]">
+                <div className="architectural-media aspect-[4/3] overflow-hidden bg-[#E5E3DB]">
                   <ImageAnimate
                     key={`gal2-${project.id}`}
                     src={project.secondaryImage}
