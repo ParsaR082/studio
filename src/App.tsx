@@ -78,7 +78,7 @@ export default function App() {
         {/* Stage 1: Hero Section (AMBITIOUS + Sweeping Curved Facade + In/Out Motion) */}
         <Hero
           featuredProject={featuredProject}
-          onSelectProject={(project) => setSelectedProject(project)}
+          onSelectProject={handleSelectProject}
           onExploreProjects={() => handleNavigate('projects')}
         />
 
