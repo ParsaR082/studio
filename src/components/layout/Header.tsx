@@ -12,7 +12,7 @@ interface HeaderProps {
   visible?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({
+const Header: React.FC<HeaderProps> = ({
   activeSection,
   onNavigate,
   onOpenSearch,
@@ -162,3 +162,5 @@ export const Header: React.FC<HeaderProps> = ({
     </>
   );
 };
+
+export default React.memo(Header);
