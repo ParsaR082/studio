@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useInView } from 'motion/react';
 import { TextAnimate } from '../common/TextAnimate';
 
-export const StudioSection: React.FC = () => {
+const StudioSection: React.FC = () => {
   const sectionRef = React.useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, {
     margin: '-80px 0px -80px 0px',
@@ -187,3 +187,5 @@ export const StudioSection: React.FC = () => {
     </section>
   );
 };
+
+export default React.memo(StudioSection);
