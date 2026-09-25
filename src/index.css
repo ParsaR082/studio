@@ -6,6 +6,8 @@
     --foreground: #111111;
     --muted: #E8E6DE;
     --muted-foreground: #777777;
+    --border: rgba(17, 17, 17, 0.15);
+    --ring: #111111;
     --bg-main: #F5F4F0;
     --text-primary: #111111;
     --text-secondary: #666666;

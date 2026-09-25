@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
 import { motion } from 'motion/react';
 import { RadialCornerMenu } from './RadialCornerMenu';
+import { HeaderSearch } from './HeaderSearch';
+import { Project } from '../../data/projects';
 
 interface HeaderProps {
   activeSection: string;
   onNavigate: (sectionId: string) => void;
-  onOpenSearch: () => void;
+  onOpenSearch: (initialQuery?: string) => void;
+  onSelectProject?: (project: Project) => void;
   visible?: boolean;
 }
 
@@ -14,6 +16,7 @@ export const Header: React.FC<HeaderProps> = ({
   activeSection,
   onNavigate,
   onOpenSearch,
+  onSelectProject,
   visible = true,
 }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -101,18 +104,12 @@ export const Header: React.FC<HeaderProps> = ({
             ))}
           </nav>
 
-          {/* Action Search Button & Radial Corner-to-Center Menu */}
-          <div className="flex items-center gap-3 sm:gap-4">
-            <button
-              onClick={onOpenSearch}
-              aria-label="جستجو"
-              className="p-2 text-[#111111] hover:text-[#666666] transition-colors cursor-pointer group flex items-center gap-2"
-            >
-              <Search size={18} className="transition-transform group-hover:scale-110" />
-              <span className="hidden sm:inline text-xs font-light text-[#666666] group-hover:text-[#111111]">
-                جستجو
-              </span>
-            </button>
+          {/* Action Search with Liquid GooeyInput & Radial Corner Menu */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <HeaderSearch
+              onOpenFullSearch={onOpenSearch}
+              onSelectProject={onSelectProject}
+            />
 
             {/* Radial Circle Menu in Header Corner */}
             <RadialCornerMenu onNavigate={handleNavClick} />

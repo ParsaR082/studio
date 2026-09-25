@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
-import { Search, X, ArrowLeft } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, ArrowLeft } from 'lucide-react';
 import { Project, PROJECTS } from '../../data/projects';
+import GooeyInput from '@/components/ui/gooey-input';
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectProject: (project: Project) => void;
+  initialQuery?: string;
 }
 
 export const SearchModal: React.FC<SearchModalProps> = ({
   isOpen,
   onClose,
   onSelectProject,
+  initialQuery = '',
 }) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(initialQuery);
+
+  useEffect(() => {
+    if (isOpen) {
+      setQuery(initialQuery);
+    }
+  }, [isOpen, initialQuery]);
 
   if (!isOpen) return null;
 
@@ -50,17 +59,30 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           </button>
         </div>
 
-        {/* Input */}
-        <div className="relative mb-12">
-          <input
-            type="text"
-            autoFocus
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="جستجوی نام پروژه، شهر، متریال یا کاربری..."
-            className="w-full text-2xl sm:text-4xl font-light text-[#111111] bg-transparent border-b border-[#111111]/20 pb-4 focus:outline-none focus:border-[#111111] placeholder:text-[#AAAAAA]"
-          />
-          <Search className="absolute left-2 top-2 text-[#888888]" size={28} />
+        {/* Input with Gooey effect */}
+        <div className="flex flex-col items-center mb-12">
+          <div dir="ltr" className="w-full flex justify-center mb-3">
+            <GooeyInput
+              value={query}
+              onValueChange={(val) => setQuery(val)}
+              placeholder="جستجوی نام پروژه، موقعیت، متریال..."
+              collapsedWidth={130}
+              expandedWidth={340}
+              expandedOffset={52}
+              gooeyBlur={5}
+              className="w-full max-w-lg"
+              classNames={{
+                trigger:
+                  'bg-[#111111] text-[#F5F4F0] border border-white/10 shadow-lg text-sm font-light',
+                bubbleSurface:
+                  'bg-[#111111] text-[#F5F4F0] border border-white/10 shadow-lg',
+                input: 'text-sm text-[#F5F4F0] placeholder:text-[#888888] font-light',
+              }}
+            />
+          </div>
+          <span className="text-[11px] text-[#777777] font-light">
+            جستجوی زنده در نام اثر، معمار، کاربری و جزئیات بستر طرح
+          </span>
         </div>
 
         {/* Results List */}

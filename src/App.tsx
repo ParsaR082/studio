@@ -17,6 +17,7 @@ export default function App() {
   const [openingFinished, setOpeningFinished] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchInitialQuery, setSearchInitialQuery] = useState('');
   const [activeSection, setActiveSection] = useState('hero');
 
   // Initialize Lenis smooth scroll
@@ -37,6 +38,11 @@ export default function App() {
     }
   }, []);
 
+  const handleOpenSearch = (initialQuery?: string) => {
+    setSearchInitialQuery(initialQuery || '');
+    setSearchOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-[#F8F8F7] text-[#111111] relative selection:bg-[#111111] selection:text-[#F8F8F7]">
       {/* Cinematic Architectural Opening Shutter */}
@@ -49,7 +55,8 @@ export default function App() {
         visible={openingFinished}
         activeSection={activeSection}
         onNavigate={handleNavigate}
-        onOpenSearch={() => setSearchOpen(true)}
+        onOpenSearch={handleOpenSearch}
+        onSelectProject={(project) => setSelectedProject(project)}
       />
 
       <main>
@@ -99,6 +106,7 @@ export default function App() {
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}
         onSelectProject={(project) => setSelectedProject(project)}
+        initialQuery={searchInitialQuery}
       />
     </div>
   );
