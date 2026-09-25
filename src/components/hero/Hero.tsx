@@ -10,7 +10,7 @@ interface HeroProps {
   onExploreProjects: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({
+const Hero: React.FC<HeroProps> = ({
   featuredProject,
   onSelectProject,
   onExploreProjects,
@@ -171,3 +171,5 @@ export const Hero: React.FC<HeroProps> = ({
     </section>
   );
 };
+
+export default React.memo(Hero);
