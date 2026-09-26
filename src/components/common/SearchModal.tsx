@@ -69,7 +69,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
               onValueChange={(val) => setQuery(val)}
               placeholder="جستجوی نام پروژه، موقعیت، متریال..."
               collapsedWidth={130}
-              expandedWidth={Math.min(340, typeof window !== 'undefined' ? window.innerWidth - 32 : 340)}
+              expandedWidth="min(340px, calc(100vw - 32px))"
               expandedOffset={52}
               gooeyBlur={5}
               className="w-full max-w-lg"
