@@ -32,7 +32,7 @@ const ContactSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="contact"
-      className="py-24 md:py-36 px-6 sm:px-10 lg:px-16 border-t border-[#102B2B]/8 bg-[#F4F8F3] overflow-hidden"
+      className="py-24 md:py-36 px-6 sm:px-10 lg:px-16 border-t border-[#102B2B]/10 bg-[#A4E0D6]/25 overflow-hidden"
     >
       <div className="max-w-[1540px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
