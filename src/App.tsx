@@ -1,17 +1,19 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, lazy, Suspense } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Hero from './components/hero/Hero';
 import FeaturedStory from './components/projects/FeaturedStory';
 import ProjectGrid from './components/projects/ProjectGrid';
-import ProjectDetailModal from './components/projects/ProjectDetailModal';
 import StudioSection from './components/studio/StudioSection';
 import JournalSection from './components/journal/JournalSection';
 import ContactSection from './components/contact/ContactSection';
-import SearchModal from './components/common/SearchModal';
 import { CinematicOpening } from './components/common/CinematicOpening';
 import { useLenis } from './hooks/useLenis';
 import { PROJECTS, Project } from './data/projects';
+
+// Code-split heavy modals loaded on-demand
+const ProjectDetailModal = lazy(() => import('./components/projects/ProjectDetailModal'));
+const SearchModal = lazy(() => import('./components/common/SearchModal'));
 
 export default function App() {
   const [openingFinished, setOpeningFinished] = useState(false);
@@ -79,18 +81,18 @@ export default function App() {
         <Hero
           featuredProject={featuredProject}
           onSelectProject={handleSelectProject}
-          onExploreProjects={() => handleNavigate('projects')}
+          onExploreProjects={handleNavigateToProjects}
         />
 
         {/* Stage 2: Featured Story / Architect Monograph (Christian de Portzamparc + In/Out Motion) */}
         <FeaturedStory
           project={featuredProject}
-          onOpenProject={(project) => setSelectedProject(project)}
+          onOpenProject={handleSelectProject}
         />
 
         {/* Stage 3: 3x2 Editorial Grid matching Video (6 Square Cards + Stagger In/Out Motion) */}
         <ProjectGrid
-          onSelectProject={(project) => setSelectedProject(project)}
+          onSelectProject={handleSelectProject}
         />
 
         {/* Stage 4: Studio Section (Manifesto, Workspace, Team, Principles + In/Out Motion) */}
@@ -109,20 +111,28 @@ export default function App() {
         onNavigateToContact={handleNavigateToContact}
       />
 
-      {/* Fullscreen Architectural Case Study Modal */}
-      <ProjectDetailModal
-        project={selectedProject}
-        onClose={handleCloseProject}
-        onSelectProject={(project) => setSelectedProject(project)}
-      />
+      {/* Fullscreen Architectural Case Study Modal (Lazy loaded) */}
+      <Suspense fallback={null}>
+        {selectedProject && (
+          <ProjectDetailModal
+            project={selectedProject}
+            onClose={handleCloseProject}
+            onSelectProject={handleSelectProject}
+          />
+        )}
+      </Suspense>
 
-      {/* Quick Search Modal */}
-      <SearchModal
-        isOpen={searchOpen}
-        onClose={handleCloseSearch}
-        onSelectProject={(project) => setSelectedProject(project)}
-        initialQuery={searchInitialQuery}
-      />
+      {/* Quick Search Modal (Lazy loaded) */}
+      <Suspense fallback={null}>
+        {searchOpen && (
+          <SearchModal
+            isOpen={searchOpen}
+            onClose={handleCloseSearch}
+            onSelectProject={handleSelectProject}
+            initialQuery={searchInitialQuery}
+          />
+        )}
+      </Suspense>
     </div>
   );
 }

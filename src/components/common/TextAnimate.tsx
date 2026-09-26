@@ -23,7 +23,7 @@ interface TextAnimateProps {
   once?: boolean;
 }
 
-export const TextAnimate: React.FC<TextAnimateProps> = ({
+const TextAnimateComponent: React.FC<TextAnimateProps> = ({
   children,
   animation = 'blurIn',
   by = 'word',
@@ -315,3 +315,6 @@ export const TextAnimate: React.FC<TextAnimateProps> = ({
     </Component>
   );
 };
+
+export const TextAnimate = React.memo(TextAnimateComponent);
+export default TextAnimate;

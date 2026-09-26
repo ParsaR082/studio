@@ -255,7 +255,9 @@ a {
 
   /* Avoid sticky hover treatments on touch-only devices. */
   @media (hover: none) and (pointer: coarse) {
-    .hover\\:scale-105:hover, .hover\\:scale-110:hover { transform: none !important; }
+    [class*="hover:scale"]:hover {
+      transform: none !important;
+    }
   }
 }
 

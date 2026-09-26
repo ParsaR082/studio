@@ -22,7 +22,7 @@ interface ImageAnimateProps {
   onClick?: () => void;
 }
 
-export const ImageAnimate: React.FC<ImageAnimateProps> = ({
+const ImageAnimateComponent: React.FC<ImageAnimateProps> = ({
   src,
   alt,
   animation = 'curtainUp',
@@ -139,3 +139,6 @@ export const ImageAnimate: React.FC<ImageAnimateProps> = ({
     </div>
   );
 };
+
+export const ImageAnimate = React.memo(ImageAnimateComponent);
+export default ImageAnimate;

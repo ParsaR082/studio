@@ -49,14 +49,14 @@ export const RadialCornerMenu: React.FC<RadialCornerMenuProps> = ({
     };
   }, [isOpen]);
 
-  const handleItemClick = (sectionId: string) => {
+  const handleItemClick = React.useCallback((sectionId: string) => {
     setIsOpen(false);
     setTimeout(() => {
       onNavigate(sectionId);
     }, 280);
-  };
+  }, [onNavigate]);
 
-  const menuItems: CircleMenuItem[] = [
+  const menuItems: CircleMenuItem[] = React.useMemo(() => [
     {
       label: 'صفحه نخست',
       icon: <Home size={18} className="text-[#F5F4F0]" />,
@@ -99,7 +99,7 @@ export const RadialCornerMenu: React.FC<RadialCornerMenuProps> = ({
       href: '#contact',
       onClick: () => handleItemClick('contact'),
     },
-  ];
+  ], [handleItemClick]);
 
   const modalOverlay = (
     <AnimatePresence>

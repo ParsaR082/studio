@@ -2,6 +2,34 @@ import React from 'react';
 import { motion, useInView } from 'motion/react';
 import { TextAnimate } from '../common/TextAnimate';
 
+const PRINCIPLES = [
+  {
+    number: '۰۱',
+    title: 'سکوت در برابر هیاهو',
+    description:
+      'ما معتقدیم معماری خوب نیازی به خودنمایی فرمال ندارد؛ بلکه با پناه دادن به روح انسان و حذف پیرایه‌های مازاد، بستری برای زیست آرام پدید می‌آورد.',
+  },
+  {
+    number: '۰۲',
+    title: 'صداقت ذاتی مصالح',
+    description:
+      'بتن باید بتن بماند و سنگ باید سنگینی و بافت باستانی خود را فریاد بزند. از هرگونه پوشش دروغین و تزئینات فریبنده پرهیز می‌کنیم.',
+  },
+  {
+    number: '۰۳',
+    title: 'نور به مثابه مصالح سازه‌ای',
+    description:
+      'نور خورشید در فلات ایران صرفاً یک پدیده روشنایی نیست؛ بلکه ابزاری هندسی برای کالبدبخشی به زمان، تغییر مقیاس فضا و ایجاد عمق معنوی است.',
+  },
+] as const;
+
+const RECOGNITIONS = [
+  { year: '۱۴۰۴', title: 'رتبه نخست جایزه ملی معماری معاصر ایران', project: 'خانه نور' },
+  { year: '۱۴۰۳', title: 'نامزد نهایی جایزه بین‌المللی معماری خاورمیانه', project: 'اقامتگاه کوهستان' },
+  { year: '۱۴۰۲', title: 'رتبه دوم جایزه معمار (بخش تک‌واحدی)', project: 'خانه بتن' },
+  { year: '۱۴۰۱', title: 'تقدیر ویژه هیئت داوران پاویون پایداری', project: 'پاویون باد یزد' },
+] as const;
+
 const StudioSection: React.FC = () => {
   const sectionRef = React.useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, {
@@ -9,39 +37,11 @@ const StudioSection: React.FC = () => {
     amount: 0.15,
   });
 
-  const principles = [
-    {
-      number: '۰۱',
-      title: 'سکوت در برابر هیاهو',
-      description:
-        'ما معتقدیم معماری خوب نیازی به خودنمایی فرمال ندارد؛ بلکه با پناه دادن به روح انسان و حذف پیرایه‌های مازاد، بستری برای زیست آرام پدید می‌آورد.',
-    },
-    {
-      number: '۰۲',
-      title: 'صداقت ذاتی مصالح',
-      description:
-        'بتن باید بتن بماند و سنگ باید سنگینی و بافت باستانی خود را فریاد بزند. از هرگونه پوشش دروغین و تزئینات فریبنده پرهیز می‌کنیم.',
-    },
-    {
-      number: '۰۳',
-      title: 'نور به مثابه مصالح سازه‌ای',
-      description:
-        'نور خورشید در فلات ایران صرفاً یک پدیده روشنایی نیست؛ بلکه ابزاری هندسی برای کالبدبخشی به زمان، تغییر مقیاس فضا و ایجاد عمق معنوی است.',
-    },
-  ];
-
-  const recognitions = [
-    { year: '۱۴۰۴', title: 'رتبه نخست جایزه ملی معماری معاصر ایران', project: 'خانه نور' },
-    { year: '۱۴۰۳', title: 'نامزد نهایی جایزه بین‌المللی معماری خاورمیانه', project: 'اقامتگاه کوهستان' },
-    { year: '۱۴۰۲', title: 'رتبه دوم جایزه معمار (بخش تک‌واحدی)', project: 'خانه بتن' },
-    { year: '۱۴۰۱', title: 'تقدیر ویژه هیئت داوران پاویون پایداری', project: 'پاویون باد یزد' },
-  ];
-
   return (
     <section
       ref={sectionRef}
       id="studio"
-      className="py-24 md:py-36 px-6 sm:px-10 lg:px-16 border-t border-[#111111]/8 overflow-hidden"
+      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#111111]/8 overflow-hidden"
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Studio Header */}
@@ -115,7 +115,7 @@ const StudioSection: React.FC = () => {
           </motion.span>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-            {principles.map((item, idx) => (
+            {PRINCIPLES.map((item, idx) => (
               <motion.div
                 key={item.number}
                 initial={{ opacity: 0, y: 45 }}
@@ -167,7 +167,7 @@ const StudioSection: React.FC = () => {
           </div>
 
           <div className="lg:col-span-8 space-y-6">
-            {recognitions.map((item, idx) => (
+            {RECOGNITIONS.map((item, idx) => (
               <div
                 key={idx}
                 className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-[#111111]/8 gap-2"

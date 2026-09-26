@@ -12,6 +12,15 @@ interface HeaderProps {
   visible?: boolean;
 }
 
+const NAV_ITEMS = [
+  { id: 'projects', label: 'پروژه‌ها', count: '۹' },
+  { id: 'featured', label: 'روایت منتخب' },
+  { id: 'artists', label: 'معماران' },
+  { id: 'studio', label: 'استودیو' },
+  { id: 'journal', label: 'مجله' },
+  { id: 'contact', label: 'تماس' },
+] as const;
+
 const Header: React.FC<HeaderProps> = ({
   activeSection,
   onNavigate,
@@ -43,15 +52,6 @@ const Header: React.FC<HeaderProps> = ({
       scrollRaf.current = null;
     };
   }, []);
-
-  const navItems = [
-    { id: 'projects', label: 'پروژه‌ها', count: '۹' },
-    { id: 'featured', label: 'روایت منتخب' },
-    { id: 'artists', label: 'معماران' },
-    { id: 'studio', label: 'استودیو' },
-    { id: 'journal', label: 'مجله' },
-    { id: 'contact', label: 'تماس' },
-  ];
 
   const handleNavClick = (id: string) => {
     onNavigate(id);
@@ -92,7 +92,7 @@ const Header: React.FC<HeaderProps> = ({
 
           {/* Navigation Links with Count Badge matching video 'PROJECTS 9' */}
           <nav className="hidden lg:flex items-center gap-10 xl:gap-12">
-            {navItems.map((item) => (
+            {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}

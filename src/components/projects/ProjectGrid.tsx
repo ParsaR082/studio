@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, useInView } from 'motion/react';
 import { ProjectCard } from './ProjectCard';
 import { Project, PROJECTS } from '../../data/projects';
@@ -8,6 +8,8 @@ interface ProjectGridProps {
   onSelectProject: (project: Project) => void;
 }
 
+const CATEGORIES = ['همه', 'مسکونی', 'ویلایی', 'فرهنگی'] as const;
+
 const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
   const [activeCategory, setActiveCategory] = useState<string>('همه');
   const sectionRef = React.useRef<HTMLElement>(null);
@@ -16,12 +18,11 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
     amount: 0.1,
   });
 
-  const categories = ['همه', 'مسکونی', 'ویلایی', 'فرهنگی'];
-
-  const filteredProjects =
-    activeCategory === 'همه'
+  const filteredProjects = useMemo(() => {
+    return activeCategory === 'همه'
       ? PROJECTS
       : PROJECTS.filter((p) => p.category === activeCategory);
+  }, [activeCategory]);
 
   return (
     <section
@@ -56,7 +57,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
 
           {/* Minimal Filter Tabs */}
           <div className="flex items-center gap-4 sm:gap-8 overflow-x-auto pb-3 scrollbar-none max-w-full -mx-1 px-1">
-            {categories.map((cat) => (
+            {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}

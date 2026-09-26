@@ -11,7 +11,7 @@ interface ProjectCardProps {
   onSelect: (project: Project) => void;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({
+const ProjectCardComponent: React.FC<ProjectCardProps> = ({
   project,
   index,
   onSelect,
@@ -245,3 +245,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     </motion.article>
   );
 };
+
+export const ProjectCard = React.memo(ProjectCardComponent);
+export default ProjectCard;
