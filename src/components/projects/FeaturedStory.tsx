@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ArrowLeft, Maximize2 } from 'lucide-react';
 import { motion, useInView } from 'motion/react';

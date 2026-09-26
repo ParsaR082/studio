@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { ArrowLeft, RotateCw, Maximize2 } from 'lucide-react';
 import { motion, useInView } from 'motion/react';

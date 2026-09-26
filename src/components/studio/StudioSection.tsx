@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion, useInView } from 'motion/react';
 import { TextAnimate } from '../common/TextAnimate';

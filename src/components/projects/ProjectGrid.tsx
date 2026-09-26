@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useMemo } from 'react';
 import { motion, useInView } from 'motion/react';
 import { ProjectCard } from './ProjectCard';

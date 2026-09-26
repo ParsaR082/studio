@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { X, ArrowLeft } from 'lucide-react';
 import { Project, PROJECTS } from '../../data/projects';

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { ArrowLeft, Clock, Calendar, X } from 'lucide-react';
 import { motion, useInView } from 'motion/react';
