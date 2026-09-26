@@ -18,7 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="fa" dir="rtl">
       <head>
-        <link rel="preload" href="/fonts/Morabba-Light-FD.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Morabba-Light.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/IRANYekanX-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body className="bg-[#F5F4F0] text-[#111111] antialiased selection:bg-[#111111] selection:text-[#F5F4F0]">
