@@ -60,7 +60,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
     <section
       ref={sectionRef}
       id="projects"
-      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#111111]/8 overflow-hidden"
+      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/8 overflow-hidden"
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Section Header matching video 00:03 */}
@@ -71,7 +71,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
                 animation="slideRight"
                 by="word"
                 as="span"
-                className="text-[11px] uppercase tracking-widest text-[#777777] font-light"
+                className="text-[11px] uppercase tracking-widest text-[#42635F] font-light"
               >
                 مجموعه آثار و مقالات تحلیلی · ARCHIVE & ARTICLES
               </TextAnimate>
@@ -81,7 +81,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
               by="word"
               as="h2"
               duration={0.85}
-              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111]"
+              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#102B2B]"
             >
               پروژه‌ها و مقالات
             </TextAnimate>
@@ -95,15 +95,15 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
                 onClick={() => setActiveCategory(cat)}
                 className={`text-xs uppercase tracking-wider font-light transition-all duration-300 relative py-1 cursor-pointer whitespace-nowrap ${
                   activeCategory === cat
-                    ? 'text-[#111111] font-normal'
-                    : 'text-[#888888] hover:text-[#111111]'
+                    ? 'text-[#102B2B] font-normal'
+                    : 'text-[#FF9A56] hover:text-[#102B2B]'
                 }`}
               >
                 {cat}
                 {activeCategory === cat && (
                   <motion.span
                     layoutId="projectGridFilterIndicator"
-                    className="absolute bottom-0 right-0 left-0 h-[1.5px] bg-[#111111]"
+                    className="absolute bottom-0 right-0 left-0 h-[1.5px] bg-[#102B2B]"
                   />
                 )}
               </button>
@@ -128,7 +128,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-12 sm:mt-20 pt-6 sm:pt-8 border-t border-[#111111]/8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#777777] font-light gap-4"
+          className="mt-12 sm:mt-20 pt-6 sm:pt-8 border-t border-[#102B2B]/8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#42635F] font-light gap-4"
         >
           <span>نمایش {filteredProjects.length} اثر معاصر</span>
           <span>استودیو نو — کلیه حقوق معماری محفوظ است.</span>
