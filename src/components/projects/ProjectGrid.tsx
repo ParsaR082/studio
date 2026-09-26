@@ -20,11 +20,35 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
     amount: 0.1,
   });
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const filteredProjects = useMemo(() => {
     return activeCategory === 'همه'
       ? PROJECTS
       : PROJECTS.filter((p) => p.category === activeCategory);
   }, [activeCategory]);
+
+  // Reset to the first three projects whenever the category changes.
+  useEffect(() => {
+    setIsExpanded(false);
+  }, [activeCategory]);
+
+  const visibleProjects = isExpanded ? filteredProjects : filteredProjects.slice(0, 3);
+
+  const handleToggleProjects = () => {
+    if (isExpanded) {
+      setIsExpanded(false);
+      requestAnimationFrame(() => {
+        sectionRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
+      return;
+    }
+
+    setIsExpanded(true);
+  };
 
   // Warm the first visible project images during idle time so image decoding does not
   // compete with the first flip-card interaction when the section enters the viewport.
@@ -111,17 +135,61 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
           </div>
         </div>
 
-        {/* 3-Column Editorial Grid matching video 00:03 - 00:04 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 md:gap-x-8 xl:gap-x-12 gap-y-10 sm:gap-y-14 lg:gap-y-20">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              onSelect={onSelectProject}
-            />
-          ))}
+        {/* Project grid: show three projects initially, then reveal the full archive. */}
+        <div
+          className={`overflow-hidden transition-[max-height] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isExpanded ? 'max-h-[10000px]' : 'max-h-[1900px]'
+          }`}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 md:gap-x-8 xl:gap-x-12 gap-y-10 sm:gap-y-14 lg:gap-y-20">
+            {visibleProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                onSelect={onSelectProject}
+              />
+            ))}
+          </div>
         </div>
+
+        {/* Expand / collapse control */}
+        {filteredProjects.length > 3 && (
+          <motion.button
+            type="button"
+            onClick={handleToggleProjects}
+            initial={{ opacity: 0, y: 12 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            aria-expanded={isExpanded}
+            aria-label={isExpanded ? 'بستن فهرست پروژه‌ها' : 'مشاهده همه پروژه‌ها'}
+            className="group mx-auto mt-12 sm:mt-16 flex flex-col items-center gap-3 text-[#102B2B] cursor-pointer"
+          >
+            <span className="text-[11px] font-light tracking-[0.18em] uppercase transition-colors group-hover:text-[#FF6B1A]">
+              {isExpanded ? 'بستن پروژه‌ها' : 'مشاهده همه پروژه‌ها'}
+            </span>
+            <span className="w-11 h-11 rounded-full border border-[#102B2B]/30 flex items-center justify-center transition-all duration-500 group-hover:border-[#FF6B1A] group-hover:bg-[#FF6B1A] group-hover:text-[#102B2B]">
+              <motion.span
+                animate={{ y: isExpanded ? -2 : 2, rotate: isExpanded ? 180 : 0 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </motion.span>
+            </span>
+          </motion.button>
+        )}
 
         {/* Grid Footer Counter */}
         <motion.div
@@ -130,7 +198,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-12 sm:mt-20 pt-6 sm:pt-8 border-t border-[#102B2B]/8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#42635F] font-light gap-4"
         >
-          <span>نمایش {filteredProjects.length} اثر معاصر</span>
+          <span>نمایش {isExpanded ? filteredProjects.length : Math.min(3, filteredProjects.length)} از {filteredProjects.length} اثر معاصر</span>
           <span>استودیو نو — کلیه حقوق معماری محفوظ است.</span>
         </motion.div>
       </div>
