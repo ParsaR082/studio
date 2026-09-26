@@ -200,7 +200,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               as="p"
               delay={0.2}
               duration={0.7}
-              className="text-lg sm:text-xl lg:text-2xl font-light text-[#444444] max-w-3xl leading-relaxed font-body"
+              className="text-lg sm:text-xl lg:text-2xl font-light text-[#42635F] max-w-3xl leading-relaxed font-body"
             >
               {project.tagline}
             </TextAnimate>
@@ -213,7 +213,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               src={project.heroImage}
               alt={project.title}
               animation="curtainUp"
-              curtainColor="#D6D3C8"
+              curtainColor="#A4E0D6"
               duration={1.1}
               className="w-full h-full"
             />
@@ -276,7 +276,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               initial={{ opacity: 0, y: 40, scale: 0.97, filter: 'blur(8px)' }}
               animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
               transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 p-8 bg-[#EFEFEA] border border-[#102B2B]/10 relative overflow-hidden"
+              className="lg:col-span-5 p-8 bg-[#F4F8F3] border border-[#102B2B]/10 relative overflow-hidden"
             >
               {/* Top Accent Expanding Line */}
               <motion.div
@@ -337,7 +337,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     src={project.gallery[0] || project.heroImage}
                     alt={`${project.title} - تصویر ۱`}
                     animation="curtainLeft"
-                    curtainColor="#DEDCD3"
+                    curtainColor="#A4E0D6"
                     className="w-full h-full"
                   />
                 </div>
@@ -361,7 +361,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     src={project.secondaryImage}
                     alt={`${project.title} - تصویر ۲`}
                     animation="curtainUp"
-                    curtainColor="#D6D3C8"
+                    curtainColor="#A4E0D6"
                     className="w-full h-full"
                   />
                 </div>
@@ -371,7 +371,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     src={project.gallery[1] || project.heroImage}
                     alt={`${project.title} - تصویر ۳`}
                     animation="curtainRight"
-                    curtainColor="#D6D3C8"
+                    curtainColor="#A4E0D6"
                     className="w-full h-full"
                   />
                 </div>
