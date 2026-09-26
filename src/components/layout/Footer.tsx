@@ -17,10 +17,10 @@ const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="bg-[#102B2B] text-[#F4F8F3] pt-24 pb-16 px-6 sm:px-10 lg:px-16 transition-colors">
+    <footer className="bg-[#102B2B] text-[#F4F8F3] pt-16 sm:pt-24 pb-12 sm:pb-16 px-[var(--page-gutter)] transition-colors">
       <div className="max-w-[1540px] mx-auto">
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 sm:gap-16 lg:gap-24 mb-16 sm:mb-24">
           {/* Brand & Poetic Statement */}
           <div className="md:col-span-6 lg:col-span-5 flex flex-col justify-between">
             <div>
@@ -47,7 +47,7 @@ const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Nav / Links Columns */}
-          <div className="md:col-span-6 lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16">
+          <div className="md:col-span-6 lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-12 lg:gap-16">
             {/* Primary Action Links with Motion */}
             <div className="flex flex-col gap-6">
               <span className="text-xs uppercase tracking-widest text-[#FF9A56] font-light">
@@ -120,7 +120,7 @@ const Footer: React.FC<FooterProps> = ({
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#A4E0D6]/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-light text-[#42635F]">
           <p>© ۱۴۰۵ استودیو معماری نو. تمام حقوق مادی و معنوی محفوظ است.</p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-6 gap-y-2">
             <span>تهران — لواسان — ارومیه</span>
             <span>·</span>
             <span>طراحی ادیتوریال و معماری</span>
