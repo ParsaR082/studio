@@ -44,11 +44,11 @@ const SearchModal: React.FC<SearchModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 bg-[#F4F8F3]/95 backdrop-blur-md p-6 sm:p-12 lg:p-20 overflow-y-auto animate-in fade-in duration-300"
+      className="fixed inset-0 z-50 bg-[#F4F8F3]/95 backdrop-blur-md p-4 sm:p-12 lg:p-20 overflow-y-auto animate-in fade-in duration-300"
     >
       <div className="max-w-3xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8 pb-4 border-b border-[#102B2B]/10">
+        <div className="flex justify-between items-start gap-4 mb-6 sm:mb-8 pb-4 border-b border-[#102B2B]/10">
           <span className="text-xs uppercase tracking-widest text-[#5B7470] font-light">
             جستجو در آرشیو آثار استودیو نو
           </span>
@@ -62,14 +62,14 @@ const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
         {/* Input with Gooey effect */}
-        <div className="flex flex-col items-center mb-12">
+        <div className="flex flex-col items-center mb-8 sm:mb-12">
           <div dir="ltr" className="w-full flex justify-center mb-3">
             <GooeyInput
               value={query}
               onValueChange={(val) => setQuery(val)}
               placeholder="جستجوی نام پروژه، موقعیت، متریال..."
               collapsedWidth={130}
-              expandedWidth={340}
+              expandedWidth={Math.min(340, typeof window !== 'undefined' ? window.innerWidth - 32 : 340)}
               expandedOffset={52}
               gooeyBlur={5}
               className="w-full max-w-lg"
@@ -102,10 +102,10 @@ const SearchModal: React.FC<SearchModalProps> = ({
                   onSelectProject(project);
                   onClose();
                 }}
-                className="py-5 flex items-center justify-between group cursor-pointer hover:bg-[#ECEBE5] px-3 -mx-3 transition-colors"
+                className="py-4 sm:py-5 flex items-center justify-between gap-3 group cursor-pointer hover:bg-[#ECEBE5] px-3 -mx-3 transition-colors"
               >
-                <div className="flex items-center gap-5">
-                  <div className="w-16 h-12 overflow-hidden bg-[#E0DED5] shrink-0">
+                <div className="flex items-center gap-3 sm:gap-5 min-w-0">
+                  <div className="w-14 sm:w-16 h-12 overflow-hidden bg-[#E0DED5] shrink-0">
                     <img
                       src={project.heroImage}
                       alt={project.title}
