@@ -75,7 +75,7 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
           onOpenChange={(open) => setIsExpanded(open)}
           onKeyDown={handleKeyDown}
           collapsedWidth={118}
-          expandedWidth={230}
+          expandedWidth={Math.min(230, typeof window !== 'undefined' ? window.innerWidth - 92 : 230)}
           expandedOffset={46}
           gooeyBlur={4}
           classNames={{
@@ -98,7 +98,7 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             dir="rtl"
-            className="absolute top-full mt-3 right-0 w-[300px] sm:w-[340px] bg-[#0B1C1C]/95 backdrop-blur-xl border border-[#A4E0D6]/25 rounded-2xl shadow-2xl p-3 z-50 text-right overflow-hidden"
+            className="absolute top-full mt-3 right-0 w-[min(300px,calc(100vw-2rem))] sm:w-[340px] bg-[#0B1C1C]/95 backdrop-blur-xl border border-[#A4E0D6]/25 rounded-2xl shadow-2xl p-3 z-50 text-right overflow-hidden"
           >
             {/* Popover Header */}
             <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#A4E0D6]/20 px-2 text-[11px] text-[#A09E96] font-light">
