@@ -67,7 +67,7 @@ const Hero: React.FC<HeroProps> = ({
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <button
                 onClick={onExploreProjects}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium text-black transition-all duration-300 rounded-full bg-gradient-to-r from-zinc-200 via-white to-zinc-200 hover:bg-white hover:shadow-lg hover:shadow-white/10 hover:scale-[1.02] cursor-pointer group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium text-[#102B2B] transition-all duration-300 rounded-full bg-[#FF6B1A] hover:bg-[#FF9A56] hover:shadow-lg hover:shadow-[#FF6B1A]/20 hover:scale-[1.02] cursor-pointer group"
               >
                 <span>مشاهده پروژه‌ها و آثار</span>
                 <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1 text-black" />
