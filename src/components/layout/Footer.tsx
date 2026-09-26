@@ -35,7 +35,7 @@ const Footer: React.FC<FooterProps> = ({
               </p>
             </div>
 
-            <div className="mt-12 pt-8 border-t border-[#102B2B] hidden md:block">
+            <div className="mt-12 pt-8 border-t border-[#A4E0D6]/20 hidden md:block">
               <button
                 onClick={scrollToTop}
                 className="inline-flex items-center gap-2 text-xs text-[#FF9A56] hover:text-[#F4F8F3] transition-colors cursor-pointer group"
@@ -118,7 +118,7 @@ const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#0B1C1C] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-light text-[#42635F]">
+        <div className="pt-8 border-t border-[#A4E0D6]/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-light text-[#42635F]">
           <p>© ۱۴۰۵ استودیو معماری نو. تمام حقوق مادی و معنوی محفوظ است.</p>
           <div className="flex items-center gap-6">
             <span>تهران — لواسان — ارومیه</span>
