@@ -6,4 +6,8 @@ coverage/
 *.log
 .env*
 !.env.example
+-e 
 .next/
+metadata.json
+tsconfig.tsbuildinfo
+

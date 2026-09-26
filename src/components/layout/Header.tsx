@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
-import { RadialCornerMenu } from './RadialCornerMenu';
+import { motion, AnimatePresence } from 'motion/react';
+import { ArrowLeft } from 'lucide-react';
 import { HeaderSearch } from './HeaderSearch';
+import { RadialCornerMenu } from './RadialCornerMenu';
 import { Project } from '../../data/projects';
 
 interface HeaderProps {
@@ -17,9 +18,8 @@ interface HeaderProps {
 const NAV_ITEMS: ReadonlyArray<{ id: string; label: string; count?: string }> = [
   { id: 'projects', label: 'پروژه‌ها', count: '۹' },
   { id: 'featured', label: 'روایت منتخب' },
-  { id: 'artists', label: 'معماران' },
   { id: 'studio', label: 'استودیو' },
-  { id: 'journal', label: 'مجله' },
+  { id: 'journal', label: 'مجله معمارانه' },
   { id: 'contact', label: 'تماس' },
 ] as const;
 
@@ -30,6 +30,7 @@ const Header: React.FC<HeaderProps> = ({
   onSelectProject,
   visible = true,
 }) => {
+  const [expanded, setExpanded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const scrollRaf = useRef<number | null>(null);
@@ -37,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
   useEffect(() => {
     const update = () => {
       scrollRaf.current = null;
-      const next = window.scrollY > 30;
+      const next = window.scrollY > 20;
       setScrolled((current) => (current === next ? current : next));
     };
 
@@ -56,88 +57,176 @@ const Header: React.FC<HeaderProps> = ({
   }, []);
 
   const handleNavClick = (id: string) => {
+    setExpanded(false);
     onNavigate(id);
   };
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-700 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           !visible ? 'opacity-0 pointer-events-none -translate-y-8' : 'opacity-100 translate-y-0'
         } ${
-          scrolled
-            ? 'py-3 sm:py-4 bg-[#F5F4F0]/90 backdrop-blur-md border-b border-[#111111]/8'
-            : 'py-4 sm:py-6 md:py-8 bg-transparent'
+          scrolled || expanded
+            ? 'py-3 sm:py-4 bg-[#0E0E10]/95 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/30'
+            : 'py-4 sm:py-6 bg-[#0E0E10]/80 backdrop-blur-sm border-b border-white/5'
         }`}
       >
-        <div className="max-w-[1540px] mx-auto px-[var(--page-gutter)] flex items-center justify-between">
-          {/* Logo Brand Lockup (Matches Video Geometric Icon) */}
-          <div className="flex items-center gap-2 sm:gap-4">
-            <button
-              onClick={() => handleNavClick('hero')}
-              className="flex items-center gap-3.5 group cursor-pointer text-right"
-            >
-              {/* Geometric Architectural Icon from Video */}
-              <div className="w-8 h-8 border-[1.5px] border-[#111111] flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
-                <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-[#111111]" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-base sm:text-lg font-light tracking-tight text-[#111111]">
-                  استودیو نو
-                </span>
-                <span className="text-[9px] tracking-widest text-[#777777] uppercase font-light -mt-0.5">
-                  ARCHITECTURE
-                </span>
-              </div>
-            </button>
-          </div>
-
-          {/* Navigation Links with Count Badge matching video 'PROJECTS 9' */}
-          <nav className="hidden lg:flex items-center gap-10 xl:gap-12">
-            {NAV_ITEMS.map((item) => (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            {/* Brand Logo Lockup */}
+            <div className="shrink-0">
               <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`relative py-1 text-xs uppercase tracking-wider font-light transition-colors duration-300 cursor-pointer flex items-center gap-1.5 ${
-                  activeSection === item.id
-                    ? 'text-[#111111] font-normal'
-                    : 'text-[#666666] hover:text-[#111111]'
-                }`}
+                onClick={() => handleNavClick('hero')}
+                className="flex items-center gap-3.5 group cursor-pointer text-right"
               >
-                <span>{item.label}</span>
-                {item.count && (
-                  <span className="text-[10px] font-normal text-[#999999] -translate-y-1">
-                    {item.count}
+                {/* Geometric Architectural Icon (Monochrome) */}
+                <div className="w-8 h-8 sm:w-9 sm:h-9 border border-white/40 flex items-center justify-center transition-transform group-hover:scale-105 duration-300 bg-white/5 rounded-md">
+                  <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-white" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-base sm:text-lg font-light tracking-tight text-white group-hover:text-zinc-200 transition-colors">
+                    استودیو معماری نو
                   </span>
-                )}
-                {activeSection === item.id && (
-                  <motion.span
-                    layoutId="activeNavIndicator"
-                    className="absolute bottom-0 right-0 left-0 h-[1px] bg-[#111111]"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
+                  <span className="text-[9px] tracking-widest text-zinc-400 uppercase font-light -mt-0.5" dir="ltr">
+                    NOUVEAU STUDIO
+                  </span>
+                </div>
+              </button>
+            </div>
+
+            {/* Mobile Hamburger / Close Button */}
+            <div className="flex md:hidden items-center gap-2">
+              <HeaderSearch
+                onOpenFullSearch={onOpenSearch}
+                onSelectProject={onSelectProject}
+              />
+              <button
+                type="button"
+                onClick={() => setExpanded(!expanded)}
+                aria-expanded={expanded}
+                aria-label="تغییر وضعیت منو"
+                className="p-2 text-zinc-300 hover:text-white rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
+              >
+                {expanded ? (
+                  <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
                 )}
               </button>
-            ))}
-          </nav>
+            </div>
 
-          {/* Action Search with Liquid GooeyInput & Radial Corner Menu */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <HeaderSearch
-              onOpenFullSearch={onOpenSearch}
-              onSelectProject={onSelectProject}
-            />
+            {/* Desktop Navigation Links */}
+            <nav className="hidden md:flex md:items-center md:justify-center gap-6 lg:gap-10">
+              {NAV_ITEMS.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`relative py-1 text-sm font-light tracking-wide transition-colors duration-200 cursor-pointer flex items-center gap-1.5 ${
+                    activeSection === item.id
+                      ? 'text-white font-medium'
+                      : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  {item.count && (
+                    <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-white/10 text-zinc-300 font-mono -translate-y-0.5">
+                      {item.count}
+                    </span>
+                  )}
+                  {activeSection === item.id && (
+                    <motion.span
+                      layoutId="activeNavIndicator"
+                      className="absolute bottom-0 right-0 left-0 h-[1.5px] bg-gradient-to-r from-zinc-400 via-white to-zinc-400"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              ))}
+            </nav>
 
-            {/* Radial Circle Menu in Header Corner */}
-            <RadialCornerMenu onNavigate={handleNavClick} />
+            {/* Desktop Action Button with Monochrome Gradient Border */}
+            <div className="hidden md:flex items-center gap-3">
+              <HeaderSearch
+                onOpenFullSearch={onOpenSearch}
+                onSelectProject={onSelectProject}
+              />
+
+              <div className="relative inline-flex items-center justify-center group cursor-pointer">
+                {/* Monochrome Silver/Gray Outer Gradient Border */}
+                <div className="absolute transition-all duration-300 rounded-full -inset-px bg-gradient-to-r from-zinc-600 via-zinc-300 to-zinc-600 group-hover:shadow-lg group-hover:shadow-white/10 opacity-75 group-hover:opacity-100" />
+                <button
+                  onClick={() => handleNavClick('contact')}
+                  className="relative inline-flex items-center justify-center px-5 py-2 text-xs sm:text-sm font-normal text-white bg-black hover:bg-zinc-900 border border-transparent rounded-full transition-colors cursor-pointer gap-2"
+                >
+                  <span>درخواست مشاوره</span>
+                  <ArrowLeft className="w-3.5 h-3.5 text-zinc-300" />
+                </button>
+              </div>
+
+              {/* Radial Quick Menu */}
+              <RadialCornerMenu onNavigate={handleNavClick} />
+            </div>
           </div>
+
+          {/* Mobile Collapsible Navigation Menu */}
+          <AnimatePresence>
+            {expanded && (
+              <motion.nav
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.25, ease: 'easeInOut' }}
+                className="md:hidden overflow-hidden"
+              >
+                <div className="flex flex-col pt-6 pb-6 space-y-4 border-t border-white/10 mt-4">
+                  {NAV_ITEMS.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.id)}
+                      className={`text-right text-base font-light transition-colors py-2 px-3 rounded-lg flex items-center justify-between ${
+                        activeSection === item.id
+                          ? 'text-white bg-white/10 font-normal'
+                          : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      {item.count && (
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-white/10 text-zinc-300 font-mono">
+                          {item.count}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+
+                  {/* Mobile Action Button with Monochrome Gradient */}
+                  <div className="pt-2">
+                    <div className="relative inline-flex items-center justify-center w-full group">
+                      <div className="absolute transition-all duration-300 rounded-full -inset-px bg-gradient-to-r from-zinc-600 via-zinc-300 to-zinc-600 group-hover:shadow-lg group-hover:shadow-white/10" />
+                      <button
+                        onClick={() => handleNavClick('contact')}
+                        className="relative inline-flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-white bg-black border border-transparent rounded-full hover:bg-zinc-900 transition-colors gap-2"
+                      >
+                        <span>درخواست مشاوره اختصاصی</span>
+                        <ArrowLeft className="w-4 h-4 text-zinc-300" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </motion.nav>
+            )}
+          </AnimatePresence>
         </div>
       </header>
 
-      {/* Pinned Left Sidebar with 3 Social Icons matching video (t, v, f) */}
+      {/* Pinned Left Sidebar with Social Icons */}
       <aside
         aria-label="شبکه‌های اجتماعی استودیو"
-        className={`fixed bottom-10 left-6 sm:left-10 z-40 hidden md:flex flex-col items-center gap-5 text-[#888888] transition-opacity duration-700 ${
+        className={`fixed bottom-10 left-6 sm:left-10 z-40 hidden md:flex flex-col items-center gap-5 text-zinc-400 transition-opacity duration-700 ${
           !visible ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
       >
@@ -146,7 +235,7 @@ const Header: React.FC<HeaderProps> = ({
           target="_blank"
           rel="noopener noreferrer"
           aria-label="اینستاگرام استودیو نو"
-          className="text-xs font-light hover:text-[#111111] transition-colors duration-300 hover:-translate-y-0.5"
+          className="text-xs font-light hover:text-white transition-colors duration-300 hover:-translate-y-0.5"
         >
           IG
         </a>
@@ -155,11 +244,11 @@ const Header: React.FC<HeaderProps> = ({
           target="_blank"
           rel="noopener noreferrer"
           aria-label="تلگرام استودیو"
-          className="text-xs font-light hover:text-[#111111] transition-colors duration-300 hover:-translate-y-0.5"
+          className="text-xs font-light hover:text-white transition-colors duration-300 hover:-translate-y-0.5"
         >
           TG
         </a>
-        <div className="w-[1px] h-8 bg-[#111111]/20 mt-2" />
+        <div className="w-[1px] h-8 bg-white/20 mt-2" />
       </aside>
     </>
   );
