@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion, useInView } from 'motion/react';
 import { ProjectCard } from './ProjectCard';
 import { Project, PROJECTS } from '../../data/projects';
@@ -25,6 +25,36 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
       ? PROJECTS
       : PROJECTS.filter((p) => p.category === activeCategory);
   }, [activeCategory]);
+
+  // Warm the first visible project images during idle time so image decoding does not
+  // compete with the first flip-card interaction when the section enters the viewport.
+  useEffect(() => {
+    const urls = PROJECTS.slice(0, 3).map((project) => project.heroImage);
+    let idleId: number | null = null;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+    const preload = () => {
+      urls.forEach((src) => {
+        const image = new Image();
+        image.decoding = 'async';
+        image.src = src;
+        void image.decode().catch(() => undefined);
+      });
+    };
+
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(preload, { timeout: 3000 });
+    } else {
+      timeoutId = setTimeout(preload, 2200);
+    }
+
+    return () => {
+      if (idleId !== null && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId !== null) clearTimeout(timeoutId);
+    };
+  }, []);
 
   return (
     <section
