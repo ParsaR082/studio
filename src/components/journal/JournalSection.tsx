@@ -147,7 +147,7 @@ const JournalSection: React.FC = () => {
           role="dialog"
           aria-modal="true"
           data-lenis-prevent="true"
-          className="fixed inset-0 z-50 overflow-y-auto bg-[#F4F8F3] p-6 sm:p-12 lg:p-20 animate-in fade-in duration-300"
+          className="fixed inset-0 z-50 overflow-y-auto bg-[#F4F8F3] p-4 sm:p-12 lg:p-20 animate-in fade-in duration-300"
         >
           <div className="max-w-3xl mx-auto">
             <div className="flex justify-between items-center mb-12 pb-4 border-b border-[#102B2B]/10">
