@@ -57,7 +57,7 @@ const Footer: React.FC<FooterProps> = ({
                 <li>
                   <button
                     onClick={onNavigateToProjects}
-                    className="group inline-flex items-center gap-3 text-lg font-light hover:text-white transition-colors cursor-pointer"
+                    className="group inline-flex items-center gap-3 text-lg font-light hover:text-[#FF9A56] transition-colors cursor-pointer"
                   >
                     <span className="relative">
                       مشاهده مجموعه‌ آثار
@@ -69,7 +69,7 @@ const Footer: React.FC<FooterProps> = ({
                 <li>
                   <button
                     onClick={onNavigateToContact}
-                    className="group inline-flex items-center gap-3 text-lg font-light hover:text-white transition-colors cursor-pointer"
+                    className="group inline-flex items-center gap-3 text-lg font-light hover:text-[#FF9A56] transition-colors cursor-pointer"
                   >
                     <span className="relative">
                       سفارش پروژه و مشاوره
@@ -81,7 +81,7 @@ const Footer: React.FC<FooterProps> = ({
                 <li>
                   <a
                     href="mailto:contact@nostudio-arch.com"
-                    className="group inline-flex items-center gap-3 text-lg font-light hover:text-white transition-colors"
+                    className="group inline-flex items-center gap-3 text-lg font-light hover:text-[#FF9A56] transition-colors"
                   >
                     <span className="relative">
                       مکاتبه مستقیم (ایمیل)
