@@ -26,7 +26,7 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
     <section
       ref={containerRef}
       id="featured"
-      className="min-h-screen py-24 md:py-36 px-6 sm:px-10 lg:px-16 border-t border-[#102B2B]/8 flex flex-col justify-center overflow-hidden"
+      className="min-h-screen py-24 md:py-36 px-6 sm:px-10 lg:px-16 border-t border-[#102B2B]/10 bg-[#A4E0D6]/20 flex flex-col justify-center overflow-hidden"
     >
       <div className="max-w-[1540px] w-full mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
