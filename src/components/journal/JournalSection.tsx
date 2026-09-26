@@ -18,7 +18,7 @@ const JournalSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="journal"
-      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#111111]/8 overflow-hidden"
+      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/8 overflow-hidden"
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Section Header */}
@@ -29,7 +29,7 @@ const JournalSection: React.FC = () => {
                 animation="slideRight"
                 by="word"
                 as="span"
-                className="text-[11px] uppercase tracking-widest text-[#777777] font-light"
+                className="text-[11px] uppercase tracking-widest text-[#42635F] font-light"
               >
                 گاهنامه و تأملات نظری · مجله معماری نو
               </TextAnimate>
@@ -38,12 +38,12 @@ const JournalSection: React.FC = () => {
               animation="slideUp"
               by="word"
               as="h2"
-              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111]"
+              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#102B2B]"
             >
               مجله و دیدگاه‌ها
             </TextAnimate>
           </div>
-          <p className="text-sm font-light text-[#666666] max-w-md leading-relaxed">
+          <p className="text-sm font-light text-[#42635F] max-w-md leading-relaxed">
             جستارهایی پیرامون نظریه معماری، رفتار مصالح، ادراک فضا و خوانش معاصر از اقلیم ایران.
           </p>
         </div>
@@ -62,7 +62,7 @@ const JournalSection: React.FC = () => {
             onClick={() => setActiveArticle(ARTICLES[0])}
             className="lg:col-span-7 group cursor-pointer"
           >
-            <div className="architectural-media aspect-[16/10] overflow-hidden bg-[#E5E3DB] mb-6 relative">
+            <div className="architectural-media aspect-[16/10] overflow-hidden bg-[#A4E0D6] mb-6 relative">
               <img
                 src={ARTICLES[0].coverImage}
                 alt={ARTICLES[0].title}
@@ -76,7 +76,7 @@ const JournalSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 text-xs text-[#777777] font-light mb-3">
+            <div className="flex items-center gap-3 text-xs text-[#42635F] font-light mb-3">
               <span>{ARTICLES[0].category}</span>
               <span>·</span>
               <span>{ARTICLES[0].date}</span>
@@ -84,15 +84,15 @@ const JournalSection: React.FC = () => {
               <span>زمان خواندن: {ARTICLES[0].readTime}</span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-light text-[#111111] group-hover:text-[#555555] transition-colors leading-snug mb-3">
+            <h3 className="text-2xl sm:text-3xl font-light text-[#102B2B] group-hover:text-[#42635F] transition-colors leading-snug mb-3">
               {ARTICLES[0].title}
             </h3>
 
-            <p className="text-sm sm:text-base font-light text-[#555555] leading-relaxed mb-4">
+            <p className="text-sm sm:text-base font-light text-[#42635F] leading-relaxed mb-4">
               {ARTICLES[0].excerpt}
             </p>
 
-            <span className="inline-flex items-center gap-2 text-xs font-light text-[#111111]">
+            <span className="inline-flex items-center gap-2 text-xs font-light text-[#102B2B]">
               مطالعه متن کامل مقاله
               <ArrowLeft size={13} className="transition-transform group-hover:-translate-x-1.5" />
             </span>
@@ -115,23 +115,23 @@ const JournalSection: React.FC = () => {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 onClick={() => setActiveArticle(article)}
-                className="group cursor-pointer border-t border-[#111111]/8 pt-6"
+                className="group cursor-pointer border-t border-[#102B2B]/8 pt-6"
               >
-                <div className="flex items-center gap-2 text-xs text-[#777777] font-light mb-2">
+                <div className="flex items-center gap-2 text-xs text-[#42635F] font-light mb-2">
                   <span>{article.category}</span>
                   <span>·</span>
                   <span>{article.readTime}</span>
                 </div>
 
-                <h4 className="text-xl sm:text-2xl font-light text-[#111111] group-hover:text-[#555555] transition-colors mb-2 leading-snug">
+                <h4 className="text-xl sm:text-2xl font-light text-[#102B2B] group-hover:text-[#42635F] transition-colors mb-2 leading-snug">
                   {article.title}
                 </h4>
 
-                <p className="text-xs sm:text-sm font-light text-[#666666] line-clamp-2 leading-relaxed mb-3">
+                <p className="text-xs sm:text-sm font-light text-[#42635F] line-clamp-2 leading-relaxed mb-3">
                   {article.excerpt}
                 </p>
 
-                <span className="inline-flex items-center gap-2 text-xs font-light text-[#111111]">
+                <span className="inline-flex items-center gap-2 text-xs font-light text-[#102B2B]">
                   ادامه جستار
                   <ArrowLeft size={12} className="transition-transform group-hover:-translate-x-1" />
                 </span>
@@ -147,23 +147,23 @@ const JournalSection: React.FC = () => {
           role="dialog"
           aria-modal="true"
           data-lenis-prevent="true"
-          className="fixed inset-0 z-50 overflow-y-auto bg-[#F5F4F0] p-6 sm:p-12 lg:p-20 animate-in fade-in duration-300"
+          className="fixed inset-0 z-50 overflow-y-auto bg-[#F4F8F3] p-6 sm:p-12 lg:p-20 animate-in fade-in duration-300"
         >
           <div className="max-w-3xl mx-auto">
-            <div className="flex justify-between items-center mb-12 pb-4 border-b border-[#111111]/10">
-              <span className="text-xs text-[#777777] font-light">
+            <div className="flex justify-between items-center mb-12 pb-4 border-b border-[#102B2B]/10">
+              <span className="text-xs text-[#42635F] font-light">
                 مجله استودیو نو · {activeArticle.category}
               </span>
               <button
                 onClick={() => setActiveArticle(null)}
-                className="flex items-center gap-2 text-xs font-light text-[#111111] hover:text-[#777777] cursor-pointer"
+                className="flex items-center gap-2 text-xs font-light text-[#102B2B] hover:text-[#42635F] cursor-pointer"
               >
                 <span>بستن مقاله</span>
                 <X size={16} />
               </button>
             </div>
 
-            <div className="flex items-center gap-4 text-xs text-[#777777] font-light mb-4">
+            <div className="flex items-center gap-4 text-xs text-[#42635F] font-light mb-4">
               <span className="flex items-center gap-1.5"><Calendar size={13} /> {activeArticle.date}</span>
               <span>·</span>
               <span className="flex items-center gap-1.5"><Clock size={13} /> {activeArticle.readTime}</span>
@@ -171,11 +171,11 @@ const JournalSection: React.FC = () => {
               <span>نگارش: {activeArticle.author}</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-light tracking-tight text-[#111111] leading-tight mb-8">
+            <h1 className="text-3xl sm:text-5xl font-light tracking-tight text-[#102B2B] leading-tight mb-8">
               {activeArticle.title}
             </h1>
 
-            <div className="architectural-media aspect-[16/9] overflow-hidden bg-[#E5E3DB] mb-12">
+            <div className="architectural-media aspect-[16/9] overflow-hidden bg-[#A4E0D6] mb-12">
               <img
                 src={activeArticle.coverImage}
                 alt={activeArticle.title}
@@ -186,17 +186,17 @@ const JournalSection: React.FC = () => {
               />
             </div>
 
-            <div className="space-y-6 text-base sm:text-lg font-light text-[#333333] leading-relaxed mb-16">
+            <div className="space-y-6 text-base sm:text-lg font-light text-[#102B2B] leading-relaxed mb-16">
               {activeArticle.content.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
             </div>
 
-            <div className="pt-8 border-t border-[#111111]/10 flex justify-between items-center">
-              <span className="text-xs text-[#777777] font-light">استودیو معماری نو</span>
+            <div className="pt-8 border-t border-[#102B2B]/10 flex justify-between items-center">
+              <span className="text-xs text-[#42635F] font-light">استودیو معماری نو</span>
               <button
                 onClick={() => setActiveArticle(null)}
-                className="text-xs font-light text-[#111111] hover:text-[#666666] cursor-pointer"
+                className="text-xs font-light text-[#102B2B] hover:text-[#42635F] cursor-pointer"
               >
                 بازگشت به فهرست مقالات ←
               </button>
