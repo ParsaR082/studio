@@ -14,7 +14,7 @@ interface HeaderProps {
   visible?: boolean;
 }
 
-const NAV_ITEMS = [
+const NAV_ITEMS: ReadonlyArray<{ id: string; label: string; count?: string }> = [
   { id: 'projects', label: 'پروژه‌ها', count: '۹' },
   { id: 'featured', label: 'روایت منتخب' },
   { id: 'artists', label: 'معماران' },
