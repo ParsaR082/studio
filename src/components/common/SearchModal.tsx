@@ -44,17 +44,17 @@ const SearchModal: React.FC<SearchModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 bg-[#F5F4F0]/95 backdrop-blur-md p-6 sm:p-12 lg:p-20 overflow-y-auto animate-in fade-in duration-300"
+      className="fixed inset-0 z-50 bg-[#F4F8F3]/95 backdrop-blur-md p-6 sm:p-12 lg:p-20 overflow-y-auto animate-in fade-in duration-300"
     >
       <div className="max-w-3xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8 pb-4 border-b border-[#111111]/10">
-          <span className="text-xs uppercase tracking-widest text-[#777777] font-light">
+        <div className="flex justify-between items-center mb-8 pb-4 border-b border-[#102B2B]/10">
+          <span className="text-xs uppercase tracking-widest text-[#5B7470] font-light">
             جستجو در آرشیو آثار استودیو نو
           </span>
           <button
             onClick={onClose}
-            className="flex items-center gap-2 text-xs font-light text-[#111111] hover:text-[#666666] cursor-pointer"
+            className="flex items-center gap-2 text-xs font-light text-[#102B2B] hover:text-[#5B7470] cursor-pointer"
           >
             <span>بستن</span>
             <X size={16} />
@@ -75,25 +75,25 @@ const SearchModal: React.FC<SearchModalProps> = ({
               className="w-full max-w-lg"
               classNames={{
                 trigger:
-                  'bg-[#111111] text-[#F5F4F0] border border-white/10 shadow-lg text-sm font-light',
+                  'bg-[#102B2B] text-[#F4F8F3] border border-[#A4E0D6]/20 shadow-lg text-sm font-light',
                 bubbleSurface:
-                  'bg-[#111111] text-[#F5F4F0] border border-white/10 shadow-lg',
-                input: 'text-sm text-[#F5F4F0] placeholder:text-[#888888] font-light',
+                  'bg-[#102B2B] text-[#F4F8F3] border border-[#A4E0D6]/20 shadow-lg',
+                input: 'text-sm text-[#F4F8F3] placeholder:text-[#6A7F7C] font-light',
               }}
             />
           </div>
-          <span className="text-[11px] text-[#777777] font-light">
+          <span className="text-[11px] text-[#5B7470] font-light">
             جستجوی زنده در نام اثر، معمار، کاربری و جزئیات بستر طرح
           </span>
         </div>
 
         {/* Results List */}
         <div className="space-y-6">
-          <span className="text-xs text-[#888888] font-light block">
+          <span className="text-xs text-[#6A7F7C] font-light block">
             {results.length} اثر یافت شد:
           </span>
 
-          <div className="divide-y divide-[#111111]/8">
+          <div className="divide-y divide-[#102B2B]/8">
             {results.map((project) => (
               <div
                 key={project.id}
@@ -113,16 +113,16 @@ const SearchModal: React.FC<SearchModalProps> = ({
                     />
                   </div>
                   <div>
-                    <h4 className="text-lg font-light text-[#111111] group-hover:text-[#555555]">
+                    <h4 className="text-lg font-light text-[#102B2B] group-hover:text-[#5B7470]">
                       {project.title}
                     </h4>
-                    <span className="text-xs text-[#777777] font-light">
+                    <span className="text-xs text-[#5B7470] font-light">
                       {project.category} · {project.location} · {project.year}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-xs font-light text-[#111111]">
+                <div className="flex items-center gap-2 text-xs font-light text-[#102B2B]">
                   <span>مشاهده</span>
                   <ArrowLeft size={13} className="group-hover:-translate-x-1 transition-transform" />
                 </div>
