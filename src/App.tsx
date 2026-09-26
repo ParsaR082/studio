@@ -63,7 +63,7 @@ export default function App() {
   const handleNavigateToContact = useCallback(() => handleNavigate('contact'), [handleNavigate]);
 
   return (
-    <div className="min-h-screen bg-[#F4F8F3] text-[#102B2B] relative selection:bg-[#FF6B1A] selection:text-[#102B2B]">
+    <div className="min-h-screen bg-[#EAF3EF] text-[#102B2B] relative selection:bg-[#FF6B1A] selection:text-[#102B2B]">
       {/* Cinematic Architectural Opening Shutter */}
       {!openingFinished && (
         <CinematicOpening onComplete={() => setOpeningFinished(true)} />
