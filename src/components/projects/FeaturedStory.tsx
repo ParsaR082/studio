@@ -26,10 +26,10 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
     <section
       ref={containerRef}
       id="featured"
-      className="min-h-screen py-24 md:py-36 px-6 sm:px-10 lg:px-16 border-t border-[#102B2B]/10 bg-[#A4E0D6]/20 flex flex-col justify-center overflow-hidden"
+      className="py-16 sm:py-24 lg:min-h-screen lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/10 bg-[#A4E0D6]/20 flex flex-col justify-center overflow-hidden"
     >
       <div className="max-w-[1540px] w-full mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-20 items-center">
           {/* Narrative Column matching Video 00:01 (Avatar, Architect, Title, Desc, Button) */}
           <div className="lg:col-span-6 flex flex-col justify-center order-2 lg:order-1">
             {/* Author Avatar + Name matching video */}
@@ -100,7 +100,7 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
             </div>
 
             {/* Editorial Description matching video narrative */}
-            <div className="mb-8 text-[#42635F] font-light text-sm sm:text-base leading-relaxed max-w-xl font-body">
+            <div className="mb-7 sm:mb-8 text-[#42635F] font-light text-sm sm:text-base leading-relaxed max-w-xl font-body">
               <TextAnimate
                 animation="fadeSlide"
                 by="word"
@@ -143,10 +143,10 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
               className="w-full h-full bg-[#A4E0D6]"
             >
               <div className="absolute inset-0 bg-[#102B2B]/10 hover:bg-transparent transition-colors duration-500" />
-              <div className="absolute bottom-6 left-6 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm text-[#102B2B] flex items-center justify-center opacity-90 hover:opacity-100 hover:scale-110 transition-all duration-300 shadow-sm pointer-events-auto">
+              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm text-[#102B2B] flex items-center justify-center opacity-90 hover:opacity-100 hover:scale-110 transition-all duration-300 shadow-sm pointer-events-auto">
                 <Maximize2 size={16} />
               </div>
-              <div className="absolute top-6 right-6 px-3 py-1 bg-black/40 backdrop-blur-md text-white text-[11px] font-light tracking-wider">
+              <div className="absolute top-4 right-4 sm:top-6 sm:right-6 px-2.5 sm:px-3 py-1 bg-black/40 backdrop-blur-md text-white text-[11px] font-light tracking-wider">
                 آتریوم نور · آکسفورد
               </div>
             </ImageAnimate>
