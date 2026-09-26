@@ -18,7 +18,7 @@ const JournalSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="journal"
-      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/8 overflow-hidden"
+      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/10 bg-[#F4F8F3] overflow-hidden"
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Section Header */}
