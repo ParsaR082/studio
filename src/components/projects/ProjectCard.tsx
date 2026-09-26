@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { ArrowLeft, RotateCw, Maximize2 } from 'lucide-react';
 import { motion, useInView } from 'motion/react';
 import { Project } from '../../data/projects';
@@ -66,7 +66,7 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
           flipped={flipped}
           onFlipChange={setFlipped}
           ariaLabel={`کارت سه‌بعدی ${project.title}`}
-          front={
+  const frontContent = useMemo(() => (
             <div className="architectural-media relative w-full h-full overflow-hidden bg-[#E8E6DE]">
               <img
                 src={project.heroImage}
@@ -107,8 +107,9 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
                 </div>
               </div>
             </div>
-          }
-          back={
+  ), [project]);
+
+  const backContent = useMemo(() => (
             <div className="w-full h-full p-4 sm:p-6 flex flex-col justify-between bg-[#161514] text-[#F5F4F0] border border-white/10">
               {/* Back Header */}
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
@@ -181,6 +182,10 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
               </button>
             </div>
           }
+), [onSelect, project]);
+
+          front={frontContent}
+          back={backContent}
         />
       </div>
 
