@@ -32,7 +32,7 @@ const ContactSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="contact"
-      className="py-24 md:py-36 px-6 sm:px-10 lg:px-16 border-t border-[#102B2B]/10 bg-[#A4E0D6]/25 overflow-hidden"
+      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/10 bg-[#A4E0D6]/25 overflow-hidden"
     >
       <div className="max-w-[1540px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
@@ -107,7 +107,7 @@ const ContactSection: React.FC = () => {
                 : { opacity: 0, y: -40, scale: 0.99 }
             }
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 bg-[#F4F8F3] p-8 sm:p-12 border border-[#102B2B]/8"
+            className="lg:col-span-7 bg-[#F4F8F3] p-5 sm:p-8 lg:p-12 border border-[#102B2B]/8"
           >
             {submitted ? (
               <div className="py-16 text-center space-y-4">
@@ -136,7 +136,7 @@ const ContactSection: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                   <div>
                     <label className="block text-xs font-light text-[#42635F] mb-2">
                       نام و نام خانوادگی *
@@ -212,7 +212,7 @@ const ContactSection: React.FC = () => {
                   />
                 </div>
 
-                <div className="pt-4 flex items-center justify-between">
+                <div className="pt-4 flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-5">
                   <span className="text-xs text-[#FF9A56] font-light">
                     * اطلاعات ارسالی محرمانه باقی خواهند ماند.
                   </span>
