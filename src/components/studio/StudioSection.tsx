@@ -75,7 +75,7 @@ const StudioSection: React.FC = () => {
                 استودیو معماری نو، کارگاهی مستقل برای خلق فضاهای معاصر، مبتنی بر زمینه‌گرایی انتقادی، ادراک حسی و درک عمیق از جغرافیا و مصالح بومی است.
               </TextAnimate>
             </div>
-            <p className="lg:col-span-5 text-sm sm:text-base font-light text-[#42635F] leading-relaxed">
+            <p className="lg:col-span-5 text-sm sm:text-base font-light text-[#A4E0D6] leading-relaxed">
               از سال ۱۳۹۶، فعالیت ما بر خلق پروژه‌های مسکونی، ویلایی و فرهنگی متمرکز بوده است. در هر پروژه، تلاش می‌کنیم تا پرسشی معمارانه مطرح کنیم و پاسخی پیراسته از جنس نور و سنگ بیابیم.
             </p>
           </div>
