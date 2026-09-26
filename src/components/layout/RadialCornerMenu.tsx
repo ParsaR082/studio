@@ -61,43 +61,43 @@ export const RadialCornerMenu: React.FC<RadialCornerMenuProps> = ({
   const menuItems: CircleMenuItem[] = React.useMemo(() => [
     {
       label: 'صفحه نخست',
-      icon: <Home size={18} className="text-[#F5F4F0]" />,
+      icon: <Home size={18} className="text-[#F4F8F3]" />,
       href: '#hero',
       onClick: () => handleItemClick('hero'),
     },
     {
       label: 'پروژه‌ها',
-      icon: <FolderKanban size={18} className="text-[#F5F4F0]" />,
+      icon: <FolderKanban size={18} className="text-[#F4F8F3]" />,
       href: '#projects',
       onClick: () => handleItemClick('projects'),
     },
     {
       label: 'روایت معمار',
-      icon: <Sparkles size={18} className="text-[#F5F4F0]" />,
+      icon: <Sparkles size={18} className="text-[#F4F8F3]" />,
       href: '#featured',
       onClick: () => handleItemClick('featured'),
     },
     {
       label: 'معماران',
-      icon: <Users size={18} className="text-[#F5F4F0]" />,
+      icon: <Users size={18} className="text-[#F4F8F3]" />,
       href: '#artists',
       onClick: () => handleItemClick('artists'),
     },
     {
       label: 'استودیو نو',
-      icon: <Compass size={18} className="text-[#F5F4F0]" />,
+      icon: <Compass size={18} className="text-[#F4F8F3]" />,
       href: '#studio',
       onClick: () => handleItemClick('studio'),
     },
     {
       label: 'مجله معماری',
-      icon: <BookOpen size={18} className="text-[#F5F4F0]" />,
+      icon: <BookOpen size={18} className="text-[#F4F8F3]" />,
       href: '#journal',
       onClick: () => handleItemClick('journal'),
     },
     {
       label: 'تماس و ارتباط',
-      icon: <Mail size={18} className="text-[#F5F4F0]" />,
+      icon: <Mail size={18} className="text-[#F4F8F3]" />,
       href: '#contact',
       onClick: () => handleItemClick('contact'),
     },
@@ -120,7 +120,7 @@ export const RadialCornerMenu: React.FC<RadialCornerMenuProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
             onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-[#0E0E0E]/75 backdrop-blur-md cursor-pointer"
+            className="absolute inset-0 bg-[#0B1C1C]/75 backdrop-blur-md cursor-pointer"
           />
 
           {/* Hint at top of modal */}
@@ -134,7 +134,7 @@ export const RadialCornerMenu: React.FC<RadialCornerMenuProps> = ({
             <span className="text-xs sm:text-sm uppercase tracking-widest text-[#D0CEC7] font-light block">
               فهرست ناوبری استودیو نو
             </span>
-            <p className="text-[11px] sm:text-xs text-[#888888] mt-1 font-light">
+            <p className="text-[11px] sm:text-xs text-[#6A7F7C] mt-1 font-light">
               جهت جابجایی روی بخش مورد نظر کلیک کنید یا برای بازگشت روی پس‌زمینه ضربه بزنید
             </p>
           </motion.div>
@@ -158,7 +158,7 @@ export const RadialCornerMenu: React.FC<RadialCornerMenuProps> = ({
               onOpenChange={(next) => {
                 if (!next) setIsOpen(false);
               }}
-              closeIcon={<X size={20} className="text-[#F5F4F0]" />}
+              closeIcon={<X size={20} className="text-[#F4F8F3]" />}
             />
           </motion.div>
         </div>
@@ -174,9 +174,9 @@ export const RadialCornerMenu: React.FC<RadialCornerMenuProps> = ({
           type="button"
           onClick={() => setIsOpen(true)}
           aria-label="باز کردن منوی دایره‌ای"
-          className="group flex items-center gap-2 p-1.5 pl-3 bg-[#111111] text-[#F5F4F0] rounded-full hover:bg-[#2A2926] active:scale-95 transition-all duration-300 shadow-sm cursor-pointer border border-[#111111]/20"
+          className="group flex items-center gap-2 p-1.5 pl-3 bg-[#102B2B] text-[#F4F8F3] rounded-full hover:bg-[#102B2B] active:scale-95 transition-all duration-300 shadow-sm cursor-pointer border border-[#102B2B]/20"
         >
-          <span className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center transition-transform group-hover:rotate-90 duration-300">
+          <span className="w-7 h-7 rounded-full bg-[#A4E0D6]/15 flex items-center justify-center transition-transform group-hover:rotate-90 duration-300">
             <Menu size={15} />
           </span>
           <span className="text-[11px] font-light tracking-wider">منو</span>
