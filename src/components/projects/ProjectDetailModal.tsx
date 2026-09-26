@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { X, ArrowLeft, ArrowRight, Share2, Check } from 'lucide-react';
+import { X, ArrowLeft, ArrowRight, Share2, Check, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Project, PROJECTS } from '../../data/projects';
 import { pauseLenis, resumeLenis } from '../../hooks/useLenis';
@@ -12,12 +12,14 @@ interface ProjectDetailModalProps {
   project: Project | null;
   onClose: () => void;
   onSelectProject: (project: Project) => void;
+  onConsultation?: () => void;
 }
 
 const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
   project,
   onClose,
   onSelectProject,
+  onConsultation,
 }) => {
   const [copied, setCopied] = useState(false);
   const [direction, setDirection] = useState<number>(0);
@@ -52,7 +54,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
     };
   }, [project, onClose]);
 
-  // When changing projects while modal is open, scroll container to top
+  // When changing projects while modal is open, scroll container to top smoothly
   useEffect(() => {
     if (project && scrollContainerRef.current) {
       scrollContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
@@ -94,39 +96,52 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
   ];
 
   return (
-    <div
+    <motion.div
       ref={scrollContainerRef}
       role="dialog"
       aria-modal="true"
       data-lenis-prevent="true"
-      className="fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-[#F4F8F3] text-[#102B2B] animate-in fade-in duration-300"
+      initial={{ opacity: 0, y: 35, scale: 0.985 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{
+        opacity: 0,
+        y: 25,
+        scale: 0.985,
+        transition: { duration: 0.28, ease: [0.76, 0, 0.24, 1] },
+      }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-[#F4F8F3] text-[#102B2B]"
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
-      {/* Top Floating Control Bar */}
-      <div className="sticky top-0 z-50 w-full bg-[#F4F8F3]/95 backdrop-blur-md border-b border-[#102B2B]/8 px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-4 text-xs font-light text-[#5B7470]">
-          <span className="font-normal text-[#102B2B]">{project.title}</span>
-          <span>·</span>
-          <span>پروژه شماره {project.id}</span>
+      {/* Top Floating Control Bar with Deep Teal & Tangerine Palette */}
+      <div className="sticky top-0 z-50 w-full bg-[#102B2B]/95 backdrop-blur-md border-b border-[#A4E0D6]/20 px-4 sm:px-8 lg:px-14 py-3.5 flex items-center justify-between shadow-lg shadow-black/25">
+        <div className="flex items-center gap-3 sm:gap-4 text-xs font-light text-[#A4E0D6]">
+          <span className="font-normal text-white text-sm tracking-wide">{project.title}</span>
+          <span className="text-[#FF9A56]">·</span>
+          <span className="px-2.5 py-0.5 rounded-full bg-[#FF6B1A]/15 text-[#FF9A56] border border-[#FF6B1A]/30 font-mono text-[10px]">
+            پروژه {project.id}
+          </span>
+          <span className="hidden md:inline text-zinc-400">|</span>
+          <span className="hidden md:inline text-zinc-300 font-light">{project.location}</span>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2.5 sm:gap-3">
           <button
             onClick={handleShare}
             aria-label="اشتراک‌گذاری پیوند اثر"
-            className="flex items-center gap-2 text-xs font-light text-[#5B7470] hover:text-[#102B2B] transition-colors p-2 cursor-pointer"
+            className="flex items-center gap-1.5 text-xs font-light text-[#A4E0D6] hover:text-[#FF9A56] hover:bg-[#A4E0D6]/10 px-3 py-1.5 rounded-full transition-colors cursor-pointer"
           >
-            {copied ? <Check size={14} className="text-emerald-700" /> : <Share2 size={14} />}
+            {copied ? <Check size={14} className="text-[#A4E0D6]" /> : <Share2 size={14} />}
             <span className="hidden sm:inline">{copied ? 'کپی شد' : 'اشتراک'}</span>
           </button>
 
           <button
             onClick={onClose}
             aria-label="بستن پرونده معماری"
-            className="flex items-center gap-2 text-xs font-light text-[#102B2B] hover:text-[#5B7470] transition-colors p-2 cursor-pointer border border-[#102B2B]/15 rounded-full px-3 py-1"
+            className="flex items-center gap-2 text-xs font-normal text-[#102B2B] bg-[#FF6B1A] hover:bg-[#FF9A56] active:scale-95 transition-all px-4 py-1.5 rounded-full cursor-pointer shadow-sm hover:shadow-[#FF6B1A]/20"
           >
             <span>بستن</span>
-            <X size={15} />
+            <X size={14} />
           </button>
         </div>
       </div>
@@ -139,24 +154,24 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           variants={{
             enter: (dir: number) => ({
               opacity: 0,
-              x: dir > 0 ? 80 : dir < 0 ? -80 : 0,
-              filter: 'blur(8px)',
+              x: dir > 0 ? 60 : dir < 0 ? -60 : 0,
+              filter: 'blur(6px)',
             }),
             center: {
               opacity: 1,
               x: 0,
               filter: 'blur(0px)',
               transition: {
-                duration: 0.65,
+                duration: 0.55,
                 ease: [0.16, 1, 0.3, 1],
               },
             },
             exit: (dir: number) => ({
               opacity: 0,
-              x: dir > 0 ? -80 : dir < 0 ? 80 : 0,
-              filter: 'blur(8px)',
+              x: dir > 0 ? -60 : dir < 0 ? 60 : 0,
+              filter: 'blur(6px)',
               transition: {
-                duration: 0.35,
+                duration: 0.3,
                 ease: [0.76, 0, 0.24, 1],
               },
             }),
@@ -164,68 +179,83 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           initial="enter"
           animate="center"
           exit="exit"
-          className="max-w-[1540px] mx-auto px-6 sm:px-10 lg:px-16 pt-12 pb-32"
+          className="max-w-[1540px] mx-auto px-6 sm:px-10 lg:px-16 pt-10 sm:pt-14 pb-32"
         >
           {/* Project Header with Animated Typography */}
-          <div className="mb-14">
-            <div className="mb-4">
-              <TextAnimate
-                key={`meta-${project.id}`}
-                animation="slideRight"
-                by="word"
-                as="div"
-                className="flex flex-wrap items-center gap-4 text-xs tracking-widest text-[#5B7470] font-light"
-              >
-                {`${project.category} · ${project.location} · سال تکمیل: ${project.year}`}
-              </TextAnimate>
+          <div className="mb-12 sm:mb-16">
+            <div className="mb-4 flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#102B2B] text-[#A4E0D6] border border-[#A4E0D6]/25 text-xs font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]" />
+                <span>{project.category}</span>
+              </span>
+
+              <span className="text-xs text-[#5B7470] font-light">
+                {project.location}
+              </span>
+
+              <span className="px-2.5 py-0.5 rounded-full bg-[#FF6B1A]/10 text-[#FF6B1A] border border-[#FF6B1A]/25 text-xs font-mono">
+                سال تکمیل: {project.year}
+              </span>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-4">
               <TextAnimate
                 key={`title-${project.id}`}
                 animation="slideUp"
                 by="word"
                 as="h1"
-                duration={0.9}
+                duration={0.85}
                 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-light text-[#102B2B] leading-[1.15] font-display"
               >
                 {project.title}
               </TextAnimate>
             </div>
 
+            {/* Tangerine Decorative Architectural Accent Bar */}
+            <div className="h-[2px] w-24 bg-gradient-to-r from-[#FF6B1A] via-[#FF9A56] to-transparent rounded-full mb-6" />
+
             <TextAnimate
               key={`tagline-${project.id}`}
               animation="blurIn"
               by="word"
               as="p"
-              delay={0.2}
+              delay={0.15}
               duration={0.7}
-              className="text-lg sm:text-xl lg:text-2xl font-light text-[#42635F] max-w-3xl leading-relaxed font-body"
+              className="text-lg sm:text-xl lg:text-2xl font-light text-[#102B2B]/80 max-w-3xl leading-relaxed font-body"
             >
               {project.tagline}
             </TextAnimate>
           </div>
 
-          {/* Large Hero Image with Curtain Wipe Animation */}
-          <div className="architectural-media w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[16/8] overflow-hidden bg-[#A4E0D6] mb-20">
+          {/* Large Hero Image with Architectural Curtain Wipe */}
+          <div className="architectural-media relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[16/8] overflow-hidden rounded-2xl sm:rounded-3xl border border-[#102B2B]/10 shadow-2xl shadow-[#102B2B]/10 bg-[#102B2B] mb-20">
             <ImageAnimate
               key={`hero-${project.id}`}
               src={project.heroImage}
               alt={project.title}
               animation="curtainUp"
-              curtainColor="#A4E0D6"
-              duration={1.1}
+              curtainColor="#102B2B"
+              duration={1.05}
               className="w-full h-full"
             />
+
+            {/* Floating Glassmorphism Spec Pill on Hero */}
+            <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 px-4 py-2 rounded-xl bg-[#102B2B]/85 backdrop-blur-md border border-[#A4E0D6]/25 text-xs text-[#F4F8F3] flex items-center gap-3 shadow-lg">
+              <span className="w-2 h-2 rounded-full bg-[#FF6B1A] animate-pulse" />
+              <span className="font-light">{project.area} زیربنا</span>
+              <span className="text-[#A4E0D6]">·</span>
+              <span className="text-[#A4E0D6] font-light">{project.status}</span>
+            </div>
           </div>
 
           {/* Split Editorial Narrative & Technical Data */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 mb-24 items-start">
             {/* Narrative Column */}
             <div className="lg:col-span-7 space-y-8 text-base sm:text-lg text-[#102B2B] font-light leading-relaxed">
               <div>
-                <span className="text-xs uppercase tracking-widest text-[#6A7F7C] font-light block mb-3">
-                  بیانیه و تفکر طراحی
+                <span className="text-xs uppercase tracking-widest text-[#FF6B1A] font-medium flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]" />
+                  <span>بیانیه و تفکر طراحی</span>
                 </span>
                 <TextAnimate
                   key={`desc-${project.id}`}
@@ -244,25 +274,26 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                 by="word"
                 as="p"
                 delay={0.15}
-                className="text-base text-[#5B7470]"
+                className="text-base text-[#102B2B]/75 leading-relaxed"
               >
                 {project.concept}
               </TextAnimate>
 
-              <div className="pt-6 border-t border-[#102B2B]/8">
-                <span className="text-xs uppercase tracking-widest text-[#6A7F7C] font-light block mb-3">
-                  پالت مصالح و بافت
+              <div className="pt-6 border-t border-[#102B2B]/10">
+                <span className="text-xs uppercase tracking-widest text-[#FF6B1A] font-medium flex items-center gap-2 mb-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]" />
+                  <span>پالت مصالح و بافت</span>
                 </span>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-[#0B1C1C]">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-[#102B2B]">
                   {project.materials.map((mat, i) => (
                     <motion.li
                       key={`${project.id}-mat-${i}`}
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 * i, duration: 0.5 }}
-                      className="flex items-center gap-2"
+                      transition={{ delay: 0.08 * i, duration: 0.45 }}
+                      className="flex items-center gap-2.5 p-3 rounded-xl bg-white/80 border border-[#102B2B]/10 hover:border-[#FF6B1A]/40 transition-colors shadow-sm"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#102B2B]/40" />
+                      <span className="w-2 h-2 rounded-full bg-[#FF6B1A] shrink-0" />
                       <span>{mat}</span>
                     </motion.li>
                   ))}
@@ -270,78 +301,92 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               </div>
             </div>
 
-            {/* Technical Data Sheet with Full Fluid Animation & Accent Line */}
+            {/* Technical Data Sheet with Deep Teal & Tangerine Accent */}
             <motion.div
               key={`tech-card-${project.id}`}
               initial={{ opacity: 0, y: 40, scale: 0.97, filter: 'blur(8px)' }}
               animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-              transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 p-8 bg-[#F4F8F3] border border-[#102B2B]/10 relative overflow-hidden"
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 p-7 sm:p-9 bg-[#102B2B] text-[#F4F8F3] border border-[#A4E0D6]/20 rounded-2xl relative overflow-hidden shadow-2xl"
             >
-              {/* Top Accent Expanding Line */}
+              {/* Top Accent Expanding Line in Tangerine & Apricot Gradient */}
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute top-0 right-0 left-0 h-[2px] bg-[#102B2B] origin-right"
+                transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute top-0 right-0 left-0 h-[3px] bg-gradient-to-r from-[#FF6B1A] via-[#FF9A56] to-[#A4E0D6] origin-right"
               />
 
-              <div className="mb-6 pb-3 border-b border-[#102B2B]/10 flex items-center justify-between">
+              <div className="mb-6 pb-3 border-b border-[#A4E0D6]/20 flex items-center justify-between">
                 <TextAnimate
                   key={`tech-title-${project.id}`}
                   animation="slideUp"
                   by="word"
                   as="h3"
-                  className="text-sm font-normal text-[#102B2B] uppercase tracking-wider"
+                  className="text-sm font-normal text-white uppercase tracking-wider"
                 >
                   شناسنامه فنی پروژه
                 </TextAnimate>
-                <span className="text-[11px] font-mono text-[#6A7F7C]">
+                <span className="text-[11px] font-mono text-[#FF9A56] bg-[#FF9A56]/10 px-2.5 py-0.5 rounded-full border border-[#FF9A56]/25">
                   REV. {project.id}
                 </span>
               </div>
 
-              <dl className="space-y-4 text-xs sm:text-sm font-light">
+              <dl className="space-y-3.5 text-xs sm:text-sm font-light">
                 {specsList.map((item, idx) => (
                   <motion.div
                     key={`${project.id}-spec-${idx}`}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
-                      duration: 0.5,
-                      delay: 0.25 + idx * 0.05,
+                      duration: 0.45,
+                      delay: 0.2 + idx * 0.04,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="flex justify-between py-2 border-b border-[#102B2B]/6"
+                    className="flex justify-between py-2 border-b border-[#A4E0D6]/15"
                   >
-                    <dt className="text-[#5B7470]">{item.label}</dt>
-                    <dd className="text-[#102B2B] font-normal">{item.value}</dd>
+                    <dt className="text-[#A4E0D6]">{item.label}</dt>
+                    <dd className="text-white font-normal">{item.value}</dd>
                   </motion.div>
                 ))}
               </dl>
+
+              {/* Consultation Callout inside Data Sheet */}
+              {onConsultation && (
+                <div className="mt-8 pt-4 border-t border-[#A4E0D6]/20">
+                  <button
+                    onClick={onConsultation}
+                    className="w-full py-3 px-4 rounded-xl bg-[#FF6B1A] hover:bg-[#FF9A56] text-[#102B2B] text-xs font-medium transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-[#FF6B1A]/20"
+                  >
+                    <Sparkles size={14} />
+                    <span>سفارش طراحی بر اساس این الگو</span>
+                  </button>
+                </div>
+              )}
             </motion.div>
           </div>
 
           {/* Editorial Photo Gallery with ImageAnimate */}
-          <div className="mb-28">
-            <span className="text-xs uppercase tracking-widest text-[#6A7F7C] font-light block mb-8">
-              روایت تصویری و زوایای تکمیلی
+          <div className="mb-24 sm:mb-28">
+            <span className="text-xs uppercase tracking-widest text-[#FF6B1A] font-medium flex items-center gap-2 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]" />
+              <span>روایت تصویری و زوایای تکمیلی</span>
             </span>
 
             <div className="space-y-12">
               {/* Gallery Image 1: Asymmetrical 2 Column */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                <div className="architectural-media md:col-span-8 aspect-[16/10] overflow-hidden bg-[#A4E0D6]">
+                <div className="architectural-media md:col-span-8 aspect-[16/10] overflow-hidden rounded-2xl border border-[#102B2B]/10 shadow-lg bg-[#102B2B]">
                   <ImageAnimate
                     key={`gal1-${project.id}`}
                     src={project.gallery[0] || project.heroImage}
                     alt={`${project.title} - تصویر ۱`}
                     animation="curtainLeft"
-                    curtainColor="#A4E0D6"
+                    curtainColor="#102B2B"
                     className="w-full h-full"
                   />
                 </div>
-                <div className="md:col-span-4 p-4 text-xs font-light text-[#5B7470] leading-relaxed">
+                <div className="md:col-span-4 p-4 border-r-2 border-[#FF6B1A] text-xs font-light text-[#102B2B]/80 leading-relaxed">
                   <TextAnimate
                     key={`caption-${project.id}`}
                     animation="blurIn"
@@ -355,23 +400,23 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
               {/* Gallery Image 2 & 3: Dual Balanced */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="architectural-media aspect-[4/3] overflow-hidden bg-[#A4E0D6]">
+                <div className="architectural-media aspect-[4/3] overflow-hidden rounded-2xl border border-[#102B2B]/10 shadow-lg bg-[#102B2B]">
                   <ImageAnimate
                     key={`gal2-${project.id}`}
                     src={project.secondaryImage}
                     alt={`${project.title} - تصویر ۲`}
                     animation="curtainUp"
-                    curtainColor="#A4E0D6"
+                    curtainColor="#102B2B"
                     className="w-full h-full"
                   />
                 </div>
-                <div className="aspect-[4/3] overflow-hidden bg-[#A4E0D6]">
+                <div className="architectural-media aspect-[4/3] overflow-hidden rounded-2xl border border-[#102B2B]/10 shadow-lg bg-[#102B2B]">
                   <ImageAnimate
                     key={`gal3-${project.id}`}
                     src={project.gallery[1] || project.heroImage}
                     alt={`${project.title} - تصویر ۳`}
                     animation="curtainRight"
-                    curtainColor="#A4E0D6"
+                    curtainColor="#102B2B"
                     className="w-full h-full"
                   />
                 </div>
@@ -380,40 +425,50 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           </div>
 
           {/* Next & Previous Project Navigation Footer */}
-          <div className="pt-16 border-t border-[#102B2B]/15 flex flex-col sm:flex-row items-center justify-between gap-8">
+          <div className="pt-12 sm:pt-16 border-t border-[#102B2B]/15 flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-8">
             <button
               onClick={handlePrev}
-              className="group flex items-center gap-4 text-right cursor-pointer p-2 rounded-lg hover:bg-black/[0.02] transition-colors"
+              className="group flex items-center gap-4 text-right cursor-pointer p-3 rounded-2xl hover:bg-black/[0.03] transition-colors w-full sm:w-auto"
             >
-              <div className="w-10 h-10 rounded-full border border-[#102B2B]/20 flex items-center justify-center transition-all duration-300 group-hover:border-[#102B2B] group-hover:translate-x-1 group-hover:bg-[#102B2B] group-hover:text-[#FF9A56]">
-                <ArrowRight size={16} />
+              <div className="w-11 h-11 rounded-full border border-[#102B2B]/20 text-[#102B2B] flex items-center justify-center transition-all duration-300 group-hover:border-[#FF6B1A] group-hover:bg-[#FF6B1A] group-hover:text-[#102B2B] group-hover:translate-x-1 shrink-0">
+                <ArrowRight size={17} />
               </div>
               <div>
-                <span className="block text-xs text-[#6A7F7C] font-light">پروژه قبلی</span>
-                <span className="text-lg font-light text-[#102B2B] group-hover:text-[#5B7470] transition-colors">
+                <span className="block text-xs text-[#FF6B1A] font-light">پروژه قبلی</span>
+                <span className="text-base sm:text-lg font-light text-[#102B2B] group-hover:text-[#FF6B1A] transition-colors">
                   {prevProject.title}
                 </span>
               </div>
             </button>
 
+            {onConsultation && (
+              <button
+                onClick={onConsultation}
+                className="hidden lg:inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#102B2B] text-[#A4E0D6] hover:text-white border border-[#A4E0D6]/20 text-xs font-light transition-all hover:bg-[#102B2B]/90 cursor-pointer"
+              >
+                <span>درخواست مشاوره اختصاصی</span>
+                <ArrowLeft size={13} className="text-[#FF6B1A]" />
+              </button>
+            )}
+
             <button
               onClick={handleNext}
-              className="group flex items-center gap-4 text-left cursor-pointer p-2 rounded-lg hover:bg-black/[0.02] transition-colors"
+              className="group flex items-center gap-4 text-left cursor-pointer p-3 rounded-2xl hover:bg-black/[0.03] transition-colors w-full sm:w-auto justify-end sm:justify-start"
             >
               <div className="text-right">
-                <span className="block text-xs text-[#6A7F7C] font-light">پروژه بعدی</span>
-                <span className="text-lg font-light text-[#102B2B] group-hover:text-[#5B7470] transition-colors">
+                <span className="block text-xs text-[#FF6B1A] font-light">پروژه بعدی</span>
+                <span className="text-base sm:text-lg font-light text-[#102B2B] group-hover:text-[#FF6B1A] transition-colors">
                   {nextProject.title}
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-full border border-[#102B2B]/20 flex items-center justify-center transition-all duration-300 group-hover:border-[#102B2B] group-hover:-translate-x-1 group-hover:bg-[#102B2B] group-hover:text-[#FF9A56]">
-                <ArrowLeft size={16} />
+              <div className="w-11 h-11 rounded-full border border-[#102B2B]/20 text-[#102B2B] flex items-center justify-center transition-all duration-300 group-hover:border-[#FF6B1A] group-hover:bg-[#FF6B1A] group-hover:text-[#102B2B] group-hover:-translate-x-1 shrink-0">
+                <ArrowLeft size={17} />
               </div>
             </button>
           </div>
         </motion.div>
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 

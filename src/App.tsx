@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, lazy, Suspense } from 'react';
+import { AnimatePresence } from 'motion/react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Hero from './components/hero/Hero';
@@ -114,15 +115,22 @@ export default function App() {
       />
 
       {/* Fullscreen Architectural Case Study Modal (Lazy loaded) */}
-      <Suspense fallback={null}>
+      <AnimatePresence>
         {selectedProject && (
-          <ProjectDetailModal
-            project={selectedProject}
-            onClose={handleCloseProject}
-            onSelectProject={handleSelectProject}
-          />
+          <Suspense fallback={null}>
+            <ProjectDetailModal
+              key="project-detail-modal"
+              project={selectedProject}
+              onClose={handleCloseProject}
+              onSelectProject={handleSelectProject}
+              onConsultation={() => {
+                handleCloseProject();
+                handleNavigateToContact();
+              }}
+            />
+          </Suspense>
         )}
-      </Suspense>
+      </AnimatePresence>
 
       {/* Quick Search Modal (Lazy loaded) */}
       <Suspense fallback={null}>
