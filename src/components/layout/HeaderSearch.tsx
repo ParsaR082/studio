@@ -75,7 +75,7 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
           onOpenChange={(open) => setIsExpanded(open)}
           onKeyDown={handleKeyDown}
           collapsedWidth={118}
-          expandedWidth={Math.min(230, typeof window !== 'undefined' ? window.innerWidth - 92 : 230)}
+          expandedWidth="min(230px, calc(100vw - 92px))"
           expandedOffset={46}
           gooeyBlur={4}
           classNames={{
