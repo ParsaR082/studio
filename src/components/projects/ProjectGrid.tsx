@@ -84,11 +84,11 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
     <section
       ref={sectionRef}
       id="projects"
-      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/10 bg-[#EAF3EF] overflow-hidden"
+      className="py-14 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/10 bg-[#EAF3EF] overflow-hidden"
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Section Header matching video 00:03 */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-6 sm:gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-16 gap-6 sm:gap-8">
           <div>
             <div className="mb-3">
               <TextAnimate
@@ -112,7 +112,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
           </div>
 
           {/* Minimal Filter Tabs */}
-          <div className="flex items-center gap-4 sm:gap-8 overflow-x-auto pb-3 scrollbar-none max-w-full -mx-1 px-1">
+          <div className="flex items-center gap-5 sm:gap-8 overflow-x-auto pb-3 scrollbar-none max-w-full -mx-1 px-1">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
@@ -138,7 +138,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
         {/* Project grid: show three projects initially, then reveal the full archive. */}
         <div
           className={`overflow-hidden transition-[max-height] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isExpanded ? 'max-h-[10000px]' : 'max-h-[1900px]'
+            isExpanded ? 'max-h-[10000px]' : 'max-h-[1750px]'
           }`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 md:gap-x-8 xl:gap-x-12 gap-y-10 sm:gap-y-14 lg:gap-y-20">
@@ -163,7 +163,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ onSelectProject }) => {
             transition={{ duration: 0.6, delay: 0.2 }}
             aria-expanded={isExpanded}
             aria-label={isExpanded ? 'بستن فهرست پروژه‌ها' : 'مشاهده همه پروژه‌ها'}
-            className="group mx-auto mt-12 sm:mt-16 flex flex-col items-center gap-3 text-[#102B2B] cursor-pointer"
+            className="group mx-auto mt-10 sm:mt-16 flex flex-col items-center gap-3 text-[#102B2B] cursor-pointer"
           >
             <span className="text-[11px] font-light tracking-[0.18em] uppercase transition-colors group-hover:text-[#FF6B1A]">
               {isExpanded ? 'بستن پروژه‌ها' : 'مشاهده همه پروژه‌ها'}
