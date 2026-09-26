@@ -162,7 +162,9 @@ export default function FlipCard({
     if (disabled) rest();
   }, [disabled]);
 
-  // Cache the card bounds so pointer-move tilt never forces a layout read.
+  // Keep cached viewport bounds in sync with layout changes AND page scrolling.
+  // ResizeObserver alone is insufficient: scrolling moves cards in viewport coordinates
+  // without resizing them, which makes lower cards calculate tilt against stale bounds.
   useEffect(() => {
     const element = rootRef.current;
     if (!element) return;
@@ -174,8 +176,14 @@ export default function FlipCard({
     updateBounds();
     const observer = new ResizeObserver(updateBounds);
     observer.observe(element);
+    window.addEventListener('scroll', updateBounds, { passive: true, capture: true });
+    window.addEventListener('resize', updateBounds, { passive: true });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', updateBounds, true);
+      window.removeEventListener('resize', updateBounds);
+    };
   }, []);
 
   const lastTouchTapRef = useRef(0);
@@ -347,7 +355,12 @@ export default function FlipCard({
       onPointerCancel={(e) => release(e, true)}
       onLostPointerCapture={(e) => release(e, true)}
       onPointerEnter={(e) => {
-        if (!reduce && !disabled && e.pointerType !== 'touch') lift.set(hoverScale);
+        if (!reduce && !disabled && e.pointerType !== 'touch') {
+          // Refresh once at entry for exact pointer-relative coordinates, including
+          // transforms applied by hover/ancestor animations.
+          boundsRef.current = e.currentTarget.getBoundingClientRect();
+          lift.set(hoverScale);
+        }
       }}
       onPointerLeave={() => {
         if (!grip.current) rest();
