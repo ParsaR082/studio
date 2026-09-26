@@ -125,13 +125,13 @@
 
 @layer base {
   :root {
-    --background: #F4F8F3;
+    --background: #EAF3EF;
     --foreground: #102B2B;
     --muted: #A4E0D6;
     --muted-foreground: #42635F;
     --border: rgba(17, 17, 17, 0.15);
     --ring: #FF6B1A;
-    --bg-main: #F4F8F3;
+    --bg-main: #EAF3EF;
     --text-primary: #102B2B;
     --text-secondary: #42635F;
     --border-hairline: rgba(17, 17, 17, 0.08);
@@ -366,20 +366,20 @@ a {
   --color-brand-accent: #FF6B1A;
   --color-brand-accent-soft: #FF9A56;
   --color-brand-secondary: #A4E0D6;
-  --color-background: #F4F8F3;
+  --color-background: #EAF3EF;
   --color-background-dark: #102B2B;
-  --color-surface: #FFFFFF;
+  --color-surface: #F4F8F3;
   --color-text-primary: #102B2B;
   --color-text-secondary: #42635F;
   --color-border: rgba(16, 43, 43, .16);
   --color-interactive: #FF6B1A;
 }
 ::selection { background: #FF6B1A; color: #102B2B; }
-::-webkit-scrollbar-track { background: #F4F8F3; }
+::-webkit-scrollbar-track { background: #EAF3EF; }
 ::-webkit-scrollbar-thumb { background: #A4E0D6; border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: #FF9A56; }
 :where(button, a, [role="button"], input, select, textarea, summary):focus-visible {
   outline-color: #FF6B1A;
 }
 /* Shared section-level visual rhythm, without changing geometry or motion. */
-body { background: #F4F8F3; color: #102B2B; }
+body { background: #EAF3EF; color: #102B2B; }
