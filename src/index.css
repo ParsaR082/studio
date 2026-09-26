@@ -125,15 +125,15 @@
 
 @layer base {
   :root {
-    --background: #F5F4F0;
-    --foreground: #111111;
-    --muted: #E8E6DE;
-    --muted-foreground: #777777;
+    --background: #F4F8F3;
+    --foreground: #102B2B;
+    --muted: #A4E0D6;
+    --muted-foreground: #42635F;
     --border: rgba(17, 17, 17, 0.15);
-    --ring: #111111;
-    --bg-main: #F5F4F0;
-    --text-primary: #111111;
-    --text-secondary: #666666;
+    --ring: #FF6B1A;
+    --bg-main: #F4F8F3;
+    --text-primary: #102B2B;
+    --text-secondary: #42635F;
     --border-hairline: rgba(17, 17, 17, 0.08);
 
     --font-heading: 'Morabba','Shabnam', 'IRANYekanX', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -354,3 +354,32 @@ a {
      transitions from lingering without disabling layout or visibility. */
   .animate-spin-slow { animation: none !important; }
 }
+
+
+/* ==========================================================================
+   NOUVEAU STUDIO — Tangerine & Deep Teal brand color system
+   Shared design tokens and global color harmonization.
+   ========================================================================== */
+:root {
+  --color-brand-primary: #102B2B;
+  --color-brand-primary-deep: #0B1C1C;
+  --color-brand-accent: #FF6B1A;
+  --color-brand-accent-soft: #FF9A56;
+  --color-brand-secondary: #A4E0D6;
+  --color-background: #F4F8F3;
+  --color-background-dark: #102B2B;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #102B2B;
+  --color-text-secondary: #42635F;
+  --color-border: rgba(16, 43, 43, .16);
+  --color-interactive: #FF6B1A;
+}
+::selection { background: #FF6B1A; color: #102B2B; }
+::-webkit-scrollbar-track { background: #F4F8F3; }
+::-webkit-scrollbar-thumb { background: #A4E0D6; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #FF9A56; }
+:where(button, a, [role="button"], input, select, textarea, summary):focus-visible {
+  outline-color: #FF6B1A;
+}
+/* Shared section-level visual rhythm, without changing geometry or motion. */
+body { background: #F4F8F3; color: #102B2B; }
