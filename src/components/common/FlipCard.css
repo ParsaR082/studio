@@ -10,6 +10,7 @@
 
   position: relative;
   display: block;
+  contain: layout style;
   width: var(--fc-w);
   max-width: 100%;
   height: var(--fc-h);
