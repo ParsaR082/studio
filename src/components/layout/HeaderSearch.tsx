@@ -80,10 +80,11 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
           gooeyBlur={4}
           classNames={{
             trigger:
-              'bg-[#102B2B] text-[#F4F8F3] border border-[#A4E0D6]/20 shadow-md hover:bg-[#102B2B] text-xs font-light tracking-wide',
+              'bg-[#102B2B] text-[#FF6B1A] border border-[#FF6B1A] shadow-md hover:border-[#FF9A56] ring-0 text-xs font-light tracking-wide transition-colors',
             bubbleSurface:
-              'bg-[#102B2B] text-[#F4F8F3] border border-[#A4E0D6]/20 shadow-md',
-            input: 'text-xs text-[#F4F8F3] placeholder:text-[#6A7F7C] font-light',
+              'bg-[#102B2B] text-[#FF6B1A] border border-[#FF6B1A] shadow-md ring-0',
+            icon: 'text-[#FF6B1A]',
+            input: 'text-xs text-[#F4F8F3] placeholder:text-[#FF6B1A] font-light',
           }}
         />
       </div>
