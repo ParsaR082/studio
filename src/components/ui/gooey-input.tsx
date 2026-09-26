@@ -210,10 +210,11 @@ export function GooeyInput({
             disabled={disabled}
             onClick={handleExpand}
             className={cn(
-              "flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-full px-4 text-sm font-medium outline-none transition-[color,box-shadow] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+              "flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-full px-4 text-sm font-medium outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 focus-visible:ring-0 transition-[color,box-shadow] disabled:pointer-events-none disabled:opacity-50",
               surfaceClass,
               classNames?.trigger,
             )}
+            style={{ outline: "none" }}
           >
             {!isExpanded ? (
               <SearchIcon layoutId={iconLayoutId} className={classNames?.icon} />
@@ -224,6 +225,7 @@ export function GooeyInput({
               type="search"
               enterKeyHint="search"
               autoComplete="off"
+              dir="rtl"
               value={searchText}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -231,7 +233,7 @@ export function GooeyInput({
               disabled={disabled || !isExpanded}
               placeholder={placeholder}
               className={cn(
-                "h-full min-w-0 flex-1 bg-transparent text-sm text-background outline-none",
+                "h-full min-w-0 flex-1 bg-transparent text-sm text-right outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 caret-[#FF6B1A]",
                 !classNames?.input?.includes("placeholder:") &&
                   (isExpanded
                     ? "placeholder:text-background/50 dark:placeholder:text-background/45"
@@ -239,6 +241,7 @@ export function GooeyInput({
                 !isExpanded && "pointer-events-none",
                 classNames?.input,
               )}
+              style={{ outline: "none" }}
             />
           </button>
         </motion.div>

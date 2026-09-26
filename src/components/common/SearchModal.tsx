@@ -75,11 +75,11 @@ const SearchModal: React.FC<SearchModalProps> = ({
               className="w-full max-w-lg"
               classNames={{
                 trigger:
-                  'bg-[#102B2B] text-[#FF6B1A] border border-[#FF6B1A] shadow-lg text-sm font-light hover:border-[#FF9A56] ring-0',
+                  'bg-[#102B2B] text-[#FF6B1A] border border-[#FF6B1A] shadow-lg text-sm font-light hover:border-[#FF9A56] ring-0 outline-none focus:outline-none focus-visible:outline-none focus:ring-0',
                 bubbleSurface:
-                  'bg-[#102B2B] text-[#FF6B1A] border border-[#FF6B1A] shadow-lg ring-0',
+                  'bg-[#102B2B] text-[#FF6B1A] border border-[#FF6B1A] shadow-lg ring-0 outline-none',
                 icon: 'text-[#FF6B1A]',
-                input: 'text-sm text-[#F4F8F3] placeholder:text-[#FF6B1A] font-light',
+                input: 'text-sm text-[#FF6B1A] placeholder:text-[#FF6B1A] font-light text-right caret-[#FF6B1A] outline-none focus:outline-none focus:ring-0',
               }}
             />
           </div>

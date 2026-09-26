@@ -247,9 +247,9 @@ a {
   touch-action: manipulation;
 }
 
+:where(button, a, [role="button"], input, select, textarea, summary):focus,
 :where(button, a, [role="button"], input, select, textarea, summary):focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 4px;
+  outline: none !important;
 }
 
 @media (max-width: 639px) {
@@ -378,8 +378,26 @@ a {
 ::-webkit-scrollbar-track { background: #EAF3EF; }
 ::-webkit-scrollbar-thumb { background: #A4E0D6; border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: #FF9A56; }
+/* Global focus outline cleanup */
+:where(button, a, [role="button"], input, select, textarea, summary):focus,
 :where(button, a, [role="button"], input, select, textarea, summary):focus-visible {
-  outline-color: #FF6B1A;
+  outline: none !important;
+}
+
+/* Eliminate blinking text caret on random clicks across the entire site */
+html,
+body,
+*,
+*::before,
+*::after {
+  caret-color: transparent !important;
+}
+
+/* Only real input fields get the brand orange caret */
+input,
+textarea,
+[contenteditable="true"] {
+  caret-color: #FF6B1A !important;
 }
 /* Shared section-level visual rhythm, without changing geometry or motion. */
 body { background: #EAF3EF; color: #102B2B; }
