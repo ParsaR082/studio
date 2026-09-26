@@ -69,22 +69,22 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
       {/* Liquid Gooey Input Control */}
       <div dir="ltr" className="flex items-center">
         <GooeyInput
-          placeholder="جستجو در آثار..."
+          placeholder={isExpanded ? 'جستجو در آثار...' : 'جستجو'}
           value={query}
           onValueChange={(val) => setQuery(val)}
           onOpenChange={(open) => setIsExpanded(open)}
           onKeyDown={handleKeyDown}
-          collapsedWidth={98}
+          collapsedWidth={118}
           expandedWidth={230}
           expandedOffset={46}
           gooeyBlur={4}
           classNames={{
             trigger:
-              'bg-[#102B2B] text-[#FF6B1A] border border-[#FF6B1A] shadow-md hover:border-[#FF9A56] ring-0 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 text-xs font-light tracking-wide transition-colors',
+              'bg-[#102B2B] text-[#FF6B1A] border-2 border-[#FF6B1A] shadow-md hover:border-[#FF9A56] ring-0 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 text-xs font-normal tracking-wide transition-colors',
             bubbleSurface:
-              'bg-[#102B2B] text-[#FF6B1A] border border-[#FF6B1A] shadow-md ring-0 outline-none',
+              'bg-[#102B2B] text-[#FF6B1A] border-2 border-[#FF6B1A] shadow-md ring-0 outline-none',
             icon: 'text-[#FF6B1A]',
-            input: 'text-xs text-[#FF6B1A] placeholder:text-[#FF6B1A] font-light text-right caret-[#FF6B1A] outline-none focus:outline-none focus:ring-0',
+            input: 'text-xs text-[#FF6B1A] placeholder:text-[#FF6B1A] font-normal text-right caret-[#FF6B1A] outline-none focus:outline-none focus:ring-0',
           }}
         />
       </div>

@@ -164,7 +164,7 @@ const Header: React.FC<HeaderProps> = ({
                   className="relative inline-flex items-center justify-center px-5 py-2 text-xs sm:text-sm font-normal text-[#102B2B] bg-[#FF6B1A] hover:bg-[#FF9A56] border border-transparent rounded-full transition-colors cursor-pointer gap-2"
                 >
                   <span>درخواست مشاوره</span>
-                  <ArrowLeft className="w-3.5 h-3.5 text-[#A4E0D6]" />
+                  <ArrowLeft className="w-4 h-4 text-[#102B2B]" strokeWidth={2.5} />
                 </button>
               </div>
 

@@ -45,7 +45,7 @@ function SearchIcon({ layoutId, className }: { layoutId: string; className?: str
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={2}
+      strokeWidth={2.5}
       className={cn("size-4 shrink-0 text-[#FF6B1A]", className)}
     >
       <circle cx="11" cy="11" r="8" />
