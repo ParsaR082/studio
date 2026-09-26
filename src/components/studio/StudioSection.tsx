@@ -47,7 +47,7 @@ const StudioSection: React.FC = () => {
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Studio Header */}
-        <div className="mb-20">
+        <div className="mb-14 sm:mb-20">
           <span className="text-[11px] uppercase tracking-widest text-[#A4E0D6] font-light block mb-3">
             درباره استودیو · هویت و رویکرد
           </span>
@@ -90,7 +90,7 @@ const StudioSection: React.FC = () => {
               : { opacity: 0, scale: 0.98, y: -40 }
           }
           transition={{ duration: 1.0, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full aspect-[16/8] sm:aspect-[21/9] overflow-hidden bg-[#A4E0D6] mb-24"
+          className="relative w-full aspect-[4/3] sm:aspect-[16/8] lg:aspect-[21/9] overflow-hidden bg-[#A4E0D6] mb-16 sm:mb-24"
         >
           <img
             src="/src/assets/images/studio_workspace_arch_1790288945406.jpg"
@@ -100,13 +100,13 @@ const StudioSection: React.FC = () => {
             decoding="async"
             className="architectural-media w-full h-full object-cover"
           />
-          <div className="absolute bottom-6 right-6 px-4 py-2 bg-black/50 backdrop-blur-md text-white text-xs font-light tracking-wide">
+          <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 px-3 sm:px-4 py-2 bg-black/50 backdrop-blur-md text-white text-xs font-light tracking-wide">
             آتلیه طراحی و ساخت ماکت‌های مفهومی — تهران
           </div>
         </motion.div>
 
         {/* Principles 3-Column Grid */}
-        <div className="mb-28">
+        <div className="mb-20 sm:mb-28">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -15 }}
@@ -116,7 +116,7 @@ const StudioSection: React.FC = () => {
             اصول بنیادین تفکر استودیو
           </motion.span>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-9 sm:gap-12 lg:gap-16">
             {PRINCIPLES.map((item, idx) => (
               <motion.div
                 key={item.number}
@@ -157,7 +157,7 @@ const StudioSection: React.FC = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -25 }}
           transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 pt-16 border-t border-[#A4E0D6]/20"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-9 sm:gap-12 lg:gap-20 pt-12 sm:pt-16 border-t border-[#A4E0D6]/20"
         >
           <div className="lg:col-span-4">
             <span className="text-[11px] uppercase tracking-widest text-[#FF9A56] font-light block mb-2">
