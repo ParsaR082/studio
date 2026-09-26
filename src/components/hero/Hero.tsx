@@ -26,7 +26,7 @@ const Hero: React.FC<HeroProps> = ({
     <section
       ref={containerRef}
       id="hero"
-      className="relative min-h-[92vh] pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-20 lg:pb-24 bg-[#0D0D0F] text-white flex flex-col justify-center overflow-hidden border-b border-white/5"
+      className="relative min-h-[92vh] pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-20 lg:pb-24 bg-[#102B2B] text-white flex flex-col justify-center overflow-hidden border-b border-white/5"
     >
       {/* Monochromatic Architectural Ambient Lighting */}
       <div className="absolute top-1/4 -right-24 w-96 h-96 bg-white/[0.03] rounded-full blur-[140px] pointer-events-none" />
