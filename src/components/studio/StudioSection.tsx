@@ -43,12 +43,12 @@ const StudioSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="studio"
-      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/8 overflow-hidden"
+      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/10 bg-[#102B2B] text-[#F4F8F3] overflow-hidden"
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Studio Header */}
         <div className="mb-20">
-          <span className="text-[11px] uppercase tracking-widest text-[#42635F] font-light block mb-3">
+          <span className="text-[11px] uppercase tracking-widest text-[#A4E0D6] font-light block mb-3">
             درباره استودیو · هویت و رویکرد
           </span>
           <div className="mb-8">
