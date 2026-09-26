@@ -80,10 +80,10 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
           gooeyBlur={4}
           classNames={{
             trigger:
-              'bg-[#111111] text-[#F5F4F0] border border-white/10 shadow-md hover:bg-[#201F1D] text-xs font-light tracking-wide',
+              'bg-[#102B2B] text-[#F4F8F3] border border-[#A4E0D6]/20 shadow-md hover:bg-[#102B2B] text-xs font-light tracking-wide',
             bubbleSurface:
-              'bg-[#111111] text-[#F5F4F0] border border-white/10 shadow-md',
-            input: 'text-xs text-[#F5F4F0] placeholder:text-[#888888] font-light',
+              'bg-[#102B2B] text-[#F4F8F3] border border-[#A4E0D6]/20 shadow-md',
+            input: 'text-xs text-[#F4F8F3] placeholder:text-[#6A7F7C] font-light',
           }}
         />
       </div>
@@ -97,12 +97,12 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             dir="rtl"
-            className="absolute top-full mt-3 right-0 w-[300px] sm:w-[340px] bg-[#1A1917]/95 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl p-3 z-50 text-right overflow-hidden"
+            className="absolute top-full mt-3 right-0 w-[300px] sm:w-[340px] bg-[#0B1C1C]/95 backdrop-blur-xl border border-[#A4E0D6]/25 rounded-2xl shadow-2xl p-3 z-50 text-right overflow-hidden"
           >
             {/* Popover Header */}
-            <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10 px-2 text-[11px] text-[#A09E96] font-light">
+            <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#A4E0D6]/20 px-2 text-[11px] text-[#A09E96] font-light">
               <span>نتایج سریع جستجو ({matchingProjects.length})</span>
-              <span className="text-[10px] text-[#777777]">کلید Enter برای آرشیو کامل</span>
+              <span className="text-[10px] text-[#5B7470]">کلید Enter برای آرشیو کامل</span>
             </div>
 
             {/* Results Items */}
@@ -113,10 +113,10 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
                     key={project.id}
                     type="button"
                     onClick={() => handleSelectResult(project)}
-                    className="w-full text-right p-2 rounded-xl hover:bg-white/10 active:bg-white/15 transition-all flex items-center justify-between gap-3 group cursor-pointer"
+                    className="w-full text-right p-2 rounded-xl hover:bg-[#A4E0D6]/15 active:bg-[#A4E0D6]/20 transition-all flex items-center justify-between gap-3 group cursor-pointer"
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="architectural-media w-10 h-10 rounded-lg overflow-hidden bg-white/5 shrink-0 border border-white/10">
+                      <div className="architectural-media w-10 h-10 rounded-lg overflow-hidden bg-[#A4E0D6]/10 shrink-0 border border-[#A4E0D6]/20">
                         <img
                           src={project.heroImage}
                           alt={project.title}
@@ -134,12 +134,12 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
                         </span>
                       </div>
                     </div>
-                    <ArrowLeft size={13} className="text-[#888888] group-hover:text-white shrink-0 group-hover:-translate-x-1 transition-all" />
+                    <ArrowLeft size={13} className="text-[#6A7F7C] group-hover:text-[#FF9A56] shrink-0 group-hover:-translate-x-1 transition-all" />
                   </button>
                 ))}
               </div>
             ) : (
-              <div className="py-6 text-center text-xs text-[#888888] font-light">
+              <div className="py-6 text-center text-xs text-[#6A7F7C] font-light">
                 موردی منطبق با «{query}» یافت نشد
               </div>
             )}
@@ -151,13 +151,13 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
                 onOpenFullSearch(query);
                 setIsExpanded(false);
               }}
-              className="mt-2 pt-2 border-t border-white/10 w-full py-1.5 px-2 flex items-center justify-between text-[11px] text-[#C6C4BC] hover:text-white hover:bg-white/5 rounded-lg transition-colors cursor-pointer"
+              className="mt-2 pt-2 border-t border-[#A4E0D6]/20 w-full py-1.5 px-2 flex items-center justify-between text-[11px] text-[#C6C4BC] hover:text-[#FF9A56] hover:bg-[#A4E0D6]/10 rounded-lg transition-colors cursor-pointer"
             >
               <span className="flex items-center gap-1.5 font-light">
                 <ExternalLink size={12} />
                 <span>مشاهده پرونده‌ها در آرشیو جامع آثار</span>
               </span>
-              <span className="text-[10px] text-[#777777]">→</span>
+              <span className="text-[10px] text-[#5B7470]">→</span>
             </button>
           </motion.div>
         )}
