@@ -128,7 +128,7 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
                     e.stopPropagation();
                     setFlipped(false);
                   }}
-                  className="flex items-center gap-1 text-[11px] text-[#AAAAAA] hover:text-[#FF9A56] transition-colors cursor-pointer z-30 relative"
+                  className="flex items-center gap-1 text-[11px] text-[#6A7F7C] hover:text-[#FF9A56] transition-colors cursor-pointer z-30 relative"
                 >
                   <RotateCw size={11} />
                   <span>بازگشت</span>
@@ -147,19 +147,19 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
                 <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/8 text-xs font-light">
                   <div>
                     <span className="block text-[10px] text-[#5B7470]">زیربنا</span>
-                    <span className="text-[#E0DED7] font-normal">{project.area}</span>
+                    <span className="text-[#A4E0D6] font-normal">{project.area}</span>
                   </div>
                   <div>
                     <span className="block text-[10px] text-[#5B7470]">مکان</span>
-                    <span className="text-[#E0DED7] font-normal">{project.location}</span>
+                    <span className="text-[#A4E0D6] font-normal">{project.location}</span>
                   </div>
                   <div>
                     <span className="block text-[10px] text-[#5B7470]">سازه و معمار</span>
-                    <span className="text-[#E0DED7] font-normal">{project.architect}</span>
+                    <span className="text-[#A4E0D6] font-normal">{project.architect}</span>
                   </div>
                   <div>
                     <span className="block text-[10px] text-[#5B7470]">وضعیت</span>
-                    <span className="text-[#E0DED7] font-normal">{project.status}</span>
+                    <span className="text-[#A4E0D6] font-normal">{project.status}</span>
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
                   e.stopPropagation();
                   onSelect(project);
                 }}
-                className="w-full py-2.5 px-4 bg-white text-[#102B2B] hover:bg-[#E0DED5] active:scale-[0.98] transition-all rounded text-xs font-light tracking-wide flex items-center justify-center gap-2 cursor-pointer z-30 relative"
+                className="w-full py-2.5 px-4 bg-white text-[#102B2B] hover:bg-[#A4E0D6] active:scale-[0.98] transition-all rounded text-xs font-light tracking-wide flex items-center justify-center gap-2 cursor-pointer z-30 relative"
               >
                 <span>مشاهده پرونده کامل اثر</span>
                 <Maximize2 size={13} />
