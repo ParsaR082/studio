@@ -107,7 +107,7 @@ const ContactSection: React.FC = () => {
                 : { opacity: 0, y: -40, scale: 0.99 }
             }
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 bg-[#EFEFEA] p-8 sm:p-12 border border-[#102B2B]/8"
+            className="lg:col-span-7 bg-[#F4F8F3] p-8 sm:p-12 border border-[#102B2B]/8"
           >
             {submitted ? (
               <div className="py-16 text-center space-y-4">
@@ -147,7 +147,7 @@ const ContactSection: React.FC = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="مثال: مهندس رادمهر"
-                      className="w-full bg-transparent border-b border-[#102B2B]/25 py-2 text-sm text-[#102B2B] placeholder:text-[#999999] focus:outline-none focus:border-[#102B2B] transition-colors"
+                      className="w-full bg-transparent border-b border-[#102B2B]/25 py-2 text-sm text-[#102B2B] placeholder:text-[#5B7470] focus:outline-none focus:border-[#102B2B] transition-colors"
                     />
                   </div>
 
@@ -162,7 +162,7 @@ const ContactSection: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="name@domain.com"
                       dir="ltr"
-                      className="w-full bg-transparent border-b border-[#102B2B]/25 py-2 text-sm text-[#102B2B] placeholder:text-[#999999] focus:outline-none focus:border-[#102B2B] transition-colors text-right"
+                      className="w-full bg-transparent border-b border-[#102B2B]/25 py-2 text-sm text-[#102B2B] placeholder:text-[#5B7470] focus:outline-none focus:border-[#102B2B] transition-colors text-right"
                     />
                   </div>
                 </div>
@@ -194,7 +194,7 @@ const ContactSection: React.FC = () => {
                       value={formData.location}
                       onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                       placeholder="مثال: لواسان / مازندران / اصفهان"
-                      className="w-full bg-transparent border-b border-[#102B2B]/25 py-2 text-sm text-[#102B2B] placeholder:text-[#999999] focus:outline-none focus:border-[#102B2B] transition-colors"
+                      className="w-full bg-transparent border-b border-[#102B2B]/25 py-2 text-sm text-[#102B2B] placeholder:text-[#5B7470] focus:outline-none focus:border-[#102B2B] transition-colors"
                     />
                   </div>
                 </div>
@@ -208,7 +208,7 @@ const ContactSection: React.FC = () => {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="توضیحاتی پیرامون متراژ زمین، ویژگی‌های خاص و اهداف طرح بنویسید..."
-                    className="w-full bg-transparent border-b border-[#102B2B]/25 py-2 text-sm text-[#102B2B] placeholder:text-[#999999] focus:outline-none focus:border-[#102B2B] transition-colors resize-none"
+                    className="w-full bg-transparent border-b border-[#102B2B]/25 py-2 text-sm text-[#102B2B] placeholder:text-[#5B7470] focus:outline-none focus:border-[#102B2B] transition-colors resize-none"
                   />
                 </div>
 
