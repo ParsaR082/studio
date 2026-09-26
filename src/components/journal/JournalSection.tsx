@@ -22,7 +22,7 @@ const JournalSection: React.FC = () => {
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-6">
           <div>
             <div className="mb-3">
               <TextAnimate
@@ -49,7 +49,7 @@ const JournalSection: React.FC = () => {
         </div>
 
         {/* Featured First Article + 2-Column Split */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-9 sm:gap-12 lg:gap-16 items-start mb-12 sm:mb-16">
           {/* Main Lead Article */}
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.98 }}
@@ -76,7 +76,7 @@ const JournalSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 text-xs text-[#42635F] font-light mb-3">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#42635F] font-light mb-3">
               <span>{ARTICLES[0].category}</span>
               <span>·</span>
               <span>{ARTICLES[0].date}</span>
@@ -150,7 +150,7 @@ const JournalSection: React.FC = () => {
           className="fixed inset-0 z-50 overflow-y-auto bg-[#F4F8F3] p-4 sm:p-12 lg:p-20 animate-in fade-in duration-300"
         >
           <div className="max-w-3xl mx-auto">
-            <div className="flex justify-between items-center mb-12 pb-4 border-b border-[#102B2B]/10">
+            <div className="flex flex-wrap justify-between items-start gap-4 mb-8 sm:mb-12 pb-4 border-b border-[#102B2B]/10">
               <span className="text-xs text-[#42635F] font-light">
                 مجله استودیو نو · {activeArticle.category}
               </span>
