@@ -58,8 +58,8 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
           glareOpacity={0.22}
           hoverScale={1.02}
           perspective={1100}
-          background="#161514"
-          color="#F5F4F0"
+          background="#0B1C1C"
+          color="#F4F8F3"
           shadow
           shadowColor="#000000"
           shadowOpacity={0.35}
@@ -67,7 +67,7 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
           onFlipChange={setFlipped}
           ariaLabel={`کارت سه‌بعدی ${project.title}`}
           front={
-            <div className="architectural-media relative w-full h-full overflow-hidden bg-[#E8E6DE]">
+            <div className="architectural-media relative w-full h-full overflow-hidden bg-[#A4E0D6]">
               <img
                 src={project.heroImage}
                 alt={project.title}
@@ -82,18 +82,18 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
 
               {/* Top Tags */}
               <div className="absolute top-4 right-4 flex items-center gap-2">
-                <span className="text-[11px] font-mono tracking-widest text-white/95 px-2.5 py-1 bg-black/45 backdrop-blur-md border border-white/10 rounded-sm">
+                <span className="text-[11px] font-mono tracking-widest text-white/95 px-2.5 py-1 bg-black/45 backdrop-blur-md border border-[#A4E0D6]/20 rounded-sm">
                   {project.id}
                 </span>
-                <span className="text-[10px] font-light text-white/80 px-2 py-1 bg-black/35 backdrop-blur-md rounded-sm">
+                <span className="text-[10px] font-light text-[#F4F8F3]/80 px-2 py-1 bg-black/35 backdrop-blur-md rounded-sm">
                   {project.category}
                 </span>
               </div>
 
               {/* Bottom Flip Affordance Hint */}
-              <div className="absolute bottom-4 right-4 left-4 flex items-center justify-between text-white/90">
+              <div className="absolute bottom-4 right-4 left-4 flex items-center justify-between text-[#F4F8F3]/90">
                 <div className="flex flex-col">
-                  <span className="text-xs font-light text-white/70">
+                  <span className="text-xs font-light text-[#F4F8F3]/70">
                     {project.location}
                   </span>
                   <span className="text-sm font-normal tracking-wide">
@@ -101,7 +101,7 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-[11px] font-light text-white/85 px-2.5 py-1 rounded bg-white/15 backdrop-blur-md border border-white/20">
+                <div className="flex items-center gap-1.5 text-[11px] font-light text-[#F4F8F3]/85 px-2.5 py-1 rounded bg-[#A4E0D6]/20 backdrop-blur-md border border-[#A4E0D6]/30">
                   <RotateCw size={12} className="animate-spin-slow" />
                   <span>چرخش کارت</span>
                 </div>
@@ -109,15 +109,15 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
             </div>
           }
           back={
-            <div className="w-full h-full p-4 sm:p-6 flex flex-col justify-between bg-[#161514] text-[#F5F4F0] border border-white/10">
+            <div className="w-full h-full p-4 sm:p-6 flex flex-col justify-between bg-[#0B1C1C] text-[#F4F8F3] border border-[#A4E0D6]/20">
               {/* Back Header */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+              <div className="flex items-center justify-between border-b border-[#A4E0D6]/20 pb-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-[#888888]">
+                  <span className="text-[10px] font-mono text-[#6A7F7C]">
                     شیت فنی پروژه {project.id}
                   </span>
                   <span>·</span>
-                  <span className="text-[10px] text-[#A5A4A0]">{project.year}</span>
+                  <span className="text-[10px] text-[#A4E0D6]">{project.year}</span>
                 </div>
                 <button
                   type="button"
@@ -128,7 +128,7 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
                     e.stopPropagation();
                     setFlipped(false);
                   }}
-                  className="flex items-center gap-1 text-[11px] text-[#AAAAAA] hover:text-white transition-colors cursor-pointer z-30 relative"
+                  className="flex items-center gap-1 text-[11px] text-[#AAAAAA] hover:text-[#FF9A56] transition-colors cursor-pointer z-30 relative"
                 >
                   <RotateCw size={11} />
                   <span>بازگشت</span>
@@ -140,25 +140,25 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
                 <h4 className="text-lg sm:text-xl font-light tracking-tight text-white">
                   {project.title}
                 </h4>
-                <p className="text-xs text-[#888888] font-light line-clamp-3 leading-relaxed">
+                <p className="text-xs text-[#6A7F7C] font-light line-clamp-3 leading-relaxed">
                   {project.tagline}
                 </p>
 
                 <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/8 text-xs font-light">
                   <div>
-                    <span className="block text-[10px] text-[#666666]">زیربنا</span>
+                    <span className="block text-[10px] text-[#5B7470]">زیربنا</span>
                     <span className="text-[#E0DED7] font-normal">{project.area}</span>
                   </div>
                   <div>
-                    <span className="block text-[10px] text-[#666666]">مکان</span>
+                    <span className="block text-[10px] text-[#5B7470]">مکان</span>
                     <span className="text-[#E0DED7] font-normal">{project.location}</span>
                   </div>
                   <div>
-                    <span className="block text-[10px] text-[#666666]">سازه و معمار</span>
+                    <span className="block text-[10px] text-[#5B7470]">سازه و معمار</span>
                     <span className="text-[#E0DED7] font-normal">{project.architect}</span>
                   </div>
                   <div>
-                    <span className="block text-[10px] text-[#666666]">وضعیت</span>
+                    <span className="block text-[10px] text-[#5B7470]">وضعیت</span>
                     <span className="text-[#E0DED7] font-normal">{project.status}</span>
                   </div>
                 </div>
@@ -174,7 +174,7 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
                   e.stopPropagation();
                   onSelect(project);
                 }}
-                className="w-full py-2.5 px-4 bg-white text-[#111111] hover:bg-[#E0DED5] active:scale-[0.98] transition-all rounded text-xs font-light tracking-wide flex items-center justify-center gap-2 cursor-pointer z-30 relative"
+                className="w-full py-2.5 px-4 bg-white text-[#102B2B] hover:bg-[#E0DED5] active:scale-[0.98] transition-all rounded text-xs font-light tracking-wide flex items-center justify-center gap-2 cursor-pointer z-30 relative"
               >
                 <span>مشاهده پرونده کامل اثر</span>
                 <Maximize2 size={13} />
@@ -191,7 +191,7 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
           by="word"
           as="span"
           delay={delay + 0.1}
-          className="text-[11px] font-light uppercase tracking-widest text-[#777777]"
+          className="text-[11px] font-light uppercase tracking-widest text-[#5B7470]"
         >
           {`${project.category} · ${project.location}`}
         </TextAnimate>
@@ -201,7 +201,7 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
       <div className="mb-3">
         <button
           onClick={() => onSelect(project)}
-          className="text-right cursor-pointer group-hover:text-[#555555] transition-colors"
+          className="text-right cursor-pointer group-hover:text-[#5B7470] transition-colors"
         >
           <TextAnimate
             animation="slideUp"
@@ -209,7 +209,7 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
             as="h3"
             delay={delay + 0.15}
             duration={0.7}
-            className="text-xl sm:text-2xl font-light text-[#111111] leading-snug"
+            className="text-xl sm:text-2xl font-light text-[#102B2B] leading-snug"
           >
             {project.title}
           </TextAnimate>
@@ -224,22 +224,22 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
           as="p"
           delay={delay + 0.25}
           duration={0.65}
-          className="text-xs sm:text-sm font-light text-[#666666] leading-relaxed"
+          className="text-xs sm:text-sm font-light text-[#5B7470] leading-relaxed"
         >
           {project.tagline}
         </TextAnimate>
       </div>
 
       {/* Button with circular arrow */}
-      <div className="mt-auto pt-3 flex items-center justify-between border-t border-[#111111]/8">
-        <span className="text-[11px] font-light text-[#888888]">{project.year}</span>
+      <div className="mt-auto pt-3 flex items-center justify-between border-t border-[#102B2B]/8">
+        <span className="text-[11px] font-light text-[#6A7F7C]">{project.year}</span>
         <button
           type="button"
           onClick={() => onSelect(project)}
-          className="inline-flex items-center gap-2.5 text-xs font-light uppercase tracking-wider text-[#111111] hover:text-[#555555] transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2.5 text-xs font-light uppercase tracking-wider text-[#102B2B] hover:text-[#5B7470] transition-colors cursor-pointer"
         >
           <span>مشاهده جزئیات</span>
-          <span className="w-7 h-7 rounded-full border border-[#111111] flex items-center justify-center transition-all duration-300 group-hover:bg-[#111111] group-hover:text-white group-hover:-translate-x-1">
+          <span className="w-7 h-7 rounded-full border border-[#102B2B] flex items-center justify-center transition-all duration-300 group-hover:bg-[#102B2B] group-hover:text-[#FF9A56] group-hover:-translate-x-1">
             <ArrowLeft size={12} />
           </span>
         </button>
