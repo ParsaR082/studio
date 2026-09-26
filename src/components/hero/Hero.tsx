@@ -74,7 +74,7 @@ const Hero: React.FC<HeroProps> = ({
                   duration={0.85}
                   stagger={0.06}
                 >
-                  نوآفرینی در سکوت و ماده.
+                  نوآفریی در سکوت و ماده.
                 </TextAnimate>
               </span>
             </h1>
