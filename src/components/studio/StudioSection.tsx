@@ -43,12 +43,12 @@ const StudioSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="studio"
-      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#111111]/8 overflow-hidden"
+      className="py-16 sm:py-24 lg:py-36 px-[var(--page-gutter)] border-t border-[#102B2B]/8 overflow-hidden"
     >
       <div className="max-w-[1540px] mx-auto">
         {/* Studio Header */}
         <div className="mb-20">
-          <span className="text-[11px] uppercase tracking-widest text-[#777777] font-light block mb-3">
+          <span className="text-[11px] uppercase tracking-widest text-[#42635F] font-light block mb-3">
             درباره استودیو · هویت و رویکرد
           </span>
           <div className="mb-8">
@@ -56,7 +56,7 @@ const StudioSection: React.FC = () => {
               animation="scaleUp"
               by="word"
               as="h2"
-              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#111111]"
+              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#102B2B]"
             >
               استودیو
             </TextAnimate>
@@ -70,12 +70,12 @@ const StudioSection: React.FC = () => {
                 as="p"
                 delay={0.1}
                 stagger={0.03}
-                className="text-2xl sm:text-3xl font-light text-[#111111] leading-relaxed"
+                className="text-2xl sm:text-3xl font-light text-[#102B2B] leading-relaxed"
               >
                 استودیو معماری نو، کارگاهی مستقل برای خلق فضاهای معاصر، مبتنی بر زمینه‌گرایی انتقادی، ادراک حسی و درک عمیق از جغرافیا و مصالح بومی است.
               </TextAnimate>
             </div>
-            <p className="lg:col-span-5 text-sm sm:text-base font-light text-[#555555] leading-relaxed">
+            <p className="lg:col-span-5 text-sm sm:text-base font-light text-[#42635F] leading-relaxed">
               از سال ۱۳۹۶، فعالیت ما بر خلق پروژه‌های مسکونی، ویلایی و فرهنگی متمرکز بوده است. در هر پروژه، تلاش می‌کنیم تا پرسشی معمارانه مطرح کنیم و پاسخی پیراسته از جنس نور و سنگ بیابیم.
             </p>
           </div>
@@ -90,7 +90,7 @@ const StudioSection: React.FC = () => {
               : { opacity: 0, scale: 0.98, y: -40 }
           }
           transition={{ duration: 1.0, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full aspect-[16/8] sm:aspect-[21/9] overflow-hidden bg-[#E5E3DB] mb-24"
+          className="relative w-full aspect-[16/8] sm:aspect-[21/9] overflow-hidden bg-[#A4E0D6] mb-24"
         >
           <img
             src="/src/assets/images/studio_workspace_arch_1790288945406.jpg"
@@ -111,7 +111,7 @@ const StudioSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -15 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-[11px] uppercase tracking-widest text-[#888888] font-light block mb-10"
+            className="text-[11px] uppercase tracking-widest text-[#FF9A56] font-light block mb-10"
           >
             اصول بنیادین تفکر استودیو
           </motion.span>
@@ -131,20 +131,20 @@ const StudioSection: React.FC = () => {
                   delay: 0.35 + idx * 0.12,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="flex flex-col border-t border-[#111111]/10 pt-6"
+                className="flex flex-col border-t border-[#102B2B]/10 pt-6"
               >
-                <span className="text-xs font-light text-[#888888] mb-3">{item.number}</span>
+                <span className="text-xs font-light text-[#FF9A56] mb-3">{item.number}</span>
                 <div className="mb-4">
                   <TextAnimate
                     animation="blurIn"
                     by="word"
                     as="h3"
-                    className="text-xl sm:text-2xl font-light text-[#111111]"
+                    className="text-xl sm:text-2xl font-light text-[#102B2B]"
                   >
                     {item.title}
                   </TextAnimate>
                 </div>
-                <p className="text-sm font-light text-[#555555] leading-relaxed">
+                <p className="text-sm font-light text-[#42635F] leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>
@@ -157,13 +157,13 @@ const StudioSection: React.FC = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -25 }}
           transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 pt-16 border-t border-[#111111]/8"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 pt-16 border-t border-[#102B2B]/8"
         >
           <div className="lg:col-span-4">
-            <span className="text-[11px] uppercase tracking-widest text-[#888888] font-light block mb-2">
+            <span className="text-[11px] uppercase tracking-widest text-[#FF9A56] font-light block mb-2">
               دست‌آوردها
             </span>
-            <h3 className="text-2xl font-light text-[#111111]">
+            <h3 className="text-2xl font-light text-[#102B2B]">
               جوایز و نشان‌های ملی و بین‌المللی
             </h3>
           </div>
@@ -172,17 +172,17 @@ const StudioSection: React.FC = () => {
             {RECOGNITIONS.map((item, idx) => (
               <div
                 key={idx}
-                className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-[#111111]/8 gap-2"
+                className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-[#102B2B]/8 gap-2"
               >
                 <div>
-                  <span className="text-base text-[#111111] font-light block">
+                  <span className="text-base text-[#102B2B] font-light block">
                     {item.title}
                   </span>
-                  <span className="text-xs text-[#777777] font-light">
+                  <span className="text-xs text-[#42635F] font-light">
                     پروژه: {item.project}
                   </span>
                 </div>
-                <span className="text-xs font-light text-[#555555]">{item.year}</span>
+                <span className="text-xs font-light text-[#42635F]">{item.year}</span>
               </div>
             ))}
           </div>
