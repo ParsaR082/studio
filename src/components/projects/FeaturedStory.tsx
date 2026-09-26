@@ -26,7 +26,7 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
     <section
       ref={containerRef}
       id="featured"
-      className="min-h-screen py-24 md:py-36 px-6 sm:px-10 lg:px-16 border-t border-[#111111]/8 flex flex-col justify-center overflow-hidden"
+      className="min-h-screen py-24 md:py-36 px-6 sm:px-10 lg:px-16 border-t border-[#102B2B]/8 flex flex-col justify-center overflow-hidden"
     >
       <div className="max-w-[1540px] w-full mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -39,7 +39,7 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
               transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="flex items-center gap-3.5 mb-6"
             >
-              <div className="w-10 h-10 rounded-full overflow-hidden bg-[#DDD] shrink-0 border border-[#111111]/10">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-[#FF9A56] shrink-0 border border-[#102B2B]/10">
                 <img
                   src="/src/assets/images/architect_avatar_1790289615854.jpg"
                   alt="پرهام رحمانی / معمار"
@@ -48,10 +48,10 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
                 />
               </div>
               <div>
-                <span className="block text-xs font-normal text-[#111111]">
+                <span className="block text-xs font-normal text-[#102B2B]">
                   پرهام رحمانی
                 </span>
-                <span className="block text-[11px] font-light text-[#777777]">
+                <span className="block text-[11px] font-light text-[#42635F]">
                   معمار ارشد و مؤسس استودیو نو
                 </span>
               </div>
@@ -64,7 +64,7 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
                 by="word"
                 as="span"
                 delay={0.15}
-                className="text-[11px] uppercase tracking-widest text-[#777777] font-light"
+                className="text-[11px] uppercase tracking-widest text-[#42635F] font-light"
               >
                 روایت معمار · ARCHITECT & ESSAY
               </TextAnimate>
@@ -72,7 +72,7 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
 
             {/* Large Bold Editorial Title matching video "CHRISTIAN DE PORTZAMPARC" */}
             <div className="mb-6">
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-[#111111] leading-[1.15] font-display">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-[#102B2B] leading-[1.15] font-display">
                 <span className="block font-normal text-xl sm:text-2xl lg:text-3xl font-sans tracking-wide mb-1" dir="ltr">
                   <TextAnimate
                     animation="slideLeft"
@@ -100,7 +100,7 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
             </div>
 
             {/* Editorial Description matching video narrative */}
-            <div className="mb-8 text-[#555555] font-light text-sm sm:text-base leading-relaxed max-w-xl font-body">
+            <div className="mb-8 text-[#42635F] font-light text-sm sm:text-base leading-relaxed max-w-xl font-body">
               <TextAnimate
                 animation="fadeSlide"
                 by="word"
@@ -120,10 +120,10 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
             >
               <button
                 onClick={() => onOpenProject(project)}
-                className="group inline-flex items-center gap-3.5 text-xs sm:text-sm font-light uppercase tracking-wider text-[#111111] hover:text-[#555555] transition-colors cursor-pointer"
+                className="group inline-flex items-center gap-3.5 text-xs sm:text-sm font-light uppercase tracking-wider text-[#102B2B] hover:text-[#42635F] transition-colors cursor-pointer"
               >
                 <span>مطالعه روایت کامل</span>
-                <span className="w-9 h-9 rounded-full border border-[#111111] flex items-center justify-center transition-all duration-300 group-hover:bg-[#111111] group-hover:text-[#F5F4F0] group-hover:-translate-x-1">
+                <span className="w-9 h-9 rounded-full border border-[#102B2B] flex items-center justify-center transition-all duration-300 group-hover:bg-[#102B2B] group-hover:text-[#F4F8F3] group-hover:-translate-x-1">
                   <ArrowLeft size={15} />
                 </span>
               </button>
@@ -136,14 +136,14 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
               src="/src/assets/images/khaneh_noor_arch_1790288924333.jpg"
               alt="معماری رواق و آتریوم نور"
               animation="curtainLeft"
-              curtainColor="#D6D3C9"
+              curtainColor="#A4E0D6"
               delay={0.2}
               duration={1.05}
               onClick={() => onOpenProject(project)}
-              className="w-full h-full bg-[#E8E6DE]"
+              className="w-full h-full bg-[#A4E0D6]"
             >
-              <div className="absolute inset-0 bg-[#111111]/10 hover:bg-transparent transition-colors duration-500" />
-              <div className="absolute bottom-6 left-6 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm text-[#111111] flex items-center justify-center opacity-90 hover:opacity-100 hover:scale-110 transition-all duration-300 shadow-sm pointer-events-auto">
+              <div className="absolute inset-0 bg-[#102B2B]/10 hover:bg-transparent transition-colors duration-500" />
+              <div className="absolute bottom-6 left-6 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm text-[#102B2B] flex items-center justify-center opacity-90 hover:opacity-100 hover:scale-110 transition-all duration-300 shadow-sm pointer-events-auto">
                 <Maximize2 size={16} />
               </div>
               <div className="absolute top-6 right-6 px-3 py-1 bg-black/40 backdrop-blur-md text-white text-[11px] font-light tracking-wider">
