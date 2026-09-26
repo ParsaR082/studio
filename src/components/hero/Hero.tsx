@@ -26,15 +26,15 @@ const Hero: React.FC<HeroProps> = ({
     <section
       ref={containerRef}
       id="hero"
-      className="relative min-h-[92vh] pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-20 lg:pb-24 bg-[#102B2B] text-white flex flex-col justify-center overflow-hidden border-b border-white/5"
+      className="relative min-h-[100svh] pt-24 sm:pt-32 md:pt-36 pb-10 sm:pb-20 lg:pb-24 bg-[#102B2B] text-white flex flex-col justify-center overflow-hidden border-b border-white/5"
     >
       {/* Monochromatic Architectural Ambient Lighting */}
       <div className="absolute top-1/4 -right-24 w-96 h-96 bg-[#A4E0D6]/[0.05] rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 -left-24 w-96 h-96 bg-[#FF6B1A]/[0.08] rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.04)_0%,transparent_60%)] pointer-events-none" />
 
-      <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl w-full relative z-10">
-        <div className="grid items-center max-w-6xl grid-cols-1 mx-auto gap-y-12 lg:grid-cols-5 gap-x-12 xl:gap-x-16">
+      <div className="px-[var(--page-gutter)] mx-auto max-w-7xl w-full relative z-10">
+        <div className="grid items-center max-w-6xl grid-cols-1 mx-auto gap-y-8 sm:gap-y-12 lg:grid-cols-5 gap-x-8 xl:gap-x-16">
           {/* Text & Content Column (3 Cols) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -51,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({
             </div>
 
             {/* Major Editorial Headline with Gray/Silver Gradient */}
-            <h1 className="text-3xl font-light text-white sm:text-5xl lg:text-6xl xl:text-7xl font-display leading-[1.25] tracking-tight">
+            <h1 className="text-[2rem] sm:text-5xl lg:text-6xl xl:text-7xl font-display leading-[1.25] tracking-tight">
               <span className="text-[#F4F8F3]">آفرینش فضا در تلاقی</span>{' '}
               <span className="block mt-2 text-[#FF9A56] font-normal">
                 نور، سکوت و ماده
@@ -59,12 +59,12 @@ const Hero: React.FC<HeroProps> = ({
             </h1>
 
             {/* Descriptive Architectural Narrative */}
-            <p className="mt-6 text-base font-light text-[#A4E0D6] sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto lg:mx-0 font-body">
+            <p className="mt-5 sm:mt-6 text-[15px] sm:text-base font-light text-[#A4E0D6] sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto lg:mx-0 font-body">
               ما در استودیو معماری نو، فرم‌ها را بر پایه گفتگوی عمیق میان نور خورشید، خلوص مصالح و بستر طبیعی بازتعریف می‌کنیم؛ خلق فضاهایی معاصر، آرامش‌بخش و شاعرانه که کیفیت زیستن را به سطحی والاتر ارتقا می‌بخشند.
             </p>
 
             {/* Action CTA Buttons (Monochrome Palette) */}
-            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <div className="mt-7 sm:mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <button
                 onClick={onExploreProjects}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium text-[#102B2B] transition-all duration-300 rounded-full bg-[#FF6B1A] hover:bg-[#FF9A56] hover:shadow-lg hover:shadow-[#FF6B1A]/20 hover:scale-[1.02] cursor-pointer group"
@@ -82,7 +82,7 @@ const Hero: React.FC<HeroProps> = ({
             </div>
 
             {/* Supporting Trust & Metric Subtext (Monochrome) */}
-            <div className="mt-8 pt-6 border-t border-[#A4E0D6]/20 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-[#A4E0D6]/80 font-light">
+            <div className="mt-7 sm:mt-8 pt-5 sm:pt-6 border-t border-[#A4E0D6]/20 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-[#A4E0D6]/80 font-light">
               <div className="flex items-center gap-2">
                 <span className="text-white font-medium text-sm">۱۵+</span>
                 <span>سال سابقه طراحی معماری</span>
