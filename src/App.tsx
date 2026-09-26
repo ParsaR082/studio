@@ -78,7 +78,7 @@ export default function App() {
         onSelectProject={handleSelectProject}
       />
 
-      <main>
+      <main key={openingFinished ? 'site-revealed' : 'site-hidden'}>
         {/* Stage 1: Hero Section (AMBITIOUS + Sweeping Curved Facade + In/Out Motion) */}
         <Hero
           featuredProject={featuredProject}
