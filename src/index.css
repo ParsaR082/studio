@@ -49,32 +49,32 @@
 
 /* Vazirmatn (Body & Interface Reading) */
 @font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/Vazirmatn-Light.woff2') format('woff2');
+  font-family: 'IRANYekanX';
+  src: url('/fonts/IRANYekanX-Light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/Vazirmatn-Regular.woff2') format('woff2');
+  font-family: 'IRANYekanX';
+  src: url('/fonts/IRANYekanX-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/Vazirmatn-Medium.woff2') format('woff2');
+  font-family: 'IRANYekanX';
+  src: url('/fonts/IRANYekanX-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/Vazirmatn-Bold.woff2') format('woff2');
+  font-family: 'IRANYekanX';
+  src: url('/fonts/IRANYekanX-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -118,9 +118,9 @@
 }
 
 @theme {
-  --font-display: 'Shabnam', 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-sans: 'Vazirmatn', 'Shabnam', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Vazirmatn', 'Shabnam', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Shabnam', 'IRANYekanX', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'IRANYekanX', 'Shabnam', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'IRANYekanX', 'Shabnam', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 @layer base {
@@ -136,8 +136,8 @@
     --text-secondary: #666666;
     --border-hairline: rgba(17, 17, 17, 0.08);
 
-    --font-heading: 'Morabba','Shabnam', 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-text: 'Vazirmatn', 'Shabnam', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Morabba','Shabnam', 'IRANYekanX', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-text: 'IRANYekanX', 'Shabnam', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   html {
