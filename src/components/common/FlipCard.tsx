@@ -92,6 +92,7 @@ export default function FlipCard({
   const shownRef = useRef(shown);
   shownRef.current = shown;
   const rootRef = useRef<HTMLDivElement>(null);
+  const boundsRef = useRef<DOMRect | null>(null);
   const grip = useRef<{
     id: number;
     x: number;
@@ -160,6 +161,22 @@ export default function FlipCard({
   useEffect(() => {
     if (disabled) rest();
   }, [disabled]);
+
+  // Cache the card bounds so pointer-move tilt never forces a layout read.
+  useEffect(() => {
+    const element = rootRef.current;
+    if (!element) return;
+
+    const updateBounds = () => {
+      boundsRef.current = element.getBoundingClientRect();
+    };
+
+    updateBounds();
+    const observer = new ResizeObserver(updateBounds);
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
 
   const lastTouchTapRef = useRef(0);
 
@@ -233,7 +250,8 @@ export default function FlipCard({
 
     // 3D tilt is strictly enabled for precision mouse pointers, disabled on touch to avoid jitter
     if (!tilt || reduce || disabled || isTouch) return;
-    const r = e.currentTarget.getBoundingClientRect();
+    const r = boundsRef.current;
+    if (!r || r.width === 0 || r.height === 0) return;
     const px = clamp((e.clientX - r.left) / r.width, 0, 1);
     const py = clamp((e.clientY - r.top) / r.height, 0, 1);
     tiltX.set((0.5 - py) * 2 * tiltMax);
