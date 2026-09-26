@@ -56,7 +56,7 @@ const StudioSection: React.FC = () => {
               animation="scaleUp"
               by="word"
               as="h2"
-              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#102B2B]"
+              className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-[#F4F8F3]"
             >
               استودیو
             </TextAnimate>
@@ -70,7 +70,7 @@ const StudioSection: React.FC = () => {
                 as="p"
                 delay={0.1}
                 stagger={0.03}
-                className="text-2xl sm:text-3xl font-light text-[#102B2B] leading-relaxed"
+                className="text-2xl sm:text-3xl font-light text-[#F4F8F3] leading-relaxed"
               >
                 استودیو معماری نو، کارگاهی مستقل برای خلق فضاهای معاصر، مبتنی بر زمینه‌گرایی انتقادی، ادراک حسی و درک عمیق از جغرافیا و مصالح بومی است.
               </TextAnimate>
@@ -131,7 +131,7 @@ const StudioSection: React.FC = () => {
                   delay: 0.35 + idx * 0.12,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="flex flex-col border-t border-[#102B2B]/10 pt-6"
+                className="flex flex-col border-t border-[#A4E0D6]/20 pt-6"
               >
                 <span className="text-xs font-light text-[#FF9A56] mb-3">{item.number}</span>
                 <div className="mb-4">
@@ -139,12 +139,12 @@ const StudioSection: React.FC = () => {
                     animation="blurIn"
                     by="word"
                     as="h3"
-                    className="text-xl sm:text-2xl font-light text-[#102B2B]"
+                    className="text-xl sm:text-2xl font-light text-[#F4F8F3]"
                   >
                     {item.title}
                   </TextAnimate>
                 </div>
-                <p className="text-sm font-light text-[#42635F] leading-relaxed">
+                <p className="text-sm font-light text-[#A4E0D6] leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>
@@ -157,13 +157,13 @@ const StudioSection: React.FC = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -25 }}
           transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 pt-16 border-t border-[#102B2B]/8"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 pt-16 border-t border-[#A4E0D6]/20"
         >
           <div className="lg:col-span-4">
             <span className="text-[11px] uppercase tracking-widest text-[#FF9A56] font-light block mb-2">
               دست‌آوردها
             </span>
-            <h3 className="text-2xl font-light text-[#102B2B]">
+            <h3 className="text-2xl font-light text-[#F4F8F3]">
               جوایز و نشان‌های ملی و بین‌المللی
             </h3>
           </div>
@@ -172,17 +172,17 @@ const StudioSection: React.FC = () => {
             {RECOGNITIONS.map((item, idx) => (
               <div
                 key={idx}
-                className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-[#102B2B]/8 gap-2"
+                className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-[#A4E0D6]/20 gap-2"
               >
                 <div>
-                  <span className="text-base text-[#102B2B] font-light block">
+                  <span className="text-base text-[#F4F8F3] font-light block">
                     {item.title}
                   </span>
-                  <span className="text-xs text-[#42635F] font-light">
+                  <span className="text-xs text-[#A4E0D6] font-light">
                     پروژه: {item.project}
                   </span>
                 </div>
-                <span className="text-xs font-light text-[#42635F]">{item.year}</span>
+                <span className="text-xs font-light text-[#A4E0D6]">{item.year}</span>
               </div>
             ))}
           </div>
