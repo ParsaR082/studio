@@ -145,6 +145,7 @@ export default function FlipCard({
     tiltY.set(0);
     sheen.set(0);
     lift.set(1);
+    lastTiltDirectionRef.current = 'center';
   };
 
   useEffect(() => {
@@ -187,6 +188,7 @@ export default function FlipCard({
   }, []);
 
   const lastTouchTapRef = useRef(0);
+  const lastTiltDirectionRef = useRef('center');
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (disabled || e.button !== 0 || grip.current) return;
@@ -262,8 +264,47 @@ export default function FlipCard({
     if (!r || r.width === 0 || r.height === 0) return;
     const px = clamp((e.clientX - r.left) / r.width, 0, 1);
     const py = clamp((e.clientY - r.top) / r.height, 0, 1);
-    tiltX.set((0.5 - py) * 2 * tiltMax);
-    tiltY.set((px - 0.5) * 2 * tiltMax);
+
+    // Deliberate 8-direction tilt: keep the card movement architectural and
+    // predictable instead of continuously changing the angle with every pixel.
+    // The center third stays flat; the surrounding 8 sectors map to cardinal
+    // and diagonal poses.
+    const column = px < 0.33 ? 'left' : px > 0.67 ? 'right' : 'center';
+    const row = py < 0.33 ? 'top' : py > 0.67 ? 'bottom' : 'center';
+    const direction =
+      row === 'center' && column === 'center'
+        ? 'center'
+        : row === 'center'
+          ? column
+          : column === 'center'
+            ? row
+            : `${row}-${column}`;
+
+    if (direction !== lastTiltDirectionRef.current) {
+      lastTiltDirectionRef.current = direction;
+
+      const cardinal = tiltMax * 0.5;
+      const diagonal = tiltMax * 0.42;
+
+      const poses: Record<string, [number, number]> = {
+        center: [0, 0],
+        top: [-cardinal, 0],
+        bottom: [cardinal, 0],
+        left: [0, -cardinal],
+        right: [0, cardinal],
+        'top-left': [-diagonal, -diagonal],
+        'top-right': [-diagonal, diagonal],
+        'bottom-left': [diagonal, -diagonal],
+        'bottom-right': [diagonal, diagonal],
+      };
+
+      const [nextX, nextY] = poses[direction];
+      tiltX.set(nextX);
+      tiltY.set(nextY);
+    }
+
+    // Glare remains continuous while tilt itself snaps only between the 8
+    // deliberate directions, giving the card a subtle cinematic response.
     gx.set(px * 100);
     gy.set(py * 100);
     sheen.set(1);
